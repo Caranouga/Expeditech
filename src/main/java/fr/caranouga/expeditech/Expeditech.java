@@ -1,5 +1,6 @@
 package fr.caranouga.expeditech;
 
+import fr.caranouga.expeditech.registry.ModBlocks;
 import fr.caranouga.expeditech.registry.ModItems;
 import net.minecraft.block.Block;
 import net.minecraftforge.common.MinecraftForge;
@@ -30,6 +31,7 @@ public class Expeditech
         modEBus.addListener(this::doClientStuff);
 
         // Registries
+        ModBlocks.register(modEBus);
         ModItems.register(modEBus);
 
         MinecraftForge.EVENT_BUS.register(this);
