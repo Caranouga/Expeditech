@@ -11,7 +11,7 @@ import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
-import static fr.caranouga.expeditech.registry.ModItems.ITEMS;
+import static fr.caranouga.expeditech.registry.ModItems.registerItem;
 
 public class ModBlocks {
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, Expeditech.MODID);
@@ -29,7 +29,7 @@ public class ModBlocks {
     }
 
     private static void registerItemBlock(String name, RegistryObject<Block> block) {
-        ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties()));
+        registerItem(name, () -> new BlockItem(block.get(), new Item.Properties().tab(ModTabs.EXPEDITECH)));
     }
     // endregion
 
