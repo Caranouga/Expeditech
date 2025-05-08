@@ -1,22 +1,19 @@
 package fr.caranouga.expeditech;
 
+import fr.caranouga.expeditech.registry.ModItems;
 import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.InterModComms;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModProcessEvent;
-import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
-import java.util.stream.Collectors;
 
 @Mod(Expeditech.MODID)
 public class Expeditech
@@ -25,12 +22,15 @@ public class Expeditech
     public static final String MODID = "et";
 
     public Expeditech() {
-        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
-        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::enqueueIMC);
-        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::processIMC);
-        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::doClientStuff);
+        IEventBus modEBus = FMLJavaModLoadingContext.get().getModEventBus();
+
+        modEBus.addListener(this::setup);
+        modEBus.addListener(this::enqueueIMC);
+        modEBus.addListener(this::processIMC);
+        modEBus.addListener(this::doClientStuff);
 
         // Registries
+        ModItems.register(modEBus);
 
         MinecraftForge.EVENT_BUS.register(this);
     }
