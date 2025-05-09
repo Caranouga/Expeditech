@@ -1,6 +1,8 @@
 package fr.caranouga.expeditech.datagen;
 
 import fr.caranouga.expeditech.Expeditech;
+import fr.caranouga.expeditech.datagen.providers.ModAdvancementsProvider;
+import fr.caranouga.expeditech.datagen.providers.ModBlockLootTableProvider;
 import fr.caranouga.expeditech.datagen.providers.ModItemModelsProvider;
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.common.data.ExistingFileHelper;
@@ -16,6 +18,8 @@ public class ModDataGenerator {
         ExistingFileHelper existingFileHelper = event.getExistingFileHelper();
 
         generator.addProvider(new ModItemModelsProvider(generator, existingFileHelper));
+        generator.addProvider(new ModBlockLootTableProvider(generator));
+        generator.addProvider(new ModAdvancementsProvider(generator, existingFileHelper));
     }
 
 }
