@@ -18,11 +18,10 @@ public class ModItemModelsProvider extends ItemModelProvider {
     protected void registerModels() {
         ModItems.ITEMS.getEntries().forEach(entry -> {
             if(entry.get() instanceof BlockItem){
-                // Skip block items, they are handled in the blockstate provider
+                withExistingParent(entry.get().getRegistryName().getPath(), modLoc("block/" + entry.get().getRegistryName().getPath()));
+
                 return;
             }
-
-            Expeditech.LOGGER.debug("Registering item model for: " + entry.get().getRegistryName());
 
             ModelFile itemGenerated = getExistingFile(mcLoc("item/generated"));
             builder(itemGenerated, entry.get().getRegistryName().getPath());

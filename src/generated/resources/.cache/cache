@@ -1,3 +1,15 @@
+d784bcf1bf25a1720e50ca82337c545f62cc49ed assets/et/blockstates/caranite_block.json
+f6171f84edcde6683d417285a2f586863cb1644b assets/et/blockstates/caranite_ore.json
+7cb3830fb3a2343bf0c23a153843107bb44cdf2d assets/et/lang/en_us.json
+c005af78fbda9d4c91ae3fcba9f2c6d1373985a8 assets/et/lang/fr_fr.json
+e6bc2fe142b78a36614ae8254802340b66426127 assets/et/models/block/caranite_block.json
+a74b1c5bf5f50a81d06cc98e81e91c8de8076bfa assets/et/models/block/caranite_ore.json
 933f04030d6eba91018aa9dff39a240cfc341b74 assets/et/models/item/caranite.json
+0edd3df74ce8a66033e80a8284611fdf39098abf assets/et/models/item/caranite_block.json
+88e69069a7972c330c5a9e5e912f29fa9a13e06a assets/et/models/item/caranite_dust.json
+5014706d94090338c62be9683c17e98d467eb5cb assets/et/models/item/caranite_nugget.json
+8afaf6be0d3af6e5f88cdbb860bc544f4ec4ec20 assets/et/models/item/caranite_ore.json
+d0397c334b8bd8d0a7ce3c38949a9e1d2071d964 assets/et/models/item/impure_caranite.json
 9d0823be9b45ffe45e872420a905bb19a40c45d1 data/et/advancements/root.json
 5099d6a7899c8aab248ea1d97ff39dc35e261abe data/et/loot_tables/blocks/caranite_block.json
+6e948b3a275aeb0fbe1116fecad77279b7baf054 data/et/loot_tables/blocks/caranite_ore.json

@@ -1,6 +1,8 @@
 package fr.caranouga.expeditech.registry;
 
 import fr.caranouga.expeditech.Expeditech;
+import fr.caranouga.expeditech.utils.BlockEntry;
+import fr.caranouga.expeditech.utils.LootTypeEntry;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -11,12 +13,15 @@ import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import static fr.caranouga.expeditech.registry.ModItems.registerItem;
 
 public class ModBlocks {
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, Expeditech.MODID);
+    public static final Map<RegistryObject<Block>, BlockEntry> BLOCKS_ENTRIES = new HashMap<>();
 
-    public static final RegistryObject<Block> CARANITE_BLOCK = registerBlock("caranite_block");
     // Storage blocks
     public static final RegistryObject<Block> CARANITE_BLOCK = registerStorageBlock("caranite_block");
 
@@ -24,12 +29,12 @@ public class ModBlocks {
     public static final RegistryObject<Block> CARANITE_ORE = registerOre("caranite_ore", ModItems.IMPURE_CARANITE);
 
     // region Utility methods
-    private static RegistryObject<Block> registerBlock(String name) {
     private static RegistryObject<Block> registerOre(String name, RegistryObject<Item> drop) {
         RegistryObject<Block> block = BLOCKS.register(name, () -> new Block(AbstractBlock.Properties.of(Material.STONE)));
 
         // Register the block item
         registerItemBlock(name, block);
+        addBlockEntry(block, new BlockEntry(new LootTypeEntry(LootTypeEntry.LootType.ORE_DROP, drop)));
 
         return block;
     }
@@ -39,6 +44,7 @@ public class ModBlocks {
 
         // Register the block item
         registerItemBlock(name, block);
+        addBlockEntry(block, new BlockEntry(new LootTypeEntry(LootTypeEntry.LootType.DROP_SELF)));
 
         return block;
     }
@@ -55,6 +61,9 @@ public class ModBlocks {
     // Utils
     private static void registerItemBlock(String name, RegistryObject<Block> block) {
         registerItem(name, () -> new BlockItem(block.get(), new Item.Properties().tab(ModTabs.EXPEDITECH)));
+    }
+    private static void addBlockEntry(RegistryObject<Block> block, BlockEntry entry) {
+        BLOCKS_ENTRIES.put(block, entry);
     }
     // endregion
 

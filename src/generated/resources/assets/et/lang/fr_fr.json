@@ -1,0 +1,9 @@
+{
+  "block.et.caranite_block": "Bloc de Caranite",
+  "block.et.caranite_ore": "Minerai de Caranite",
+  "item.et.caranite": "Caranite",
+  "item.et.caranite_dust": "Poussi\u00E8re de Caranite",
+  "item.et.caranite_nugget": "P\u00E9pite de Caranite",
+  "item.et.impure_caranite": "Caranite Impure",
+  "itemGroup.expeditech": "Expeditech"
+}

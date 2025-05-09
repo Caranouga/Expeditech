@@ -2,7 +2,9 @@ package fr.caranouga.expeditech.datagen.providers;
 
 import com.google.common.collect.ImmutableList;
 import com.mojang.datafixers.util.Pair;
+import fr.caranouga.expeditech.Expeditech;
 import fr.caranouga.expeditech.registry.ModBlocks;
+import fr.caranouga.expeditech.utils.LootTypeEntry;
 import net.minecraft.block.Block;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.LootTableProvider;
@@ -40,8 +42,22 @@ public class ModBlockLootTableProvider extends LootTableProvider {
     public static class ModBlockLootTables extends BlockLootTables {
         @Override
         protected void addTables() {
-            ModBlocks.BLOCKS.getEntries().forEach(block -> {
-                dropSelf(block.get());
+            ModBlocks.BLOCKS_ENTRIES.forEach((block, entry) -> {
+                Expeditech.LOGGER.debug("Adding loot table for block: {}, Entry: {}", block.getId(), entry);
+                LootTypeEntry lootTypeEntry = entry.getLootType();
+                switch (lootTypeEntry.getLootType()){
+                    case DROP_SELF: {
+                        dropSelf(block.get());
+                        break;
+                    }
+                    case ORE_DROP: {
+                        this.add(block.get(), blockLoot -> createOreDrop(block.get(), lootTypeEntry.getDrop().get()));
+                        break;
+                    }
+                    default: {
+                        throw new RuntimeException("Unknown loot type: " + lootTypeEntry.getLootType());
+                    }
+                }
             });
         }
 
