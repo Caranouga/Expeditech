@@ -14,6 +14,9 @@ public class ModItems {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, Expeditech.MODID);
 
     public static final RegistryObject<Item> CARANITE = registerItem("caranite");
+    public static final RegistryObject<Item> IMPURE_CARANITE = registerItem("impure_caranite");
+    public static final RegistryObject<Item> CARANITE_DUST = registerItem("caranite_dust");
+    public static final RegistryObject<Item> CARANITE_NUGGET = registerItem("caranite_nugget");
 
     // region Utility methods
     private static RegistryObject<Item> registerItem(String name) {
