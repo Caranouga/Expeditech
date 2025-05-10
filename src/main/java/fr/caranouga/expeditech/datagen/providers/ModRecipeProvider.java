@@ -40,10 +40,10 @@ public class ModRecipeProvider extends RecipeProvider {
 
     private void nuggets(Consumer<IFinishedRecipe> finishedRecipeConsumer, Item item, Item nugget) {
         ShapedRecipeBuilder.shaped(item)
-                .pattern("X")
-                .pattern("X")
-                .pattern("X")
-                .define('X', item)
+                .pattern("XXX")
+                .pattern("XXX")
+                .pattern("XXX")
+                .define('X', nugget)
                 .unlockedBy("has_item", has(item))
                 .save(finishedRecipeConsumer, modLocation(getName(item) + "_from_" + getName(nugget)));
         ShapelessRecipeBuilder.shapeless(nugget, 9)

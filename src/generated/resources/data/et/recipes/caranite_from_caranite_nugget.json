@@ -1,13 +1,13 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "X",
-    "X",
-    "X"
+    "XXX",
+    "XXX",
+    "XXX"
   ],
   "key": {
     "X": {
-      "item": "et:caranite"
+      "item": "et:caranite_nugget"
     }
   },
   "result": {
