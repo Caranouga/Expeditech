@@ -19,6 +19,8 @@ import net.minecraftforge.common.data.ExistingFileHelper;
 
 import java.util.function.Consumer;
 
+import static fr.caranouga.expeditech.utils.StringUtils.modLocation;
+
 public class ModAdvancementsProvider extends AdvancementProvider {
     public ModAdvancementsProvider(DataGenerator generatorIn, ExistingFileHelper fileHelperIn) {
         super(generatorIn, fileHelperIn);
@@ -49,7 +51,7 @@ public class ModAdvancementsProvider extends AdvancementProvider {
     }
 
     private ResourceLocation getAdvancementLocation(String name) {
-        return new ResourceLocation(Expeditech.MODID, name);
+        return modLocation(name);
     }
 
     private ItemPredicate[] getItemPredicate(Item... items) {
