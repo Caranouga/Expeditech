@@ -1,0 +1,9 @@
+{
+  "type": "et:sanding",
+  "ingredient": {
+    "item": "et:impure_caranite"
+  },
+  "result": {
+    "item": "et:caranite"
+  }
+}

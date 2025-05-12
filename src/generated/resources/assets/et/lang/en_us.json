@@ -5,5 +5,7 @@
   "item.et.caranite_dust": "Caranite Dust",
   "item.et.caranite_nugget": "Caranite Nugget",
   "item.et.impure_caranite": "Impure Caranite",
-  "itemGroup.expeditech": "Expeditech"
+  "item.et.sanding_paper": "Sanding Paper",
+  "itemGroup.expeditech": "Expeditech",
+  "jei.et.sanding": "Sanding"
 }

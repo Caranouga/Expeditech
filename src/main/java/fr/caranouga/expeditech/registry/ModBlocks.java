@@ -8,6 +8,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
+import net.minecraftforge.common.ToolType;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
@@ -22,6 +23,8 @@ public class ModBlocks {
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, Expeditech.MODID);
     public static final Map<RegistryObject<Block>, BlockEntry> BLOCKS_ENTRIES = new HashMap<>();
 
+    // TODO: Check si les blocks ont le bon tool et level
+
     // Storage blocks
     public static final RegistryObject<Block> CARANITE_BLOCK = registerStorageBlock("caranite_block");
 
@@ -30,7 +33,15 @@ public class ModBlocks {
 
     // region Utility methods
     private static RegistryObject<Block> registerOre(String name, RegistryObject<Item> drop) {
-        RegistryObject<Block> block = BLOCKS.register(name, () -> new Block(AbstractBlock.Properties.of(Material.STONE)));
+        return registerOre(name, AbstractBlock.Properties.of(Material.STONE)
+                .strength(3.0F, 3.0F)
+                .harvestTool(ToolType.PICKAXE)
+                .harvestLevel(2)
+                .requiresCorrectToolForDrops(), drop);
+    }
+
+    private static RegistryObject<Block> registerOre(String name, AbstractBlock.Properties properties, RegistryObject<Item> drop) {
+        RegistryObject<Block> block = BLOCKS.register(name, () -> new Block(properties));
 
         // Register the block item
         registerItemBlock(name, block);
@@ -40,7 +51,16 @@ public class ModBlocks {
     }
 
     private static RegistryObject<Block> registerStorageBlock(String name) {
-        RegistryObject<Block> block = BLOCKS.register(name, () -> new Block(AbstractBlock.Properties.of(Material.METAL)));
+        return registerStorageBlock(name, AbstractBlock.Properties.of(Material.METAL)
+                .strength(5.0F, 6.0F)
+                .harvestTool(ToolType.PICKAXE)
+                .harvestLevel(2)
+                .requiresCorrectToolForDrops()
+        );
+    }
+
+    private static RegistryObject<Block> registerStorageBlock(String name, AbstractBlock.Properties properties){
+        RegistryObject<Block> block = BLOCKS.register(name, () -> new Block(properties));
 
         // Register the block item
         registerItemBlock(name, block);

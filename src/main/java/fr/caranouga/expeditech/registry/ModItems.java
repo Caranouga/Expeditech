@@ -1,6 +1,7 @@
 package fr.caranouga.expeditech.registry;
 
 import fr.caranouga.expeditech.Expeditech;
+import fr.caranouga.expeditech.items.SandingPaperItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -18,6 +19,10 @@ public class ModItems {
     public static final RegistryObject<Item> CARANITE_DUST = registerItem("caranite_dust");
     public static final RegistryObject<Item> CARANITE_NUGGET = registerItem("caranite_nugget");
 
+    // TODO: Add custom animation for the sanding paper
+    public static final RegistryObject<SandingPaperItem> SANDING_PAPER = registerItem("sanding_paper",
+            () -> new SandingPaperItem(new Item.Properties().tab(ModTabs.EXPEDITECH)));
+
     // region Utility methods
     private static RegistryObject<Item> registerItem(String name) {
         return registerItem(name, ModTabs.EXPEDITECH);
@@ -27,7 +32,7 @@ public class ModItems {
         return registerItem(name, () -> new Item(new Item.Properties().tab(group)));
     }
 
-    protected static RegistryObject<Item> registerItem(String name, Supplier<Item> supplier) {
+    protected static <T extends Item> RegistryObject<T> registerItem(String name, Supplier<T> supplier) {
         return ITEMS.register(name, supplier);
     }
     // endregion

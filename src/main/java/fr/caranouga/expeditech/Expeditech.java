@@ -2,6 +2,7 @@ package fr.caranouga.expeditech;
 
 import fr.caranouga.expeditech.registry.ModBlocks;
 import fr.caranouga.expeditech.registry.ModItems;
+import fr.caranouga.expeditech.registry.ModRecipes;
 import net.minecraft.block.Block;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
@@ -33,6 +34,7 @@ public class Expeditech
         // Registries
         ModBlocks.register(modEBus);
         ModItems.register(modEBus);
+        ModRecipes.register(modEBus);
 
         MinecraftForge.EVENT_BUS.register(this);
     }

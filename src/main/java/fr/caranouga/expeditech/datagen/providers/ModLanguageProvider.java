@@ -17,11 +17,14 @@ public class ModLanguageProvider extends CustomLanguageProvider {
         addItem(ModItems.IMPURE_CARANITE, "Impure Caranite");
         addItem(ModItems.CARANITE_DUST, "Caranite Dust");
         addItem(ModItems.CARANITE_NUGGET, "Caranite Nugget");
+        addItem(ModItems.SANDING_PAPER, "Sanding Paper");
 
         addBlock(ModBlocks.CARANITE_BLOCK, "Caranite Block");
         addBlock(ModBlocks.CARANITE_ORE, "Caranite Ore");
 
         addItemGroup(ModTabs.EXPEDITECH, "Expeditech");
+
+        addJeiCategory("sanding", "Sanding");
 
         // fr_fr
         switchLocale();
@@ -29,10 +32,13 @@ public class ModLanguageProvider extends CustomLanguageProvider {
         addItem(ModItems.IMPURE_CARANITE, "Caranite Impure");
         addItem(ModItems.CARANITE_DUST, "Poussière de Caranite");
         addItem(ModItems.CARANITE_NUGGET, "Pépite de Caranite");
+        addItem(ModItems.SANDING_PAPER, "Papier de Ponçage");
 
         addBlock(ModBlocks.CARANITE_BLOCK, "Bloc de Caranite");
         addBlock(ModBlocks.CARANITE_ORE, "Minerai de Caranite");
 
         addItemGroup(ModTabs.EXPEDITECH, "Expeditech");
+
+        addJeiCategory("sanding", "Ponçage");
     }
 }

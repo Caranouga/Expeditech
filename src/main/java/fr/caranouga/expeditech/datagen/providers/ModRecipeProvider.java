@@ -1,6 +1,7 @@
 package fr.caranouga.expeditech.datagen.providers;
 
 import fr.caranouga.expeditech.Expeditech;
+import fr.caranouga.expeditech.datagen.builder.SandingRecipeBuilder;
 import fr.caranouga.expeditech.registry.ModBlocks;
 import fr.caranouga.expeditech.registry.ModItems;
 import net.minecraft.block.Block;
@@ -22,6 +23,15 @@ public class ModRecipeProvider extends RecipeProvider {
     protected void buildShapelessRecipes(Consumer<IFinishedRecipe> finishedRecipeConsumer) {
         storageBlock(finishedRecipeConsumer, ModBlocks.CARANITE_BLOCK.get(), ModItems.CARANITE.get());
         nuggets(finishedRecipeConsumer, ModItems.CARANITE.get(), ModItems.CARANITE_NUGGET.get());
+
+        sanding(finishedRecipeConsumer, ModItems.IMPURE_CARANITE.get(), ModItems.CARANITE.get());
+    }
+
+    private void sanding(Consumer<IFinishedRecipe> finishedRecipeConsumer, Item input, Item output) {
+        SandingRecipeBuilder.sanding(output)
+                .requires(input)
+                .unlockedBy("has_item", has(input))
+                .save(finishedRecipeConsumer, modLocation("sanding_" + getName(output) + "_from_" + getName(input)));
     }
 
     private void storageBlock(Consumer<IFinishedRecipe> finishedRecipeConsumer, Block block, Item item) {

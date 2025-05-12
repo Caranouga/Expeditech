@@ -74,7 +74,7 @@ public abstract class CustomLanguageProvider implements IDataProvider {
     }
 
 
-    protected void addItem(RegistryObject<Item> item, String translation){
+    protected <T extends Item> void addItem(RegistryObject<T> item, String translation){
         this.addItem(item.get(), translation);
     }
 
@@ -92,6 +92,10 @@ public abstract class CustomLanguageProvider implements IDataProvider {
 
     protected void addItemGroup(ItemGroup itemGroup, String translation){
         this.add("itemGroup." + itemGroup.getRecipeFolderName(), translation);
+    }
+
+    protected void addJeiCategory(String category, String translation){
+        this.add("jei." + Expeditech.MODID + "." + category, translation);
     }
 
     protected void add(String key, String value){
