@@ -7,7 +7,9 @@ import fr.caranouga.expeditech.registry.ModItems;
 import net.minecraft.block.Block;
 import net.minecraft.data.*;
 import net.minecraft.item.Item;
+import net.minecraft.item.Items;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.common.Tags;
 import net.minecraftforge.registries.ForgeRegistryEntry;
 
 import java.util.function.Consumer;
@@ -22,7 +24,15 @@ public class ModRecipeProvider extends RecipeProvider {
     @Override
     protected void buildShapelessRecipes(Consumer<IFinishedRecipe> finishedRecipeConsumer) {
         storageBlock(finishedRecipeConsumer, ModBlocks.CARANITE_BLOCK.get(), ModItems.CARANITE.get());
+
         nuggets(finishedRecipeConsumer, ModItems.CARANITE.get(), ModItems.CARANITE_NUGGET.get());
+
+        ShapelessRecipeBuilder.shapeless(ModItems.SANDING_PAPER.get(), 1)
+                .requires(Tags.Items.SAND)
+                .requires(Items.PAPER)
+                .unlockedBy("has_paper", has(Items.PAPER))
+                .unlockedBy("has_sand", has(Tags.Items.SAND))
+                .save(finishedRecipeConsumer, modLocation("sanding_paper_from_sand_and_paper"));
 
         sanding(finishedRecipeConsumer, ModItems.IMPURE_CARANITE.get(), ModItems.CARANITE.get());
     }

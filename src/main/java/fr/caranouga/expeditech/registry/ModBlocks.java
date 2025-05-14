@@ -1,13 +1,13 @@
 package fr.caranouga.expeditech.registry;
 
 import fr.caranouga.expeditech.Expeditech;
+import fr.caranouga.expeditech.blocks.CoalGeneratorMachine;
 import fr.caranouga.expeditech.utils.BlockEntry;
 import fr.caranouga.expeditech.utils.LootTypeEntry;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.Item;
+import net.minecraft.item.*;
 import net.minecraftforge.common.ToolType;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.RegistryObject;
@@ -16,6 +16,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.function.Supplier;
 
 import static fr.caranouga.expeditech.registry.ModItems.registerItem;
 
@@ -31,7 +32,20 @@ public class ModBlocks {
     // Ores
     public static final RegistryObject<Block> CARANITE_ORE = registerOre("caranite_ore", ModItems.IMPURE_CARANITE);
 
+    // Machines
+    public static final RegistryObject<Block> COAL_GENERATOR = registerMachineBlock("coal_generator", CoalGeneratorMachine::new);
+
     // region Utility methods
+    private static <T extends Block> RegistryObject<Block> registerMachineBlock(String name, Supplier<T> blockSupplier) {
+        RegistryObject<Block> block = BLOCKS.register(name, blockSupplier);
+
+        // Register the block item
+        registerItemBlock(name, block);
+        addBlockEntry(block, new BlockEntry(new LootTypeEntry(LootTypeEntry.LootType.DROP_SELF)));
+
+        return block;
+    }
+
     private static RegistryObject<Block> registerOre(String name, RegistryObject<Item> drop) {
         return registerOre(name, AbstractBlock.Properties.of(Material.STONE)
                 .strength(3.0F, 3.0F)
