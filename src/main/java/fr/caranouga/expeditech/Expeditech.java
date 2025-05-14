@@ -1,10 +1,9 @@
 package fr.caranouga.expeditech;
 
-import fr.caranouga.expeditech.registry.ModBlocks;
-import fr.caranouga.expeditech.registry.ModItems;
-import fr.caranouga.expeditech.registry.ModRecipes;
-import fr.caranouga.expeditech.registry.ModTileEntities;
+import fr.caranouga.expeditech.registry.*;
+import fr.caranouga.expeditech.screens.CoalGeneratorScreen;
 import net.minecraft.block.Block;
+import net.minecraft.client.gui.ScreenManager;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -37,13 +36,18 @@ public class Expeditech
         ModItems.register(modEBus);
         ModRecipes.register(modEBus);
         ModTileEntities.register(modEBus);
+        ModContainers.register(modEBus);
 
         MinecraftForge.EVENT_BUS.register(this);
     }
 
     private void setup(final FMLCommonSetupEvent event) {}
 
-    private void doClientStuff(final FMLClientSetupEvent event) {}
+    private void doClientStuff(final FMLClientSetupEvent event) {
+        event.enqueueWork(() -> {
+            ScreenManager.register(ModContainers.COAL_GENERATOR_CONTAINER.get(), CoalGeneratorScreen::new);
+        });
+    }
 
     private void enqueueIMC(final InterModEnqueueEvent event) {}
 
