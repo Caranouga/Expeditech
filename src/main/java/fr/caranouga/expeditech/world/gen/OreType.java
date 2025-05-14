@@ -8,18 +8,20 @@ import javax.annotation.Nullable;
 
 public enum OreType {
 
-    CARANITE(Lazy.of(ModBlocks.CARANITE_ORE), 8, 0, 32);
+    CARANITE(Lazy.of(ModBlocks.CARANITE_ORE), 8, 0, 32, 4);
 
     private final Lazy<Block> block;
     private final int maxVeinSize;
     private final int minHeight;
     private final int maxHeight;
+    private final int veinsPerChunk;
 
-    OreType(Lazy<Block> block, int maxVeinSize, int minHeight, int maxHeight) {
+    OreType(Lazy<Block> block, int maxVeinSize, int minHeight, int maxHeight, int veinsPerChunk) {
         this.block = block;
         this.maxVeinSize = maxVeinSize;
         this.minHeight = minHeight;
         this.maxHeight = maxHeight;
+        this.veinsPerChunk = veinsPerChunk;
     }
 
     public Lazy<Block> getBlock() {
@@ -36,6 +38,10 @@ public enum OreType {
 
     public int getMaxHeight() {
         return maxHeight;
+    }
+
+    public int getVeinsPerChunk() {
+        return veinsPerChunk;
     }
 
     @Nullable
