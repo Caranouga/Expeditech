@@ -9,78 +9,29 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipeType;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.tileentity.ITickableTileEntity;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.Direction;
 import net.minecraftforge.common.ForgeHooks;
-import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.common.util.LazyOptional;
-import net.minecraftforge.energy.CapabilityEnergy;
-import net.minecraftforge.items.CapabilityItemHandler;
-import net.minecraftforge.items.IItemHandler;
-import net.minecraftforge.items.ItemStackHandler;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-
-public class CoalGeneratorMachineTile extends TileEntity implements ITickableTileEntity {
-    private final ItemStackHandler itemHandler = createItemHandler();
-    private final LazyOptional<IItemHandler> lazyItemHandler = LazyOptional.of(() -> itemHandler);
-
-    private final CustomEnergyStorage energyStorage = createEnergyStorage();
-    private final LazyOptional<CustomEnergyStorage> lazyEnergyStorage = LazyOptional.of(() -> energyStorage);
+public class CoalGeneratorMachineTile extends AbstractEnergyMachineTile implements ITickableTileEntity {
+    private static final int INPUT_SLOT = 0;
+    private static int ENERGY_PER_TICK = 1;
 
     private int burnTime = -1;
     private int currentBurnTime = 0;
 
-    private static int INPUT_SLOT = 0;
-    private static int ENERGY_PER_TICK = 1;
-
     public CoalGeneratorMachineTile() {
-        super(ModTileEntities.COAL_GENERATOR_TILE.get());
+        super(ModTileEntities.COAL_GENERATOR_TILE.get(), 10, 1);
     }
 
-    private ItemStackHandler createItemHandler() {
-        return new ItemStackHandler(1){
-            @Override
-            protected void onContentsChanged(int slot) {
-                setChanged();
-            }
-
-            @Override
-            public boolean isItemValid(int slot, @Nonnull ItemStack stack) {
-                return isItemBurnable(stack);
-            }
-        };
-    }
-    private CustomEnergyStorage createEnergyStorage(){
+    @Override
+    protected CustomEnergyStorage createEnergyStorage() {
         return EnergyStorages.COAL_GENERATOR.createEnergyStorage();
     }
 
-    @Nonnull
-    @Override
-    public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap, @Nullable Direction side) {
-        if(cap == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY){
-            return lazyItemHandler.cast();
-        }
-        if(cap == CapabilityEnergy.ENERGY){
-            return lazyEnergyStorage.cast();
-        }
-
-        return super.getCapability(cap, side);
-    }
-
     // region Data Saving
-    // On world load and save
+
 
     @Override
     public void load(BlockState state, CompoundNBT nbt) {
-        if(nbt.contains("inv")) {
-            itemHandler.deserializeNBT(nbt.getCompound("inv"));
-        }
-        if(nbt.contains("energy")) {
-            energyStorage.deserializeNBT(nbt.getCompound("energy"));
-        }
-
         if(nbt.contains("burnTime")) {
             burnTime = nbt.getInt("burnTime");
         }
@@ -93,15 +44,11 @@ public class CoalGeneratorMachineTile extends TileEntity implements ITickableTil
 
     @Override
     public CompoundNBT save(CompoundNBT pCompound) {
-        pCompound.put("inv", itemHandler.serializeNBT());
-        pCompound.put("energy", energyStorage.serializeNBT());
-
         pCompound.putInt("burnTime", burnTime);
         pCompound.putInt("currentBurnTime", currentBurnTime);
 
         return super.save(pCompound);
     }
-    // endregion
 
     @Override
     public void tick() {

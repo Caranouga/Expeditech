@@ -1,6 +1,7 @@
 package fr.caranouga.expeditech.registry;
 
 import fr.caranouga.expeditech.Expeditech;
+import fr.caranouga.expeditech.blocks.AbstractMachineBlock;
 import fr.caranouga.expeditech.blocks.CoalGeneratorMachine;
 import fr.caranouga.expeditech.utils.BlockEntry;
 import fr.caranouga.expeditech.utils.LootTypeEntry;
@@ -36,7 +37,7 @@ public class ModBlocks {
     public static final RegistryObject<Block> COAL_GENERATOR = registerMachineBlock("coal_generator", CoalGeneratorMachine::new);
 
     // region Utility methods
-    private static <T extends Block> RegistryObject<Block> registerMachineBlock(String name, Supplier<T> blockSupplier) {
+    private static <T extends AbstractMachineBlock> RegistryObject<Block> registerMachineBlock(String name, Supplier<T> blockSupplier) {
         RegistryObject<Block> block = BLOCKS.register(name, blockSupplier);
 
         // Register the block item
