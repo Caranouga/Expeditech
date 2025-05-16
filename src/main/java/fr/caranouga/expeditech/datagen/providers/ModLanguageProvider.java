@@ -21,6 +21,7 @@ public class ModLanguageProvider extends CustomLanguageProvider {
 
         addBlock(ModBlocks.CARANITE_BLOCK, "Caranite Block");
         addBlock(ModBlocks.CARANITE_ORE, "Caranite Ore");
+        addBlock(ModBlocks.COAL_GENERATOR, "Coal Generator");
 
         addItemGroup(ModTabs.EXPEDITECH, "Expeditech");
 
@@ -36,6 +37,7 @@ public class ModLanguageProvider extends CustomLanguageProvider {
 
         addBlock(ModBlocks.CARANITE_BLOCK, "Bloc de Caranite");
         addBlock(ModBlocks.CARANITE_ORE, "Minerai de Caranite");
+        addBlock(ModBlocks.COAL_GENERATOR, "Générateur à Charbon");
 
         addItemGroup(ModTabs.EXPEDITECH, "Expeditech");
 

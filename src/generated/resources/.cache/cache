@@ -1,11 +1,12 @@
 d784bcf1bf25a1720e50ca82337c545f62cc49ed assets/et/blockstates/caranite_block.json
 f6171f84edcde6683d417285a2f586863cb1644b assets/et/blockstates/caranite_ore.json
-3592b7539bfbfa526badf6dab0a5f5954283b213 assets/et/blockstates/coal_generator.json
-661a43d732319aec2aca5d43f377d556d25213e0 assets/et/lang/en_us.json
-e963655293d3c071a9279fe23b06fbbe7b6f9dcb assets/et/lang/fr_fr.json
+02702544fc793da02d2ed229e6cb65fc776d8d53 assets/et/blockstates/coal_generator.json
+baae820498145d582d40702c1019f60917aeee43 assets/et/lang/en_us.json
+ba2f056208b3ae4fc945c28bac841bc2029cfcb5 assets/et/lang/fr_fr.json
 e6bc2fe142b78a36614ae8254802340b66426127 assets/et/models/block/caranite_block.json
 a74b1c5bf5f50a81d06cc98e81e91c8de8076bfa assets/et/models/block/caranite_ore.json
-ba278728da4d4a053f4be5087e774d9acacfa8e1 assets/et/models/block/coal_generator.json
+5081e170023d0c7c65a2d1482e7626457d48b2c1 assets/et/models/block/coal_generator.json
+0364ece8fd34905e0699bfda1d6ebc1f0b92797e assets/et/models/block/coal_generator_on.json
 933f04030d6eba91018aa9dff39a240cfc341b74 assets/et/models/item/caranite.json
 0edd3df74ce8a66033e80a8284611fdf39098abf assets/et/models/item/caranite_block.json
 88e69069a7972c330c5a9e5e912f29fa9a13e06a assets/et/models/item/caranite_dust.json

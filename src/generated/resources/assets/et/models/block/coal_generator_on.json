@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:block/orientable",
   "textures": {
-    "front": "et:block/coal_generator_front",
+    "front": "et:block/coal_generator_front_on",
     "side": "et:block/coal_generator_side",
     "top": "et:block/coal_generator_top"
   }

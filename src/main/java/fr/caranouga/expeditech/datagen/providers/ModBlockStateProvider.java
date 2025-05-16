@@ -1,10 +1,17 @@
 package fr.caranouga.expeditech.datagen.providers;
 
 import fr.caranouga.expeditech.Expeditech;
+import fr.caranouga.expeditech.blocks.AbstractMachineBlock;
 import fr.caranouga.expeditech.registry.ModBlocks;
+import net.minecraft.block.Block;
 import net.minecraft.data.*;
+import net.minecraft.state.properties.BlockStateProperties;
+import net.minecraft.util.Direction;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
+import net.minecraftforge.client.model.generators.ConfiguredModel;
 import net.minecraftforge.common.data.ExistingFileHelper;
+
+import static fr.caranouga.expeditech.utils.StringUtils.modLocation;
 
 public class ModBlockStateProvider extends BlockStateProvider {
     public ModBlockStateProvider(DataGenerator gen, ExistingFileHelper exFileHelper) {
@@ -13,6 +20,30 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
     @Override
     protected void registerStatesAndModels() {
-        ModBlocks.BLOCKS.getEntries().forEach(block -> simpleBlock(block.get()));
+        ModBlocks.BLOCKS.getEntries().forEach(block -> {
+            // TODO: This is a temporary fix to avoid crashing when generating blockstates for non-machine blocks
+            if(!(block.get() instanceof AbstractMachineBlock)) simpleBlock(block.get());
+        });
+
+        registerMachineBlock(ModBlocks.COAL_GENERATOR.get());
+    }
+
+    private void registerMachineBlock(Block block) {
+        // Register the block state for the machine
+        // The machine has two states: powered and unpowered
+        // The machine has a state property for the facing direction
+        // The machine has two two textures: front and side
+        // The front texture is different for powered and unpowered states
+        // The side texture is the same for both states
+
+        getVariantBuilder(block)
+                .forAllStates(state -> {
+                    Direction direction = state.getValue(BlockStateProperties.HORIZONTAL_FACING);
+                    boolean powered = state.getValue(BlockStateProperties.POWERED);
+                    return ConfiguredModel.builder()
+                            .modelFile(models().getExistingFile(modLocation("block/" + block.getRegistryName().getPath() + (powered ? "_on" : ""))))
+                            .rotationY(direction.getStepY())
+                            .build();
+                });
     }
 }
