@@ -1,5 +1,6 @@
 package fr.caranouga.expeditech.compat.jei;
 
+import fr.caranouga.expeditech.compat.jei.coal_generator.CoalGeneratorRecipeCategory;
 import fr.caranouga.expeditech.compat.jei.sanding.SandingRecipeCategory;
 import fr.caranouga.expeditech.recipes.SandingRecipe;
 import fr.caranouga.expeditech.registry.ModItems;
@@ -11,10 +12,15 @@ import mezz.jei.api.registration.IRecipeCatalystRegistration;
 import mezz.jei.api.registration.IRecipeCategoryRegistration;
 import mezz.jei.api.registration.IRecipeRegistration;
 import net.minecraft.client.Minecraft;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.IRecipeType;
 import net.minecraft.item.crafting.RecipeManager;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.common.ForgeHooks;
+import net.minecraftforge.registries.ForgeRegistries;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -31,6 +37,7 @@ public class ExpeditechJeiPlugin implements IModPlugin {
     @Override
     public void registerCategories(IRecipeCategoryRegistration registration) {
         registration.addRecipeCategories(new SandingRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
+        registration.addRecipeCategories(new CoalGeneratorRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
     }
 
     @Override
