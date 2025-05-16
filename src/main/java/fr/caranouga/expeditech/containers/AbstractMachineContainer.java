@@ -22,7 +22,7 @@ public abstract class AbstractMachineContainer<T extends TileEntity> extends Con
     private final IItemHandler playerInv;
     private final Block block;
 
-    public AbstractMachineContainer(ContainerType<?> containerType, int pContainerId, World world, BlockPos pos, PlayerInventory playerInv, PlayerEntity player, Block block, T tileEntity) {
+    public AbstractMachineContainer(ContainerType<?> containerType, int pContainerId, PlayerInventory playerInv, PlayerEntity player, Block block, T tileEntity) {
         super(containerType, pContainerId);
 
         this.tileEntity = tileEntity;

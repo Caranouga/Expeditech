@@ -29,13 +29,6 @@ public class ModBlockStateProvider extends BlockStateProvider {
     }
 
     private void registerMachineBlock(Block block) {
-        // Register the block state for the machine
-        // The machine has two states: powered and unpowered
-        // The machine has a state property for the facing direction
-        // The machine has two two textures: front and side
-        // The front texture is different for powered and unpowered states
-        // The side texture is the same for both states
-
         getVariantBuilder(block)
                 .forAllStates(state -> {
                     Direction direction = state.getValue(BlockStateProperties.HORIZONTAL_FACING);

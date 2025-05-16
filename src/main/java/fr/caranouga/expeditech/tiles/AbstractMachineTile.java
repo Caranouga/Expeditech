@@ -1,10 +1,8 @@
 package fr.caranouga.expeditech.tiles;
 
 import net.minecraft.block.BlockState;
-import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.InventoryHelper;
-import net.minecraft.inventory.container.Container;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityType;
@@ -86,6 +84,8 @@ public abstract class AbstractMachineTile extends TileEntity {
     // endregion
 
     public void drops(){
+        if(this.level == null) return;
+
         Inventory inventory = new Inventory(itemHandler.getSlots());
         for (int i = 0; i < itemHandler.getSlots(); i++) {
             inventory.setItem(i, itemHandler.getStackInSlot(i));

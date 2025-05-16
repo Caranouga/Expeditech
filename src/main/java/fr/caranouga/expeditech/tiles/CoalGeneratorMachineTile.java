@@ -14,7 +14,7 @@ import net.minecraftforge.common.util.Constants;
 
 public class CoalGeneratorMachineTile extends AbstractEnergyMachineTile implements ITickableTileEntity {
     private static final int INPUT_SLOT = 0;
-    private static int ENERGY_PER_TICK = 1;
+    private static final int ENERGY_PER_TICK = 1;
 
     private int burnTime = -1;
     private int currentBurnTime = 0;
@@ -78,6 +78,7 @@ public class CoalGeneratorMachineTile extends AbstractEnergyMachineTile implemen
     }
 
     private void setState(boolean isBurning) {
+        // We have already check if level is null
         BlockState state = level.getBlockState(getBlockPos());
         level.setBlock(getBlockPos(), state.setValue(BlockStateProperties.POWERED, isBurning), Constants.BlockFlags.NOTIFY_NEIGHBORS + Constants.BlockFlags.BLOCK_UPDATE);
     }

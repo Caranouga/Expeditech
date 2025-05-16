@@ -16,7 +16,7 @@ import net.minecraftforge.items.SlotItemHandler;
 
 public class CoalGeneratorContainer extends AbstractMachineContainer<CoalGeneratorMachineTile> {
     public CoalGeneratorContainer(int pContainerId, World world, BlockPos pos, PlayerInventory playerInv, PlayerEntity player) {
-        super(ModContainers.COAL_GENERATOR_CONTAINER.get(), pContainerId, world, pos, playerInv, player, ModBlocks.COAL_GENERATOR.get(), (CoalGeneratorMachineTile) world.getBlockEntity(pos));
+        super(ModContainers.COAL_GENERATOR_CONTAINER.get(), pContainerId, playerInv, player, ModBlocks.COAL_GENERATOR.get(), (CoalGeneratorMachineTile) world.getBlockEntity(pos));
 
         if(this.tileEntity != null){
             this.tileEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(handler -> {

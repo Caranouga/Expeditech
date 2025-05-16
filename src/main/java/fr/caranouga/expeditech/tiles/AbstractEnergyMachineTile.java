@@ -1,12 +1,10 @@
 package fr.caranouga.expeditech.tiles;
 
-import fr.caranouga.expeditech.blocks.EnergyStorages;
 import fr.caranouga.expeditech.capability.CustomEnergyStorage;
 import net.minecraft.block.BlockState;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.Direction;
-import net.minecraft.util.IIntArray;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.energy.CapabilityEnergy;

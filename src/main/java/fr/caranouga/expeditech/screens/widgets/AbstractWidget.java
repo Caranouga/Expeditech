@@ -2,7 +2,6 @@ package fr.caranouga.expeditech.screens.widgets;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 import fr.caranouga.expeditech.utils.ColorUtils;
-import net.minecraft.client.gui.screen.inventory.ContainerScreen;
 
 public abstract class AbstractWidget {
     protected final int x;
