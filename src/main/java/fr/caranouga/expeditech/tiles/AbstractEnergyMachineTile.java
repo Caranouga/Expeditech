@@ -6,6 +6,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.Direction;
+import net.minecraft.util.IIntArray;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.energy.CapabilityEnergy;
@@ -30,6 +31,12 @@ public abstract class AbstractEnergyMachineTile extends AbstractMachineTile {
             return lazyEnergyStorage.cast();
         }
         return super.getCapability(cap, side);
+    }
+
+    @Override
+    protected void invalidateCaps() {
+        super.invalidateCaps();
+        lazyEnergyStorage.invalidate();
     }
 
     // region Data Saving (World load/save)

@@ -40,9 +40,22 @@ public class ModBlockStateProvider extends BlockStateProvider {
                 .forAllStates(state -> {
                     Direction direction = state.getValue(BlockStateProperties.HORIZONTAL_FACING);
                     boolean powered = state.getValue(BlockStateProperties.POWERED);
+                    int rotationY;
+                    if (direction == Direction.NORTH) {
+                        rotationY = 0;
+                    } else if (direction == Direction.EAST) {
+                        rotationY = 90;
+                    } else if (direction == Direction.SOUTH) {
+                        rotationY = 180;
+                    } else if (direction == Direction.WEST) {
+                        rotationY = 270;
+                    } else {
+                        rotationY = 0;
+                    }
+
                     return ConfiguredModel.builder()
                             .modelFile(models().getExistingFile(modLocation("block/" + block.getRegistryName().getPath() + (powered ? "_on" : ""))))
-                            .rotationY(direction.getStepY())
+                            .rotationY(rotationY)
                             .build();
                 });
     }

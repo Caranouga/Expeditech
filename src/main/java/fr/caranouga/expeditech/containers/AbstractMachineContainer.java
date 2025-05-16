@@ -16,16 +16,16 @@ import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 import net.minecraftforge.items.wrapper.InvWrapper;
 
-public abstract class AbstractMachineContainer extends Container {
-    protected final TileEntity tileEntity;
+public abstract class AbstractMachineContainer<T extends TileEntity> extends Container {
+    protected final T tileEntity;
     private final PlayerEntity player;
     private final IItemHandler playerInv;
     private final Block block;
 
-    public AbstractMachineContainer(ContainerType<?> containerType, int pContainerId, World world, BlockPos pos, PlayerInventory playerInv, PlayerEntity player, Block block) {
+    public AbstractMachineContainer(ContainerType<?> containerType, int pContainerId, World world, BlockPos pos, PlayerInventory playerInv, PlayerEntity player, Block block, T tileEntity) {
         super(containerType, pContainerId);
 
-        this.tileEntity = world.getBlockEntity(pos);
+        this.tileEntity = tileEntity;
         this.block = block;
         this.player = player;
         this.playerInv = new InvWrapper(playerInv);

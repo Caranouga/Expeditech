@@ -1,6 +1,5 @@
 package fr.caranouga.expeditech.tiles;
 
-import fr.caranouga.expeditech.Expeditech;
 import fr.caranouga.expeditech.blocks.EnergyStorages;
 import fr.caranouga.expeditech.capability.CustomEnergyStorage;
 import fr.caranouga.expeditech.registry.ModTileEntities;
@@ -8,8 +7,10 @@ import net.minecraft.block.BlockState;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipeType;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraftforge.common.ForgeHooks;
+import net.minecraftforge.common.util.Constants;
 
 public class CoalGeneratorMachineTile extends AbstractEnergyMachineTile implements ITickableTileEntity {
     private static final int INPUT_SLOT = 0;
@@ -28,8 +29,7 @@ public class CoalGeneratorMachineTile extends AbstractEnergyMachineTile implemen
     }
 
     // region Data Saving
-
-
+    // region Data Saving (World load/save)
     @Override
     public void load(BlockState state, CompoundNBT nbt) {
         if(nbt.contains("burnTime")) {
@@ -49,6 +49,8 @@ public class CoalGeneratorMachineTile extends AbstractEnergyMachineTile implemen
 
         return super.save(pCompound);
     }
+    // endregion
+    // endregion
 
     @Override
     public void tick() {
@@ -56,21 +58,28 @@ public class CoalGeneratorMachineTile extends AbstractEnergyMachineTile implemen
             return;
         }
 
-        if(energyStorage.isFull()) return;
-
-        Expeditech.LOGGER.debug("Energy: {}/{}", energyStorage.getEnergyStored(), energyStorage.getMaxEnergyStored());
-
         if(hasFinishedBurning()) {
-            if(isItemBurnable(itemHandler.getStackInSlot(INPUT_SLOT))){
+            if(isItemBurnable(itemHandler.getStackInSlot(INPUT_SLOT)) && !energyStorage.isFull()){
                 consumeFuel();
+                setState(true);
             }else{
                 currentBurnTime = 0;
                 burnTime = 0;
+
+                setState(false);
             }
         }else{
+            if(!energyStorage.isFull()) {
+                energyStorage.receiveEnergy(ENERGY_PER_TICK, false);
+            }
             currentBurnTime++;
-            energyStorage.receiveEnergy(ENERGY_PER_TICK, false);
         }
+        setChanged();
+    }
+
+    private void setState(boolean isBurning) {
+        BlockState state = level.getBlockState(getBlockPos());
+        level.setBlock(getBlockPos(), state.setValue(BlockStateProperties.POWERED, isBurning), Constants.BlockFlags.NOTIFY_NEIGHBORS + Constants.BlockFlags.BLOCK_UPDATE);
     }
 
     private void consumeFuel() {
@@ -93,5 +102,21 @@ public class CoalGeneratorMachineTile extends AbstractEnergyMachineTile implemen
 
     private int getItemBurnTime(ItemStack stack) {
         return ForgeHooks.getBurnTime(stack, IRecipeType.SMELTING);
+    }
+
+    public int getProgress() {
+        return currentBurnTime;
+    }
+
+    public int getMaxProgress() {
+        return burnTime;
+    }
+
+    public void setMaxProgress(int burnTime) {
+        this.burnTime = burnTime;
+    }
+
+    public void setProgress(int currentBurnTime) {
+        this.currentBurnTime = currentBurnTime;
     }
 }

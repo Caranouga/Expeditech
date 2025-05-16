@@ -2,6 +2,7 @@ package fr.caranouga.expeditech.blocks;
 
 import fr.caranouga.expeditech.containers.CoalGeneratorContainer;
 import fr.caranouga.expeditech.registry.ModTileEntities;
+import fr.caranouga.expeditech.tiles.CoalGeneratorMachineTile;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
@@ -18,7 +19,7 @@ import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 
 public class CoalGeneratorMachine extends AbstractMachineBlock {
-    private static final BooleanProperty POWERED = BlockStateProperties.POWERED;
+    public static final BooleanProperty POWERED = BlockStateProperties.POWERED;
 
     public CoalGeneratorMachine() {
         super("coal_generator");
@@ -48,6 +49,13 @@ public class CoalGeneratorMachine extends AbstractMachineBlock {
 
     @Override
     public void onRemove(BlockState pState, World pLevel, BlockPos pPos, BlockState pNewState, boolean pIsMoving) {
+        if(pState.getBlock() != pNewState.getBlock()){
+            TileEntity tile = pLevel.getBlockEntity(pPos);
+            if(tile instanceof CoalGeneratorMachineTile){
+                ((CoalGeneratorMachineTile) tile).drops();
+            }
+        }
+
         super.onRemove(pState, pLevel, pPos, pNewState, pIsMoving);
     }
 }
