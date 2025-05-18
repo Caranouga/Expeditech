@@ -26,6 +26,10 @@ public class ModLanguageProvider extends CustomLanguageProvider {
         addItemGroup(ModTabs.EXPEDITECH, "Expeditech");
 
         addJeiCategory("sanding", "Sanding");
+        addJeiCategory("coal_generator", "Coal Generator");
+
+        addJeiTooltip("coal_generator", "progress", "Progress: %st (%ss)");
+        addJeiTooltip("coal_generator", "energy", "Energy: %s/%s");
 
         // fr_fr
         switchLocale();
@@ -42,5 +46,9 @@ public class ModLanguageProvider extends CustomLanguageProvider {
         addItemGroup(ModTabs.EXPEDITECH, "Expeditech");
 
         addJeiCategory("sanding", "Ponçage");
+        addJeiCategory("coal_generator", "Générateur à Charbon");
+
+        addJeiTooltip("coal_generator", "progress", "Progression: %st (%ss)");
+        addJeiTooltip("coal_generator", "energy", "Énergie: %s/%s");
     }
 }

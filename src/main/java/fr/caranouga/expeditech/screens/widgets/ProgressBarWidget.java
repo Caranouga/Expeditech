@@ -1,18 +1,20 @@
 package fr.caranouga.expeditech.screens.widgets;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
-import com.mojang.blaze3d.systems.RenderSystem;
+import fr.caranouga.expeditech.Expeditech;
+import mezz.jei.api.gui.drawable.IDrawableAnimated;
+import mezz.jei.api.helpers.IGuiHelper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.AbstractGui;
 import net.minecraft.util.ResourceLocation;
 
 import static fr.caranouga.expeditech.utils.StringUtils.modLocation;
 
-public class ProgressBarWidget extends AbstractWidget {
+public class ProgressBarWidget extends AbstractAnimatableWidget {
     private static final ResourceLocation PROGRESS_BAR_TEXTURE = modLocation("textures/gui/widgets/progress_bar.png");
 
     private static final int HEIGHT = 6;
-    private static final int WIDTH = 80;
+    public static final int WIDTH = 80;
 
     public ProgressBarWidget(int x, int y, int color) {
         super(x, y, HEIGHT, color);
@@ -23,17 +25,30 @@ public class ProgressBarWidget extends AbstractWidget {
     }
 
     @Override
-    public void render(MatrixStack matrixStack, int progress) {
+    public void render(MatrixStack matrixStack, float progress) {
         // Extract RGB from your `this.color` integer
-        float r = ((this.color >> 16) & 0xFF) / 255f;
-        float g = ((this.color >> 8) & 0xFF) / 255f;
-        float b = (this.color & 0xFF) / 255f;
+        setColor();
 
-        RenderSystem.color4f(r, g, b, 1.0f);
         Minecraft.getInstance().getTextureManager().bind(PROGRESS_BAR_TEXTURE);
+        Expeditech.LOGGER.debug("Progress: {}. Progress * WIDTH: {}", progress, (int) (progress * WIDTH));
 
-        AbstractGui.blit(matrixStack, this.x, this.y, 0, 0, progress, this.height, WIDTH, HEIGHT);
+        AbstractGui.blit(matrixStack, this.x, this.y, 0, 0, (int) (progress * WIDTH), this.height, WIDTH, HEIGHT);
 
-        RenderSystem.color4f(1f, 1f, 1f, 1f);
+        resetColor();
+    }
+
+    @Override
+    public AbstractAnimatableWidget createAnimated(IGuiHelper helper, float progress, int time){
+        setDrawable(helper.drawableBuilder(PROGRESS_BAR_TEXTURE, 0, 0, (int) (progress * WIDTH), HEIGHT)
+                .buildAnimated(time, IDrawableAnimated.StartDirection.LEFT, false));
+
+        return this;
+    }
+
+    public AbstractAnimatableWidget createAnimatedWithoutWidth(IGuiHelper helper, int progress, int time){
+        setDrawable(helper.drawableBuilder(PROGRESS_BAR_TEXTURE, 0, 0, progress, HEIGHT)
+                .buildAnimated(time, IDrawableAnimated.StartDirection.LEFT, false));
+
+        return this;
     }
 }

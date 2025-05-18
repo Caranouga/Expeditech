@@ -8,5 +8,8 @@
   "item.et.impure_caranite": "Caranite Impure",
   "item.et.sanding_paper": "Papier de Pon\u00E7age",
   "itemGroup.expeditech": "Expeditech",
+  "jei.et.coal_generator": "G\u00E9n\u00E9rateur \u00E0 Charbon",
+  "jei.et.coal_generator.tooltips.energy": "\u00C9nergie: %s/%s",
+  "jei.et.coal_generator.tooltips.progress": "Progression: %sticks (%ss)",
   "jei.et.sanding": "Pon\u00E7age"
 }

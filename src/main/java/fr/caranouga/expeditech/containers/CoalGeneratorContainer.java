@@ -1,5 +1,6 @@
 package fr.caranouga.expeditech.containers;
 
+import fr.caranouga.expeditech.Expeditech;
 import fr.caranouga.expeditech.capability.CustomEnergyStorage;
 import fr.caranouga.expeditech.registry.ModBlocks;
 import fr.caranouga.expeditech.registry.ModContainers;
@@ -102,17 +103,19 @@ public class CoalGeneratorContainer extends AbstractMachineContainer<CoalGenerat
         return tileEntity.getCapability(CapabilityEnergy.ENERGY).map(IEnergyStorage::getMaxEnergyStored).orElse(0);
     }
 
-    public int getScaledProgress() {
+    public float getScaledProgress() {
         int progress = getProgress();
         int maxProgress = getMaxProgress();
 
-        return (int) ((float) progress / (float) maxProgress * 80);
+        Expeditech.LOGGER.debug("Progress: {}. Max progress: {}", progress, maxProgress);
+
+        return maxProgress == 0 ? 0 : (float) progress / (float) maxProgress;
     }
 
-    public int getScaledEnergy() {
+    public float getScaledEnergy() {
         int energy = getEnergyStored();
         int maxEnergy = getMaxEnergyStored();
 
-        return (int) ((float) energy / (float) maxEnergy * 80);
+        return maxEnergy == 0 ? 0 : (float) energy / (float) maxEnergy;
     }
 }

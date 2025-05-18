@@ -14,7 +14,7 @@ import net.minecraftforge.common.util.Constants;
 
 public class CoalGeneratorMachineTile extends AbstractEnergyMachineTile implements ITickableTileEntity {
     private static final int INPUT_SLOT = 0;
-    private static final int ENERGY_PER_TICK = 1;
+    public static final int ENERGY_PER_TICK = 2;
 
     private int burnTime = -1;
     private int currentBurnTime = 0;

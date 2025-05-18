@@ -20,4 +20,8 @@ public enum EnergyStorages {
     public CustomEnergyStorage createEnergyStorage() {
         return new CustomEnergyStorage(capacity, maxReceive, maxExtract);
     }
+
+    public int getCapacity() {
+        return capacity;
+    }
 }

@@ -98,6 +98,10 @@ public abstract class CustomLanguageProvider implements IDataProvider {
         this.add("jei." + Expeditech.MODID + "." + category, translation);
     }
 
+    protected void addJeiTooltip(String category, String key, String translation){
+        this.addJeiCategory(category + ".tooltips." + key, translation);
+    }
+
     protected void add(String key, String value){
         String currentLocale = this.locales[this.currentLocaleIdx];
         this.data.computeIfAbsent(currentLocale, k -> new TreeMap<>());

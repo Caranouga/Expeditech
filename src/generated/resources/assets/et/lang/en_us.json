@@ -8,5 +8,8 @@
   "item.et.impure_caranite": "Impure Caranite",
   "item.et.sanding_paper": "Sanding Paper",
   "itemGroup.expeditech": "Expeditech",
+  "jei.et.coal_generator": "Coal Generator",
+  "jei.et.coal_generator.tooltips.energy": "Energy: %s/%s",
+  "jei.et.coal_generator.tooltips.progress": "Progress: %sticks (%ss)",
   "jei.et.sanding": "Sanding"
 }
