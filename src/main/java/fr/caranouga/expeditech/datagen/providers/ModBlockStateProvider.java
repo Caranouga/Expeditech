@@ -1,7 +1,7 @@
 package fr.caranouga.expeditech.datagen.providers;
 
 import fr.caranouga.expeditech.Expeditech;
-import fr.caranouga.expeditech.blocks.AbstractMachineBlock;
+import fr.caranouga.expeditech.blocks.machines.AbstractMachineBlock;
 import fr.caranouga.expeditech.registry.ModBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.data.*;

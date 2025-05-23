@@ -1,4 +1,4 @@
-package fr.caranouga.expeditech.tiles;
+package fr.caranouga.expeditech.tiles.machines;
 
 import fr.caranouga.expeditech.blocks.EnergyStorages;
 import fr.caranouga.expeditech.capability.CustomEnergyStorage;

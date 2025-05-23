@@ -1,4 +1,4 @@
-package fr.caranouga.expeditech.tiles;
+package fr.caranouga.expeditech.tiles.machines;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.inventory.Inventory;

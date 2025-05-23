@@ -6,7 +6,7 @@ import fr.caranouga.expeditech.blocks.EnergyStorages;
 import fr.caranouga.expeditech.registry.ModBlocks;
 import fr.caranouga.expeditech.screens.widgets.AbstractAnimatableWidget;
 import fr.caranouga.expeditech.screens.widgets.ProgressBarWidget;
-import fr.caranouga.expeditech.tiles.CoalGeneratorMachineTile;
+import fr.caranouga.expeditech.tiles.machines.CoalGeneratorMachineTile;
 import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.gui.IRecipeLayout;
 import mezz.jei.api.gui.drawable.IDrawable;

@@ -1,7 +1,7 @@
-package fr.caranouga.expeditech.blocks;
+package fr.caranouga.expeditech.blocks.machines;
 
 import fr.caranouga.expeditech.Expeditech;
-import fr.caranouga.expeditech.tiles.AbstractMachineTile;
+import fr.caranouga.expeditech.tiles.machines.AbstractMachineTile;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -15,7 +15,6 @@ import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.StateContainer;
-import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.*;

@@ -2,11 +2,8 @@ package fr.caranouga.expeditech.registry;
 
 import fr.caranouga.expeditech.Expeditech;
 import fr.caranouga.expeditech.containers.CoalGeneratorContainer;
-import fr.caranouga.expeditech.tiles.CoalGeneratorMachineTile;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.ContainerType;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.common.extensions.IForgeContainerType;

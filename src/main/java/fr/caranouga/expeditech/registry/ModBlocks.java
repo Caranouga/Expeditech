@@ -1,8 +1,11 @@
 package fr.caranouga.expeditech.registry;
 
 import fr.caranouga.expeditech.Expeditech;
-import fr.caranouga.expeditech.blocks.AbstractMachineBlock;
-import fr.caranouga.expeditech.blocks.CoalGeneratorMachine;
+import fr.caranouga.expeditech.blocks.machines.AbstractMachineBlock;
+import fr.caranouga.expeditech.blocks.machines.CoalGeneratorMachine;
+import fr.caranouga.expeditech.blocks.pipes.AbstractPipeBlock;
+import fr.caranouga.expeditech.blocks.pipes.PipeType;
+import fr.caranouga.expeditech.blocks.pipes.energy.IronEnergyPipe;
 import fr.caranouga.expeditech.utils.BlockEntry;
 import fr.caranouga.expeditech.utils.LootTypeEntry;
 import net.minecraft.block.AbstractBlock;
@@ -23,7 +26,7 @@ import static fr.caranouga.expeditech.registry.ModItems.registerItem;
 
 public class ModBlocks {
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, Expeditech.MODID);
-    public static final Map<RegistryObject<Block>, BlockEntry> BLOCKS_ENTRIES = new HashMap<>();
+    public static final Map<RegistryObject<? extends Block>, BlockEntry> BLOCKS_ENTRIES = new HashMap<>();
 
     // TODO: Check si les blocks ont le bon tool et level
 
@@ -34,11 +37,24 @@ public class ModBlocks {
     public static final RegistryObject<Block> CARANITE_ORE = registerOre("caranite_ore", ModItems.IMPURE_CARANITE);
 
     // Machines
-    public static final RegistryObject<Block> COAL_GENERATOR = registerMachineBlock("coal_generator", CoalGeneratorMachine::new);
+    public static final RegistryObject<CoalGeneratorMachine> COAL_GENERATOR = registerMachineBlock("coal_generator", CoalGeneratorMachine::new);
+
+    // Pipes
+    public static final RegistryObject<IronEnergyPipe> IRON_ENERGY_PIPE = registerPipe("iron", PipeType.ENERGY, IronEnergyPipe::new);
 
     // region Utility methods
-    private static <T extends AbstractMachineBlock> RegistryObject<Block> registerMachineBlock(String name, Supplier<T> blockSupplier) {
-        RegistryObject<Block> block = BLOCKS.register(name, blockSupplier);
+    private static <T extends AbstractPipeBlock> RegistryObject<T> registerPipe(String name, PipeType type, Supplier<T> blockSupplier){
+        RegistryObject<T> block = BLOCKS.register(type.getName(name), blockSupplier);
+
+        // Register the block item
+        registerItemBlock(name, block);
+        addBlockEntry(block, new BlockEntry(new LootTypeEntry(LootTypeEntry.LootType.DROP_SELF)));
+
+        return block;
+    }
+
+    private static <T extends AbstractMachineBlock> RegistryObject<T> registerMachineBlock(String name, Supplier<T> blockSupplier) {
+        RegistryObject<T> block = BLOCKS.register(name, blockSupplier);
 
         // Register the block item
         registerItemBlock(name, block);
@@ -94,10 +110,10 @@ public class ModBlocks {
     }*/
 
     // Utils
-    private static void registerItemBlock(String name, RegistryObject<Block> block) {
+    private static <T extends Block> void registerItemBlock(String name, RegistryObject<T> block) {
         registerItem(name, () -> new BlockItem(block.get(), new Item.Properties().tab(ModTabs.EXPEDITECH)));
     }
-    private static void addBlockEntry(RegistryObject<Block> block, BlockEntry entry) {
+    private static <T extends Block> void addBlockEntry(RegistryObject<T> block, BlockEntry entry) {
         BLOCKS_ENTRIES.put(block, entry);
     }
     // endregion

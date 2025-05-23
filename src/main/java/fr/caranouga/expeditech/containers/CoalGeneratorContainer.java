@@ -4,7 +4,7 @@ import fr.caranouga.expeditech.Expeditech;
 import fr.caranouga.expeditech.capability.CustomEnergyStorage;
 import fr.caranouga.expeditech.registry.ModBlocks;
 import fr.caranouga.expeditech.registry.ModContainers;
-import fr.caranouga.expeditech.tiles.CoalGeneratorMachineTile;
+import fr.caranouga.expeditech.tiles.machines.CoalGeneratorMachineTile;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.IntReferenceHolder;

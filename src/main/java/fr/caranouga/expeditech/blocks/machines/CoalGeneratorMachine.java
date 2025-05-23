@@ -1,8 +1,8 @@
-package fr.caranouga.expeditech.blocks;
+package fr.caranouga.expeditech.blocks.machines;
 
 import fr.caranouga.expeditech.containers.CoalGeneratorContainer;
 import fr.caranouga.expeditech.registry.ModTileEntities;
-import fr.caranouga.expeditech.tiles.CoalGeneratorMachineTile;
+import fr.caranouga.expeditech.tiles.machines.CoalGeneratorMachineTile;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;

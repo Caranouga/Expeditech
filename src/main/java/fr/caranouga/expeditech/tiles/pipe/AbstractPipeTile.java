@@ -1,8 +1,10 @@
-package fr.caranouga.expeditech.tiles;
+package fr.caranouga.expeditech.tiles.pipe;
 
 import fr.caranouga.expeditech.capability.CustomEnergyStorage;
 import net.minecraft.block.BlockState;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.tileentity.ITickableTileEntity;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.Direction;
 import net.minecraftforge.common.capabilities.Capability;
@@ -12,29 +14,12 @@ import net.minecraftforge.energy.CapabilityEnergy;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-public abstract class AbstractEnergyMachineTile extends AbstractMachineTile {
+public abstract class AbstractPipeTile extends TileEntity implements ITickableTileEntity {
     protected final CustomEnergyStorage energyStorage = createEnergyStorage();
     private final LazyOptional<CustomEnergyStorage> lazyEnergyStorage = LazyOptional.of(() -> energyStorage);
 
-    public AbstractEnergyMachineTile(TileEntityType<?> tileEntityType, int maxUses, int invSize) {
-        super(tileEntityType, maxUses, invSize);
-    }
-
-    protected abstract CustomEnergyStorage createEnergyStorage();
-
-    @Nonnull
-    @Override
-    public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap, @Nullable Direction side) {
-        if(cap == CapabilityEnergy.ENERGY){
-            return lazyEnergyStorage.cast();
-        }
-        return super.getCapability(cap, side);
-    }
-
-    @Override
-    protected void invalidateCaps() {
-        super.invalidateCaps();
-        lazyEnergyStorage.invalidate();
+    public AbstractPipeTile(TileEntityType<?> tileEntityType) {
+        super(tileEntityType);
     }
 
     // region Data Saving (World load/save)
@@ -56,4 +41,22 @@ public abstract class AbstractEnergyMachineTile extends AbstractMachineTile {
         return super.save(pCompound);
     }
     // endregion
+
+    @Nonnull
+    @Override
+    public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap, @Nullable Direction side) {
+        if(cap == CapabilityEnergy.ENERGY){
+            return lazyEnergyStorage.cast();
+        }
+        return super.getCapability(cap, side);
+    }
+
+    @Override
+    protected void invalidateCaps() {
+        super.invalidateCaps();
+
+        lazyEnergyStorage.invalidate();
+    }
+
+    protected abstract CustomEnergyStorage createEnergyStorage();
 }
