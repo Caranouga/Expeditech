@@ -10,6 +10,6 @@
   "itemGroup.expeditech": "Expeditech",
   "jei.et.coal_generator": "Coal Generator",
   "jei.et.coal_generator.tooltips.energy": "Energy: %s/%s",
-  "jei.et.coal_generator.tooltips.progress": "Progress: %sticks (%ss)",
+  "jei.et.coal_generator.tooltips.progress": "Progress: %st (%ss)",
   "jei.et.sanding": "Sanding"
 }
