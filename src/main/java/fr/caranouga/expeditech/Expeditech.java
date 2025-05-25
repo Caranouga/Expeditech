@@ -1,5 +1,6 @@
 package fr.caranouga.expeditech;
 
+import fr.caranouga.expeditech.capability.techlevel.CapabilityTechLevel;
 import fr.caranouga.expeditech.registry.*;
 import fr.caranouga.expeditech.screens.CoalGeneratorScreen;
 import net.minecraft.block.Block;
@@ -20,6 +21,11 @@ import org.apache.logging.log4j.Logger;
 @Mod(Expeditech.MODID)
 public class Expeditech
 {
+    // TODO: Data génération pour les pipes
+    // TODO: Meilleure abstraction (généraliser le tick)
+    // TODO: SUpprimer les trucs en rapport avec l'énergie du AbstractPipeTile (peut être utilisé pour de l'élec, mais pas que, ex: fluies, gas, ...)
+    // TODO: Finish capabilities
+
     public static final Logger LOGGER = LogManager.getLogger();
     public static final String MODID = "et";
 
@@ -41,7 +47,9 @@ public class Expeditech
         MinecraftForge.EVENT_BUS.register(this);
     }
 
-    private void setup(final FMLCommonSetupEvent event) {}
+    private void setup(final FMLCommonSetupEvent event) {
+        CapabilityTechLevel.register();
+    }
 
     private void doClientStuff(final FMLClientSetupEvent event) {
         event.enqueueWork(() -> {
