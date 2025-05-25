@@ -30,7 +30,6 @@ public class ProgressBarWidget extends AbstractAnimatableWidget {
         setColor();
 
         Minecraft.getInstance().getTextureManager().bind(PROGRESS_BAR_TEXTURE);
-        Expeditech.LOGGER.debug("Progress: {}. Progress * WIDTH: {}", progress, (int) (progress * WIDTH));
 
         AbstractGui.blit(matrixStack, this.x, this.y, 0, 0, (int) (progress * WIDTH), this.height, WIDTH, HEIGHT);
 

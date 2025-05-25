@@ -29,6 +29,22 @@ public class CustomEnergyStorage extends EnergyStorage implements INBTSerializab
         this.energy = Math.min(energy, this.capacity);
     }
 
+    public void addEnergy(int energy) {
+        this.energy = Math.min(this.energy + energy, this.capacity);
+    }
+
+    public void removeEnergy(int energy) {
+        this.energy = Math.max(this.energy - energy, 0);
+    }
+
+    public int getMaxReceive() {
+        return this.maxReceive;
+    }
+
+    public int getMaxExtract() {
+        return this.maxExtract;
+    }
+
     @Override
     public CompoundNBT serializeNBT() {
         CompoundNBT nbt = new CompoundNBT();

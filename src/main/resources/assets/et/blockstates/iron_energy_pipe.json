@@ -1,0 +1,31 @@
+{
+  "multipart": [
+    {
+      "apply": { "model": "et:block/pipe_core" }
+    },
+    {
+      "when": { "north": "true" },
+      "apply": { "model": "et:block/pipe_connection", "y": 0 }
+    },
+    {
+      "when": { "south": "true" },
+      "apply": { "model": "et:block/pipe_connection", "y": 180 }
+    },
+    {
+      "when": { "west": "true" },
+      "apply": { "model": "et:block/pipe_connection", "y": 270 }
+    },
+    {
+      "when": { "east": "true" },
+      "apply": { "model": "et:block/pipe_connection", "y": 90 }
+    },
+    {
+      "when": { "up": "true" },
+      "apply": { "model": "et:block/pipe_connection", "x": 270 }
+    },
+    {
+      "when": { "down": "true" },
+      "apply": { "model": "et:block/pipe_connection", "x": 90 }
+    }
+  ]
+}

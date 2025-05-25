@@ -107,8 +107,6 @@ public class CoalGeneratorContainer extends AbstractMachineContainer<CoalGenerat
         int progress = getProgress();
         int maxProgress = getMaxProgress();
 
-        Expeditech.LOGGER.debug("Progress: {}. Max progress: {}", progress, maxProgress);
-
         return maxProgress == 0 ? 0 : (float) progress / (float) maxProgress;
     }
 

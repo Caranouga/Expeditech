@@ -7,10 +7,18 @@ import net.minecraft.block.BlockState;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipeType;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.network.NetworkManager;
+import net.minecraft.network.play.server.SUpdateTileEntityPacket;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.tileentity.ITickableTileEntity;
+import net.minecraft.util.Direction;
 import net.minecraftforge.common.ForgeHooks;
+import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.Constants;
+import net.minecraftforge.common.util.LazyOptional;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 public class CoalGeneratorMachineTile extends AbstractEnergyMachineTile implements ITickableTileEntity {
     private static final int INPUT_SLOT = 0;
@@ -70,7 +78,7 @@ public class CoalGeneratorMachineTile extends AbstractEnergyMachineTile implemen
             }
         }else{
             if(!energyStorage.isFull()) {
-                energyStorage.receiveEnergy(ENERGY_PER_TICK, false);
+                energyStorage.addEnergy(ENERGY_PER_TICK);
             }
             currentBurnTime++;
         }
@@ -119,5 +127,26 @@ public class CoalGeneratorMachineTile extends AbstractEnergyMachineTile implemen
 
     public void setProgress(int currentBurnTime) {
         this.currentBurnTime = currentBurnTime;
+    }
+
+
+    @Override
+    public SUpdateTileEntityPacket getUpdatePacket(){
+        CompoundNBT nbtTag = new CompoundNBT();
+        //Write your data into the nbtTag
+
+        nbtTag.putInt("burnTime", burnTime);
+
+        return new SUpdateTileEntityPacket(this.worldPosition, -1, nbtTag);
+    }
+
+    @Override
+    public void onDataPacket(NetworkManager net, SUpdateTileEntityPacket pkt){
+        CompoundNBT tag = pkt.getTag();
+        //Handle your Data
+
+        if(tag.contains("burnTime")) {
+            burnTime = tag.getInt("burnTime");
+        }
     }
 }

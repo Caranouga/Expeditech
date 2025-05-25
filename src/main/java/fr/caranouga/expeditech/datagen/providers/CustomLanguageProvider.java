@@ -82,7 +82,7 @@ public abstract class CustomLanguageProvider implements IDataProvider {
         this.add(item.getDescriptionId(), translation);
     }
 
-    protected void addBlock(RegistryObject<Block> block, String translation){
+    protected <T extends Block> void addBlock(RegistryObject<T> block, String translation){
         this.addBlock(block.get(), translation);
     }
 

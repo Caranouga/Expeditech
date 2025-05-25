@@ -47,7 +47,7 @@ public class ModBlocks {
         RegistryObject<T> block = BLOCKS.register(type.getName(name), blockSupplier);
 
         // Register the block item
-        registerItemBlock(name, block);
+        registerItemBlock(type.getName(name), block);
         addBlockEntry(block, new BlockEntry(new LootTypeEntry(LootTypeEntry.LootType.DROP_SELF)));
 
         return block;
