@@ -24,7 +24,7 @@ public class Expeditech
     // TODO: Data génération pour les pipes
     // TODO: Meilleure abstraction (généraliser le tick)
     // TODO: SUpprimer les trucs en rapport avec l'énergie du AbstractPipeTile (peut être utilisé pour de l'élec, mais pas que, ex: fluies, gas, ...)
-    // TODO: Finish capabilities
+    // TODO: Finish capabilities (C:\Users\XXXXXXXX\IdeaProjects\technoverse)
 
     public static final Logger LOGGER = LogManager.getLogger();
     public static final String MODID = "et";
