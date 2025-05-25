@@ -21,8 +21,6 @@ import net.minecraft.world.IWorld;
 import javax.annotation.Nullable;
 
 public abstract class AbstractPipeBlock extends Block implements IWaterLoggable {
-    // Patch le fait que les pipes soient des blocs solides (ex: on voit a travers eux)
-
     public static final BooleanProperty NORTH = BooleanProperty.create("north");
     public static final BooleanProperty SOUTH = BooleanProperty.create("south");
     public static final BooleanProperty EAST  = BooleanProperty.create("east");
