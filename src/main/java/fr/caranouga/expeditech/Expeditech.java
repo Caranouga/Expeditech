@@ -23,9 +23,6 @@ import static fr.caranouga.expeditech.utils.StringUtils.modLocation;
 @Mod(Expeditech.MODID)
 public class Expeditech
 {
-    // TODO: Data génération pour les pipes
-    // TODO: Meilleure abstraction (généraliser le tick)
-    // TODO: SUpprimer les trucs en rapport avec l'énergie du AbstractPipeTile (peut être utilisé pour de l'élec, mais pas que, ex: fluies, gas, ...)
     // TODO: Enlever Truc
 
     public static final Logger LOGGER = LogManager.getLogger();

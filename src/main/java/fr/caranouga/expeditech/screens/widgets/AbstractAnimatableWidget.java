@@ -11,10 +11,6 @@ public abstract class AbstractAnimatableWidget extends AbstractWidget {
         super(x, y, height, color);
     }
 
-    protected AbstractAnimatableWidget(int x, int y, int height, String hexColor) {
-        super(x, y, height, hexColor);
-    }
-
     public void renderAnimated(MatrixStack matrixStack){
         setColor();
 

@@ -2,7 +2,6 @@ package fr.caranouga.expeditech.screens.widgets;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
-import fr.caranouga.expeditech.utils.ColorUtils;
 
 public abstract class AbstractWidget {
     protected final int x;
@@ -15,10 +14,6 @@ public abstract class AbstractWidget {
         this.y = y;
         this.height = height;
         this.color = color;
-    }
-
-    protected AbstractWidget(int x, int y, int height, String hexColor) {
-        this(x, y, height, ColorUtils.getColor(hexColor));
     }
 
     protected void setColor() {

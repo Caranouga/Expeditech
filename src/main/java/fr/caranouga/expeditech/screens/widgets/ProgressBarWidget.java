@@ -20,10 +20,6 @@ public class ProgressBarWidget extends AbstractAnimatableWidget {
         super(x, y, HEIGHT, color);
     }
 
-    public ProgressBarWidget(int x, int y, String hexColor) {
-        super(x, y, HEIGHT, hexColor);
-    }
-
     @Override
     public void render(MatrixStack matrixStack, float progress) {
         // Extract RGB from your `this.color` integer

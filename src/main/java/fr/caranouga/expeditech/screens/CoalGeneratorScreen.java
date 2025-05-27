@@ -7,6 +7,9 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.text.ITextComponent;
 
 public class CoalGeneratorScreen extends AbstractMachineScreen<CoalGeneratorContainer> {
+    private final ProgressBarWidget progressBarWidget = new ProgressBarWidget(0, 0, 0x3da000);
+    private final ProgressBarWidget energyBarWidget = new ProgressBarWidget(0, 0, 0xa02000);
+
     public CoalGeneratorScreen(CoalGeneratorContainer pMenu, PlayerInventory pPlayerInventory, ITextComponent pTitle) {
         super(pMenu, pPlayerInventory, pTitle, "coal_generator");
     }
@@ -19,9 +22,9 @@ public class CoalGeneratorScreen extends AbstractMachineScreen<CoalGeneratorCont
         int j = this.topPos;
 
         // Render the progress bar
-        new ProgressBarWidget(i + 48, j + 18, "3da000").render(pMatrixStack, this.menu.getScaledProgress());
+        this.progressBarWidget.render(pMatrixStack, this.menu.getScaledProgress());
 
         // Render the energy bar
-        new ProgressBarWidget(i + 48, j + 62, "a02000").render(pMatrixStack, this.menu.getScaledEnergy());
+        this.energyBarWidget.render(pMatrixStack, this.menu.getScaledEnergy());
     }
 }
