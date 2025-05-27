@@ -134,14 +134,13 @@ public abstract class AbstractPipeBlock extends Block implements IWaterLoggable 
     }
 
 
-
-    private static final VoxelShape SHAPE_CORE = Block.box(6.5, 6.5, 6.5, 9.5, 9.5, 9.5);
-    private static final VoxelShape SHAPE_NORTH = Block.box(6.5, 6.5, 5.5, 8.5, 8.5, 0);
-    private static final VoxelShape SHAPE_EAST = Block.box(9.5, 6.5, 8.5, 10.5, 7.5, 9.5);
-    private static final VoxelShape SHAPE_SOUTH = Block.box(6.5, 6.5, 9.5, 9.5, 9.5, 16);
-    private static final VoxelShape SHAPE_WEST = Block.box(0, 6.5, 6.5, 6.5, 9.5, 9.5);
-    private static final VoxelShape SHAPE_UP = Block.box(6.5, 9.5, 6.5, 9.5, 16, 9.5);
-    private static final VoxelShape SHAPE_DOWN = Block.box(6.5, 0, 6.5, 9.5, 6.5, 9.5);
+    public static final VoxelShape SHAPE_NORTH = Block.box(5D, 5D, 5D, 11D, 11D, 0D);
+    public static final VoxelShape SHAPE_SOUTH = Block.box(5D, 5D, 11D, 11D, 11D, 16D);
+    public static final VoxelShape SHAPE_EAST = Block.box(11D, 5D, 5D, 16D, 11D, 11D);
+    public static final VoxelShape SHAPE_WEST = Block.box(5D, 5D, 5D, 0D, 11D, 11D);
+    public static final VoxelShape SHAPE_UP = Block.box(6.5d, 9.5d, 6.5d, 9.5d, 16d, 9.5d);
+    public static final VoxelShape SHAPE_DOWN = Block.box(5D, 5D, 5D, 11D, 0D, 11D);
+    public static final VoxelShape SHAPE_CORE = Block.box(6.5, 6.5, 6.5, 9.5, 9.5, 9.5);
 
     private VoxelShape getShape(BlockState state) {
         VoxelShape shape = SHAPE_CORE;
