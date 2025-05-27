@@ -21,6 +21,8 @@ import net.minecraft.world.IWorld;
 import javax.annotation.Nullable;
 
 public abstract class AbstractPipeBlock extends Block implements IWaterLoggable {
+    // TODO: Régler problème de performance avec les pipes
+
     public static final BooleanProperty NORTH = BooleanProperty.create("north");
     public static final BooleanProperty SOUTH = BooleanProperty.create("south");
     public static final BooleanProperty EAST  = BooleanProperty.create("east");
@@ -97,36 +99,6 @@ public abstract class AbstractPipeBlock extends Block implements IWaterLoggable 
     public PushReaction getPistonPushReaction(BlockState pState) {
         return PushReaction.BLOCK;
     }
-
-    /*@Override
-    public VoxelShape getOcclusionShape(BlockState state, IBlockReader worldIn, BlockPos pos) {
-        return getShape(state);
-    }
-
-    @Override
-    public VoxelShape getVisualShape(BlockState state, IBlockReader reader, BlockPos pos, ISelectionContext context) {
-        return getShape(state);
-    }
-
-    @Override
-    public VoxelShape getCollisionShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
-        return getShape(state);
-    }
-
-    @Override
-    public VoxelShape getBlockSupportShape(BlockState state, IBlockReader reader, BlockPos pos) {
-        return getShape(state);
-    }
-
-    @Override
-    public VoxelShape getInteractionShape(BlockState state, IBlockReader worldIn, BlockPos pos) {
-        return getShape(state);
-    }
-
-    @Override
-    public FluidState getFluidState(BlockState state) {
-        return state.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(state);
-    }*/
 
     @Override
     public VoxelShape getShape(BlockState pState, IBlockReader pLevel, BlockPos pPos, ISelectionContext pContext) {
