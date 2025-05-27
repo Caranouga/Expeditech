@@ -23,16 +23,10 @@ public class TechLevelCommand {
                         .then(Commands.literal("add")
                                 .then(Commands.argument("targets", EntityArgument.players())
                                         .then(Commands.argument("amount", IntegerArgumentType.integer())
-                                                .executes((cmd) -> {
-                                                    return addTechLevel(cmd.getSource(), EntityArgument.getPlayers(cmd, "targets"), IntegerArgumentType.getInteger(cmd, "amount"), TechLevelCommand.Type.XP);
-                                                }).then(Commands.literal("xp")
-                                                        .executes((cmd) -> {
-                                                            return addTechLevel(cmd.getSource(), EntityArgument.getPlayers(cmd, "targets"), IntegerArgumentType.getInteger(cmd, "amount"), TechLevelCommand.Type.XP);
-                                                        })
+                                                .executes((cmd) -> addTechLevel(cmd.getSource(), EntityArgument.getPlayers(cmd, "targets"), IntegerArgumentType.getInteger(cmd, "amount"), Type.XP)).then(Commands.literal("xp")
+                                                        .executes((cmd) -> addTechLevel(cmd.getSource(), EntityArgument.getPlayers(cmd, "targets"), IntegerArgumentType.getInteger(cmd, "amount"), Type.XP))
                                                 ).then(Commands.literal("levels")
-                                                        .executes((cmd) -> {
-                                                            return addTechLevel(cmd.getSource(), EntityArgument.getPlayers(cmd, "targets"), IntegerArgumentType.getInteger(cmd, "amount"), TechLevelCommand.Type.LEVELS);
-                                                        })
+                                                        .executes((cmd) -> addTechLevel(cmd.getSource(), EntityArgument.getPlayers(cmd, "targets"), IntegerArgumentType.getInteger(cmd, "amount"), Type.LEVELS))
                                                 )
                                         )
                                 )
@@ -40,16 +34,10 @@ public class TechLevelCommand {
                         ).then(Commands.literal("set")
                                 .then(Commands.argument("targets", EntityArgument.players())
                                         .then(Commands.argument("amount", IntegerArgumentType.integer(0))
-                                                .executes((cmd) -> {
-                                                    return setTechLevel(cmd.getSource(), EntityArgument.getPlayers(cmd, "targets"), IntegerArgumentType.getInteger(cmd, "amount"), TechLevelCommand.Type.XP);
-                                                }).then(Commands.literal("xp")
-                                                        .executes((cmd) -> {
-                                                            return setTechLevel(cmd.getSource(), EntityArgument.getPlayers(cmd, "targets"), IntegerArgumentType.getInteger(cmd, "amount"), TechLevelCommand.Type.XP);
-                                                        })
+                                                .executes((cmd) -> setTechLevel(cmd.getSource(), EntityArgument.getPlayers(cmd, "targets"), IntegerArgumentType.getInteger(cmd, "amount"), Type.XP)).then(Commands.literal("xp")
+                                                        .executes((cmd) -> setTechLevel(cmd.getSource(), EntityArgument.getPlayers(cmd, "targets"), IntegerArgumentType.getInteger(cmd, "amount"), Type.XP))
                                                 ).then(Commands.literal("levels")
-                                                        .executes((cmd) -> {
-                                                            return setTechLevel(cmd.getSource(), EntityArgument.getPlayers(cmd, "targets"), IntegerArgumentType.getInteger(cmd, "amount"), TechLevelCommand.Type.LEVELS);
-                                                        })
+                                                        .executes((cmd) -> setTechLevel(cmd.getSource(), EntityArgument.getPlayers(cmd, "targets"), IntegerArgumentType.getInteger(cmd, "amount"), Type.LEVELS))
                                                 )
                                         )
                                 )
@@ -57,13 +45,9 @@ public class TechLevelCommand {
                         ).then(Commands.literal("get")
                                 .then(Commands.argument("target", EntityArgument.player())
                                         .then(Commands.literal("xp")
-                                                .executes((cmd) -> {
-                                                    return getTechLevel(cmd.getSource(), EntityArgument.getPlayer(cmd, "target"), TechLevelCommand.Type.XP);
-                                                })
+                                                .executes((cmd) -> getTechLevel(cmd.getSource(), EntityArgument.getPlayer(cmd, "target"), Type.XP))
                                         ).then(Commands.literal("levels")
-                                                .executes((cmd) -> {
-                                                    return getTechLevel(cmd.getSource(), EntityArgument.getPlayer(cmd, "target"), TechLevelCommand.Type.LEVELS);
-                                                })
+                                                .executes((cmd) -> getTechLevel(cmd.getSource(), EntityArgument.getPlayer(cmd, "target"), Type.LEVELS))
                                         )
                                 )
                         )

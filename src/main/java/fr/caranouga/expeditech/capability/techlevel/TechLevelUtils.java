@@ -9,8 +9,6 @@ import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraftforge.fml.network.PacketDistributor;
 
-import javax.swing.*;
-
 public class TechLevelUtils {
     public static int getTechLevel(Entity entity){
         return entity.getCapability(ModCapabilities.TECH_LEVEL).map(ITechLevel::getTechLevel).orElse(0);

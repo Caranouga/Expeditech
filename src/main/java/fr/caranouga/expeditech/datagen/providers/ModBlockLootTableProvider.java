@@ -43,7 +43,6 @@ public class ModBlockLootTableProvider extends LootTableProvider {
         @Override
         protected void addTables() {
             ModBlocks.BLOCKS_ENTRIES.forEach((block, entry) -> {
-                Expeditech.LOGGER.debug("Adding loot table for block: {}, Entry: {}", block.getId(), entry);
                 LootTypeEntry lootTypeEntry = entry.getLootType();
                 switch (lootTypeEntry.getLootType()){
                     case DROP_SELF: {

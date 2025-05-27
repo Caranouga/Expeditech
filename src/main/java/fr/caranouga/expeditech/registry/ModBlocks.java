@@ -7,6 +7,7 @@ import fr.caranouga.expeditech.blocks.pipes.AbstractPipeBlock;
 import fr.caranouga.expeditech.blocks.pipes.PipeType;
 import fr.caranouga.expeditech.blocks.pipes.energy.IronEnergyPipe;
 import fr.caranouga.expeditech.utils.BlockEntry;
+import fr.caranouga.expeditech.utils.BlockStateType;
 import fr.caranouga.expeditech.utils.LootTypeEntry;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
@@ -48,7 +49,7 @@ public class ModBlocks {
 
         // Register the block item
         registerItemBlock(type.getName(name), block);
-        addBlockEntry(block, new BlockEntry(new LootTypeEntry(LootTypeEntry.LootType.DROP_SELF)));
+        addBlockEntry(block, new BlockEntry(new LootTypeEntry(LootTypeEntry.LootType.DROP_SELF), BlockStateType.PIPE_BLOCK));
 
         return block;
     }
@@ -58,7 +59,7 @@ public class ModBlocks {
 
         // Register the block item
         registerItemBlock(name, block);
-        addBlockEntry(block, new BlockEntry(new LootTypeEntry(LootTypeEntry.LootType.DROP_SELF)));
+        addBlockEntry(block, new BlockEntry(new LootTypeEntry(LootTypeEntry.LootType.DROP_SELF), BlockStateType.MACHINE_BLOCK));
 
         return block;
     }
@@ -76,7 +77,7 @@ public class ModBlocks {
 
         // Register the block item
         registerItemBlock(name, block);
-        addBlockEntry(block, new BlockEntry(new LootTypeEntry(LootTypeEntry.LootType.ORE_DROP, drop)));
+        addBlockEntry(block, new BlockEntry(new LootTypeEntry(LootTypeEntry.LootType.ORE_DROP, drop), BlockStateType.CUBE_ALL));
 
         return block;
     }
@@ -95,7 +96,7 @@ public class ModBlocks {
 
         // Register the block item
         registerItemBlock(name, block);
-        addBlockEntry(block, new BlockEntry(new LootTypeEntry(LootTypeEntry.LootType.DROP_SELF)));
+        addBlockEntry(block, new BlockEntry(new LootTypeEntry(LootTypeEntry.LootType.DROP_SELF), BlockStateType.CUBE_ALL));
 
         return block;
     }

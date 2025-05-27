@@ -1,0 +1,6 @@
+{
+  "parent": "et:block/pipe_core",
+  "textures": {
+    "0": "et:block/iron_energy_pipe_core"
+  }
+}

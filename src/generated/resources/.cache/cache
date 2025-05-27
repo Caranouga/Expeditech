@@ -1,12 +1,15 @@
 d784bcf1bf25a1720e50ca82337c545f62cc49ed assets/et/blockstates/caranite_block.json
 f6171f84edcde6683d417285a2f586863cb1644b assets/et/blockstates/caranite_ore.json
 8dcc050d56c85bed9a321d63bc6bd844683c781a assets/et/blockstates/coal_generator.json
-dcca95a99a587cc0f8358fa02cfe278aa0abd6a2 assets/et/lang/en_us.json
-dbd7e17672b3dc886768d3997065507d5d33876b assets/et/lang/fr_fr.json
+bd578401815878cd9a011dc5fa88f71300b2b513 assets/et/blockstates/iron_energy_pipe.json
+2c219a68beb3e9d8ebb1d648cb44620a9c3136f2 assets/et/lang/en_us.json
+6240275022335c40fef97a1859063e3781b17946 assets/et/lang/fr_fr.json
 e6bc2fe142b78a36614ae8254802340b66426127 assets/et/models/block/caranite_block.json
 a74b1c5bf5f50a81d06cc98e81e91c8de8076bfa assets/et/models/block/caranite_ore.json
 5081e170023d0c7c65a2d1482e7626457d48b2c1 assets/et/models/block/coal_generator.json
 0364ece8fd34905e0699bfda1d6ebc1f0b92797e assets/et/models/block/coal_generator_on.json
+6c58c9bcea97b428c02625ded5d4a853e8c23ce3 assets/et/models/block/iron_energy_pipe_connection.json
+380a77c9e303a7b5c2078fbc0629f26a6148e37f assets/et/models/block/iron_energy_pipe_core.json
 933f04030d6eba91018aa9dff39a240cfc341b74 assets/et/models/item/caranite.json
 0edd3df74ce8a66033e80a8284611fdf39098abf assets/et/models/item/caranite_block.json
 88e69069a7972c330c5a9e5e912f29fa9a13e06a assets/et/models/item/caranite_dust.json
@@ -14,6 +17,7 @@ a74b1c5bf5f50a81d06cc98e81e91c8de8076bfa assets/et/models/block/caranite_ore.jso
 8afaf6be0d3af6e5f88cdbb860bc544f4ec4ec20 assets/et/models/item/caranite_ore.json
 ce7b9a155e5ff6be0aa643ebc2399102acc45046 assets/et/models/item/coal_generator.json
 d0397c334b8bd8d0a7ce3c38949a9e1d2071d964 assets/et/models/item/impure_caranite.json
+48ee6e395f7da6b0c8054299e78b65b766ce4258 assets/et/models/item/iron_energy_pipe.json
 05d982e313ef462fcc93ad0f789b569dc31eb2d4 assets/et/models/item/sanding_paper.json
 30ce330b2866c35b70213ce5e45a522b70140eec data/et/advancements/recipes/expeditech/caranite_block_from_caranite.json
 ffe29fd787760c8f66f271be6dc10eae897301a2 data/et/advancements/recipes/expeditech/caranite_from_caranite_block.json
@@ -25,6 +29,7 @@ ffe29fd787760c8f66f271be6dc10eae897301a2 data/et/advancements/recipes/expeditech
 5099d6a7899c8aab248ea1d97ff39dc35e261abe data/et/loot_tables/blocks/caranite_block.json
 6e948b3a275aeb0fbe1116fecad77279b7baf054 data/et/loot_tables/blocks/caranite_ore.json
 1712999e97d9e667823f3a8d5926052e70665bde data/et/loot_tables/blocks/coal_generator.json
+8e7f18abc2f9a588e36e8ae1f6f01dee03038d13 data/et/loot_tables/blocks/iron_energy_pipe.json
 c0fa2506a959cf45b9921b628314c65b8d4f10c6 data/et/materials/definition/caranite.json
 099bec59f26913accc4e9e76e8fb255617e356a8 data/et/materials/stats/caranite.json
 7b8aa1c6d379a5e2f6396572923e259c560800f0 data/et/materials/traits/caranite.json

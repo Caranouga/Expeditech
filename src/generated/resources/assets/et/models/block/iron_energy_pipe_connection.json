@@ -1,0 +1,6 @@
+{
+  "parent": "et:block/pipe_connection",
+  "textures": {
+    "0": "et:block/iron_energy_pipe_connection"
+  }
+}
