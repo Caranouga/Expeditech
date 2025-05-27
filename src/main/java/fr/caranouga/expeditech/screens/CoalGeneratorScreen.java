@@ -5,7 +5,6 @@ import fr.caranouga.expeditech.containers.CoalGeneratorContainer;
 import fr.caranouga.expeditech.screens.widgets.ProgressBarWidget;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TranslationTextComponent;
 
 public class CoalGeneratorScreen extends AbstractMachineScreen<CoalGeneratorContainer> {
     private final ProgressBarWidget progressBarWidget = new ProgressBarWidget(48, 18, 0x3da000);

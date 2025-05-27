@@ -9,7 +9,6 @@ import net.minecraft.inventory.container.Container;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
-import software.bernie.shadowed.eliotlash.mclib.math.functions.classic.Exp;
 
 import java.util.Arrays;
 

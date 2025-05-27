@@ -1,7 +1,6 @@
 package fr.caranouga.expeditech.screens.widgets;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
-import fr.caranouga.expeditech.Expeditech;
 import mezz.jei.api.gui.drawable.IDrawableAnimated;
 import mezz.jei.api.helpers.IGuiHelper;
 import net.minecraft.client.Minecraft;
