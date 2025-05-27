@@ -1,6 +1,5 @@
 package fr.caranouga.expeditech.datagen.providers;
 
-import fr.caranouga.expeditech.Expeditech;
 import fr.caranouga.expeditech.datagen.builder.SandingRecipeBuilder;
 import fr.caranouga.expeditech.registry.ModBlocks;
 import fr.caranouga.expeditech.registry.ModItems;
@@ -8,7 +7,6 @@ import net.minecraft.block.Block;
 import net.minecraft.data.*;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
-import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.registries.ForgeRegistryEntry;
 
@@ -35,6 +33,16 @@ public class ModRecipeProvider extends RecipeProvider {
                 .save(finishedRecipeConsumer, modLocation("sanding_paper_from_sand_and_paper"));
 
         sanding(finishedRecipeConsumer, ModItems.IMPURE_CARANITE.get(), ModItems.CARANITE.get());
+
+        ShapedRecipeBuilder.shaped(ModBlocks.IRON_ENERGY_PIPE.get(), 8)
+                .pattern("III")
+                .pattern(" R ")
+                .pattern("III")
+                .define('I', Tags.Items.INGOTS_IRON)
+                .define('R', Tags.Items.STORAGE_BLOCKS_REDSTONE)
+                .unlockedBy("has_iron", has(Tags.Items.INGOTS_IRON))
+                .unlockedBy("has_redstone", has(Tags.Items.STORAGE_BLOCKS_REDSTONE))
+                .save(finishedRecipeConsumer, modLocation("iron_energy_pipe"));
     }
 
     private void sanding(Consumer<IFinishedRecipe> finishedRecipeConsumer, Item input, Item output) {

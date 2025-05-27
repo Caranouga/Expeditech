@@ -2,6 +2,7 @@
   "block.et.caranite_block": "Caranite Block",
   "block.et.caranite_ore": "Caranite Ore",
   "block.et.coal_generator": "Coal Generator",
+  "block.et.iron_energy_pipe": "Iron Energy Pipe",
   "commands.et.techlevel.add.levels.success.multiple": "Added %s tech levels to %s players",
   "commands.et.techlevel.add.levels.success.single": "Added %s tech level to %s",
   "commands.et.techlevel.add.xp.success.multiple": "Added %s tech XP to %s players",
