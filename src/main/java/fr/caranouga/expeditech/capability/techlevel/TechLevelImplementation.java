@@ -1,6 +1,6 @@
 package fr.caranouga.expeditech.capability.techlevel;
 
-public class TechLevelDefaultProvider implements ITechLevel {
+public class TechLevelImplementation implements ITechLevel {
     private int techLevel;
     private int techXp;
 
@@ -37,6 +37,12 @@ public class TechLevelDefaultProvider implements ITechLevel {
     }
 
     @Override
+    public void set(ITechLevel oldTechLevel) {
+        this.techLevel = oldTechLevel.getTechLevel();
+        this.techXp = oldTechLevel.getTechXp();
+    }
+
+    @Override
     public int getTechXpToNextLevel() {
         return techXp - getXpForLevel(techLevel);
     }
@@ -47,20 +53,20 @@ public class TechLevelDefaultProvider implements ITechLevel {
     }
 
     /**
-     * Returns the level for the given amount of xp
+     * Returns the total amount of xp needed to reach the given level
      * @param level the level to reach
      * @return the total amount of xp needed to reach the given level
      */
-    private int getXpForLevel(int level){
-        // Based on the Minecraft XP formula
+    private int getXpForLevel(int level) {
         if(level >= 0 && level <= 16){
             return (int) (Math.pow(level, 2) + 6 * level);
         } else if(level > 16 && level <= 31){
             return (int) (2.5 * Math.pow(level, 2) - 40.5 * level + 360);
         } else if(level > 31){
             return (int) (4.5 * Math.pow(level, 2) - 162.5 * level + 2220);
+        } else {
+            return 0;
         }
-        return 0;
     }
 
     /**
@@ -69,7 +75,6 @@ public class TechLevelDefaultProvider implements ITechLevel {
      * @return the level for the given amount of xp
      */
     private int getLevelForXp(int xp) {
-        // Based on the Minecraft XP formula
         if(xp >= 0 && xp <= 352){
             return (int) (Math.sqrt(xp + 9) - 3);
         } else if(xp > 352 && xp <= 1507) {

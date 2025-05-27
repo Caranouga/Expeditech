@@ -16,6 +16,7 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.Map;
 import java.util.Objects;
 import java.util.TreeMap;
@@ -39,8 +40,16 @@ public abstract class CustomLanguageProvider implements IDataProvider {
     @Override
     public void run(DirectoryCache pCache) throws IOException {
         addTranslations();
+
+        if(data.isEmpty()){
+            Expeditech.LOGGER.warn("No translations found for {}. Please add translations in the addTranslations() method.", this.getName());
+            return;
+        }
+
+        verifyIfAllLocalesAreSet();
+        checkDiff();
+
         for(String locale : locales){
-            if(data.isEmpty()) continue;
             save(pCache, data.get(locale), this.gen.getOutputFolder().resolve("assets/" + Expeditech.MODID + "/lang/" + locale + ".json"));
         }
     }
@@ -48,6 +57,39 @@ public abstract class CustomLanguageProvider implements IDataProvider {
     @Override
     public String getName() {
         return Expeditech.MODID + " - Language Provider";
+    }
+
+    private void verifyIfAllLocalesAreSet() {
+        for (String locale : locales) {
+            if (!data.containsKey(locale)) {
+                throw new IllegalStateException("Locale " + locale + " is not set in the language provider");
+            }
+        }
+    }
+
+    private void checkDiff(){
+        // We verify that each locale contains the same keys
+        ArrayList<String> keys = new ArrayList<>(data.get(locales[0]).keySet());
+
+        for(String locale : locales) {
+            Map<String, String> localeData = data.get(locale);
+
+            if(localeData.isEmpty()){
+                throw new IllegalStateException("Locale " + locale + " is empty in the language provider");
+            }
+
+            for (String key : keys) {
+                // We verify that each key of localeData is present in keys
+                if (!localeData.containsKey(key)) {
+                    throw new IllegalStateException("Locale " + locale + " is missing key: " + key);
+                }
+
+                // We verify that each key of keys is present in localeData
+                if (!keys.contains(key)) {
+                    throw new IllegalStateException("Key " + key + " is missing in locale " + locale);
+                }
+            }
+        }
     }
 
     private void save(DirectoryCache cache, Map<String, String> dataMap, Path path) throws IOException {
@@ -100,6 +142,10 @@ public abstract class CustomLanguageProvider implements IDataProvider {
 
     protected void addJeiTooltip(String category, String key, String translation){
         this.addJeiCategory(category + ".tooltips." + key, translation);
+    }
+
+    protected void addCommand(String command, String data, String translation){
+        this.add("commands." + Expeditech.MODID + "." + command + "." + data, translation);
     }
 
     protected void add(String key, String value){
