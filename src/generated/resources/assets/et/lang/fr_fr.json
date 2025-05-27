@@ -15,5 +15,8 @@
   "jei.et.coal_generator": "G\u00E9n\u00E9rateur \u00E0 Charbon",
   "jei.et.coal_generator.tooltips.energy": "\u00C9nergie: %s/%s",
   "jei.et.coal_generator.tooltips.progress": "Progression: %st (%ss)",
-  "jei.et.sanding": "Pon\u00E7age"
+  "jei.et.sanding": "Pon\u00E7age",
+  "screen.et.coal_generator": "G\u00E9n\u00E9rateur \u00E0 Charbon",
+  "tooltip.et.coal_generator.energy": "\u00C9nergie: %s/%s",
+  "tooltip.et.coal_generator.progress": "Progression: %s/%s (%s%s)"
 }

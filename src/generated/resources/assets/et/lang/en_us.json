@@ -15,5 +15,8 @@
   "jei.et.coal_generator": "Coal Generator",
   "jei.et.coal_generator.tooltips.energy": "Energy: %s/%s",
   "jei.et.coal_generator.tooltips.progress": "Progress: %st (%ss)",
-  "jei.et.sanding": "Sanding"
+  "jei.et.sanding": "Sanding",
+  "screen.et.coal_generator": "Coal Generator",
+  "tooltip.et.coal_generator.energy": "Energy: %s/%s",
+  "tooltip.et.coal_generator.progress": "Progress: %s/%s (%s%s)"
 }

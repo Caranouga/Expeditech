@@ -13,14 +13,14 @@ import static fr.caranouga.expeditech.utils.StringUtils.modLocation;
 public class ProgressBarWidget extends AbstractAnimatableWidget {
     private static final ResourceLocation PROGRESS_BAR_TEXTURE = modLocation("textures/gui/widgets/progress_bar.png");
 
-    private static final int HEIGHT = 6;
+    public static final int HEIGHT = 6;
     public static final int WIDTH = 80;
 
     public ProgressBarWidget(int x, int y, int color) {
         super(x, y, HEIGHT, color);
     }
 
-    @Override
+    /*@Override
     public void render(MatrixStack matrixStack, float progress) {
         // Extract RGB from your `this.color` integer
         setColor();
@@ -28,6 +28,18 @@ public class ProgressBarWidget extends AbstractAnimatableWidget {
         Minecraft.getInstance().getTextureManager().bind(PROGRESS_BAR_TEXTURE);
 
         AbstractGui.blit(matrixStack, this.x, this.y, 0, 0, (int) (progress * WIDTH), this.height, WIDTH, HEIGHT);
+
+        resetColor();
+    }*/
+
+    @Override
+    public void render(MatrixStack matrixStack, int i, int j, float progress) {
+        // Extract RGB from your `this.color` integer
+        setColor();
+
+        Minecraft.getInstance().getTextureManager().bind(PROGRESS_BAR_TEXTURE);
+
+        AbstractGui.blit(matrixStack, i + this.x, j + this.y, 0, 0, (int) (progress * WIDTH), this.height, WIDTH, HEIGHT);
 
         resetColor();
     }

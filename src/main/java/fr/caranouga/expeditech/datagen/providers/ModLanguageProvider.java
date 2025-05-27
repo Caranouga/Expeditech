@@ -36,6 +36,11 @@ public class ModLanguageProvider extends CustomLanguageProvider {
         addCommand("techlevel", "add.xp.success.single", "Added %s tech XP to %s");
         addCommand("techlevel", "add.xp.success.multiple", "Added %s tech XP to %s players");
 
+        addScreen("coal_generator", "Coal Generator");
+
+        addTooltip("coal_generator.progress", "Progress: %s/%s (%s%s)");
+        addTooltip("coal_generator.energy", "Energy: %s/%s");
+
         // fr_fr
         switchLocale();
         addItem(ModItems.CARANITE, "Caranite");
@@ -60,5 +65,10 @@ public class ModLanguageProvider extends CustomLanguageProvider {
         addCommand("techlevel", "add.levels.success.multiple", "Ajouté %s niveaux technologiques à %s joueurs");
         addCommand("techlevel", "add.xp.success.single", "Ajouté %s XP technologique à %s");
         addCommand("techlevel", "add.xp.success.multiple", "Ajouté %s XP technologique à %s joueurs");
+
+        addScreen("coal_generator", "Générateur à Charbon");
+
+        addTooltip("coal_generator.progress", "Progression: %s/%s (%s%s)");
+        addTooltip("coal_generator.energy", "Énergie: %s/%s");
     }
 }

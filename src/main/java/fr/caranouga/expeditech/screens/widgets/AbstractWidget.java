@@ -29,5 +29,6 @@ public abstract class AbstractWidget {
     }
 
 
-    public abstract void render(MatrixStack matrixStack, float progress);
+    //public abstract void render(MatrixStack matrixStack, float progress);
+    public abstract void render(MatrixStack matrixStack, int i, int j, float progress);
 }

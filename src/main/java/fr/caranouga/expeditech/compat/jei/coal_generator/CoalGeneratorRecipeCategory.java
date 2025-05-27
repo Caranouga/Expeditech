@@ -83,13 +83,13 @@ public class CoalGeneratorRecipeCategory implements IRecipeCategory<CoalGenerato
             int maxEnergyStored = EnergyStorages.COAL_GENERATOR.getCapacity();
             float energyBarSize = (float) energyStored / (float) maxEnergyStored;
 
-            AbstractAnimatableWidget energyBar = new ProgressBarWidget(1, 45, "a02000")
+            AbstractAnimatableWidget energyBar = new ProgressBarWidget(1, 45, 0xa02000)
                     .createAnimated(helper, energyBarSize, recipe.getBurnTime());
             energyBarCache.put(recipe, energyBar);
         }
 
         if (!progressBarCache.containsKey(recipe)) {
-            AbstractAnimatableWidget progressBar = new ProgressBarWidget(1, 1, "3da000")
+            AbstractAnimatableWidget progressBar = new ProgressBarWidget(1, 1, 0x3da000)
                     .createAnimatedWithoutWidth(helper, ProgressBarWidget.WIDTH, recipe.getBurnTime());
             progressBarCache.put(recipe, progressBar);
         }
