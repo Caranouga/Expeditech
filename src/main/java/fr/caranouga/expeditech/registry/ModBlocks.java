@@ -29,8 +29,6 @@ public class ModBlocks {
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, Expeditech.MODID);
     public static final Map<RegistryObject<? extends Block>, BlockEntry> BLOCKS_ENTRIES = new HashMap<>();
 
-    // TODO: Check si les blocks ont le bon tool et level
-
     // Storage blocks
     public static final RegistryObject<Block> CARANITE_BLOCK = registerStorageBlock("caranite_block");
 

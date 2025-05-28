@@ -23,13 +23,6 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
     @Override
     protected void registerStatesAndModels() {
-        /*ModBlocks.BLOCKS.getEntries().forEach(block -> {
-            // TODO: This is a temporary fix to avoid crashing when generating blockstates for non-machine blocks
-            if(!(block.get() instanceof AbstractMachineBlock)) simpleBlock(block.get());
-        });
-
-        registerMachineBlock(ModBlocks.COAL_GENERATOR.get());*/
-
         ModBlocks.BLOCKS_ENTRIES.forEach((block, entry) -> {
             BlockStateType blockStateType = entry.getBlockStateType();
             Block blockInstance = block.get();
