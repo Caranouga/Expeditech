@@ -17,6 +17,8 @@ public class TechLevelScreen {
     public static void render(MatrixStack pMatrixStack) {
         Minecraft mc = Minecraft.getInstance();
         PlayerEntity player = mc.player;
+        if(player == null || !player.isAlive()) return;
+
         player.getCapability(ModCapabilities.TECH_LEVEL).ifPresent(techLevel -> {
             float techLevelXp = techLevel.getTechXpToNextLevel();
             float techLevelMaxXp = techLevel.getTotalXpToNextLevel();

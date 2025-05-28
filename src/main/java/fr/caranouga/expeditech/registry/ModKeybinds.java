@@ -2,9 +2,6 @@ package fr.caranouga.expeditech.registry;
 
 import fr.caranouga.expeditech.Expeditech;
 import fr.caranouga.expeditech.client.ClientState;
-import fr.caranouga.expeditech.events.ModEvents;
-import fr.caranouga.expeditech.screens.TechLevelScreen;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -19,21 +16,17 @@ import java.util.function.BiConsumer;
 public class ModKeybinds {
     public static final Map<KeyBinding, BiConsumer<KeyBinding, KeyAction>> KEYBINDS = new HashMap<>();
 
-    private static KeyBinding testKey;
-
     // region Utility methods
-    private static KeyBinding registerKey(String name, int keyCode, String category, BiConsumer<KeyBinding, KeyAction> action) {
+    private static void registerKey(String name, int keyCode, String category, BiConsumer<KeyBinding, KeyAction> action) {
         KeyBinding key = new KeyBinding("key." + Expeditech.MODID + "." + name, keyCode, "key.category." + Expeditech.MODID + "." + category);
         ClientRegistry.registerKeyBinding(key);
 
         KEYBINDS.put(key, action);
-
-        return key;
     }
     // endregion
 
     public static void register(){
-        testKey = registerKey("test", KeyEvent.VK_G, "test", (key, action) -> {
+        registerKey("test", KeyEvent.VK_G, "test", (key, action) -> {
             // Open a screen when the key is pressed
             if (action == KeyAction.PRESS) {
                 System.out.println("Test key pressed!, opening Tech Level Screen: " + ClientState.isShowExpBar());
@@ -53,7 +46,7 @@ public class ModKeybinds {
         }
     }
 
-    protected enum KeyAction {
+    public enum KeyAction {
         HOLD(2),
         PRESS(1),
         RELEASE(0);
