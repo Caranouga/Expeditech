@@ -9,7 +9,6 @@ import fr.caranouga.expeditech.registry.ModCapabilities;
 import fr.caranouga.expeditech.screens.TechLevelScreen;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.util.text.StringTextComponent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.RegisterCommandsEvent;
@@ -17,14 +16,10 @@ import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
-import static fr.caranouga.expeditech.capability.techlevel.TechLevelUtils.getTechLevel;
-import static fr.caranouga.expeditech.capability.techlevel.TechLevelUtils.getTechXp;
 import static fr.caranouga.expeditech.registry.ModCapabilities.TECH_LEVEL_ID;
 
 @Mod.EventBusSubscriber(modid = Expeditech.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class ModEvents {
-    public static boolean isTechLevelScreenOpen = false;
-
     @SubscribeEvent
     public static void onAttachCapabilities(AttachCapabilitiesEvent<Entity> event) {
         if(!(event.getObject() instanceof PlayerEntity)) return;

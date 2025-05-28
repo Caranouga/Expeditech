@@ -6,7 +6,6 @@ import fr.caranouga.expeditech.registry.ModCapabilities;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.util.text.StringTextComponent;
 import net.minecraftforge.fml.network.PacketDistributor;
 
 public class TechLevelUtils {
