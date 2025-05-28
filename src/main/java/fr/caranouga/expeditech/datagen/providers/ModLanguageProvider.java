@@ -43,6 +43,10 @@ public class ModLanguageProvider extends CustomLanguageProvider {
         addTooltip("coal_generator.progress", "Progress: %s/%s (%s%s)");
         addTooltip("coal_generator.energy", "Energy: %s/%s");
 
+        addKeyCategory("test", "Test Category");
+
+        addKey("test", "Test Key");
+
         // fr_fr
         switchLocale();
         addItem(ModItems.CARANITE, "Caranite");
@@ -74,5 +78,9 @@ public class ModLanguageProvider extends CustomLanguageProvider {
 
         addTooltip("coal_generator.progress", "Progression: %s/%s (%s%s)");
         addTooltip("coal_generator.energy", "Énergie: %s/%s");
+
+        addKeyCategory("test", "Test Category");
+
+        addKey("test", "Test Key");
     }
 }
