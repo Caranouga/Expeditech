@@ -8,6 +8,7 @@
   "commands.et.techlevel.add.xp.success.multiple": "Added %s tech XP to %s players",
   "commands.et.techlevel.add.xp.success.single": "Added %s tech XP to %s",
   "item.et.caranite": "Caranite",
+  "item.et.caranite_coal": "Caranite Coal",
   "item.et.caranite_dust": "Caranite Dust",
   "item.et.caranite_nugget": "Caranite Nugget",
   "item.et.impure_caranite": "Impure Caranite",

@@ -1,6 +1,7 @@
 package fr.caranouga.expeditech.registry;
 
 import fr.caranouga.expeditech.Expeditech;
+import fr.caranouga.expeditech.items.FuelItem;
 import fr.caranouga.expeditech.items.SandingPaperItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
@@ -18,6 +19,8 @@ public class ModItems {
     public static final RegistryObject<Item> IMPURE_CARANITE = registerItem("impure_caranite");
     public static final RegistryObject<Item> CARANITE_DUST = registerItem("caranite_dust");
     public static final RegistryObject<Item> CARANITE_NUGGET = registerItem("caranite_nugget");
+    public static final RegistryObject<Item> CARANITE_COAL = registerItem("caranite_coal",
+            () -> new FuelItem(new Item.Properties().tab(ModTabs.EXPEDITECH), 3200 /* 160 seconds */));
 
     // TODO: Add custom animation for the sanding paper
     public static final RegistryObject<SandingPaperItem> SANDING_PAPER = registerItem("sanding_paper",

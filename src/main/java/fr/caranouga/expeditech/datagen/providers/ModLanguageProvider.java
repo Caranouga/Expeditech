@@ -18,6 +18,7 @@ public class ModLanguageProvider extends CustomLanguageProvider {
         addItem(ModItems.CARANITE_DUST, "Caranite Dust");
         addItem(ModItems.CARANITE_NUGGET, "Caranite Nugget");
         addItem(ModItems.SANDING_PAPER, "Sanding Paper");
+        addItem(ModItems.CARANITE_COAL, "Caranite Coal");
 
         addBlock(ModBlocks.CARANITE_BLOCK, "Caranite Block");
         addBlock(ModBlocks.CARANITE_ORE, "Caranite Ore");
@@ -49,6 +50,7 @@ public class ModLanguageProvider extends CustomLanguageProvider {
         addItem(ModItems.CARANITE_DUST, "Poussière de Caranite");
         addItem(ModItems.CARANITE_NUGGET, "Pépite de Caranite");
         addItem(ModItems.SANDING_PAPER, "Papier de Ponçage");
+        addItem(ModItems.CARANITE_COAL, "Charbon en Caranite");
 
         addBlock(ModBlocks.CARANITE_BLOCK, "Bloc de Caranite");
         addBlock(ModBlocks.CARANITE_ORE, "Minerai de Caranite");
