@@ -18,6 +18,8 @@
   "jei.et.coal_generator.tooltips.energy": "\u00C9nergie: %s/%s",
   "jei.et.coal_generator.tooltips.progress": "Progression: %st (%ss)",
   "jei.et.sanding": "Pon\u00E7age",
+  "key.category.et.main": "Expeditech",
+  "key.et.techlevel": "\u00C9cran de Niveau Technologique",
   "screen.et.coal_generator": "G\u00E9n\u00E9rateur \u00E0 Charbon",
   "tooltip.et.coal_generator.energy": "\u00C9nergie: %s/%s",
   "tooltip.et.coal_generator.progress": "Progression: %s/%s (%s%s)"

@@ -37,15 +37,19 @@ public class ModLanguageProvider extends CustomLanguageProvider {
         addCommand("techlevel", "add.levels.success.multiple", "Added %s tech levels to %s players");
         addCommand("techlevel", "add.xp.success.single", "Added %s tech XP to %s");
         addCommand("techlevel", "add.xp.success.multiple", "Added %s tech XP to %s players");
+        addCommand("techlevel", "set.levels.success.single", "Set %s tech level to %s");
+        addCommand("techlevel", "set.levels.success.multiple", "Set %s tech levels to %s players");
+        addCommand("techlevel", "set.xp.success.single", "Set %s tech XP to %s");
+        addCommand("techlevel", "set.xp.success.multiple", "Set %s tech XP to %s players");
 
         addScreen("coal_generator", "Coal Generator");
 
         addTooltip("coal_generator.progress", "Progress: %s/%s (%s%s)");
         addTooltip("coal_generator.energy", "Energy: %s/%s");
 
-        addKeyCategory("test", "Test Category");
+        addKeyCategory("main", "Expeditech");
 
-        addKey("test", "Test Key");
+        addKey("techlevel", "Tech Level Screen");
 
         // fr_fr
         switchLocale();
@@ -73,14 +77,18 @@ public class ModLanguageProvider extends CustomLanguageProvider {
         addCommand("techlevel", "add.levels.success.multiple", "Ajouté %s niveaux technologiques à %s joueurs");
         addCommand("techlevel", "add.xp.success.single", "Ajouté %s XP technologique à %s");
         addCommand("techlevel", "add.xp.success.multiple", "Ajouté %s XP technologique à %s joueurs");
+        addCommand("techlevel", "set.levels.success.single", "Niveau technologique de %s défini à %s");
+        addCommand("techlevel", "set.levels.success.multiple", "Niveaux technologiques de %s joueurs définis à %s");
+        addCommand("techlevel", "set.xp.success.single", "XP technologique de %s défini à %s");
+        addCommand("techlevel", "set.xp.success.multiple", "XP technologique de %s joueurs défini à %s");
 
         addScreen("coal_generator", "Générateur à Charbon");
 
         addTooltip("coal_generator.progress", "Progression: %s/%s (%s%s)");
         addTooltip("coal_generator.energy", "Énergie: %s/%s");
 
-        addKeyCategory("test", "Test Category");
+        addKeyCategory("main", "Expeditech");
 
-        addKey("test", "Test Key");
+        addKey("techlevel", "Écran de Niveau Technologique");
     }
 }

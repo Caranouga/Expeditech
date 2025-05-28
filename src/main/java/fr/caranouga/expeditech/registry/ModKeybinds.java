@@ -1,6 +1,9 @@
 package fr.caranouga.expeditech.registry;
 
 import fr.caranouga.expeditech.Expeditech;
+import fr.caranouga.expeditech.client.ClientState;
+import fr.caranouga.expeditech.events.ModEvents;
+import fr.caranouga.expeditech.screens.TechLevelScreen;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraftforge.api.distmarker.Dist;
@@ -31,8 +34,11 @@ public class ModKeybinds {
 
     public static void register(){
         testKey = registerKey("test", KeyEvent.VK_G, "test", (key, action) -> {
-            // Action to perform when the key is pressed
-            Expeditech.LOGGER.info("Test key pressed: {} with action: {}", key.getName(), action);
+            // Open a screen when the key is pressed
+            if (action == KeyAction.PRESS) {
+                System.out.println("Test key pressed!, opening Tech Level Screen: " + ClientState.isShowExpBar());
+                ClientState.toggleShowExpBar();
+            }
         });
     }
 

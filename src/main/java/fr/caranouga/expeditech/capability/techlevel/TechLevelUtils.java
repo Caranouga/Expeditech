@@ -50,8 +50,13 @@ public class TechLevelUtils {
         });
     }
 
+    public static void update(PlayerEntity entity){
+        entity.getCapability(ModCapabilities.TECH_LEVEL).ifPresent(techLevel -> {
+            update(entity, techLevel);
+        });
+    }
+
     private static void update(PlayerEntity player, ITechLevel techLevel) {
-        player.sendMessage(new StringTextComponent("TechXP: " + techLevel.getTechXp() + " | TechLevel: " + techLevel.getTechLevel()), player.getUUID());
         // Adv
         Expeditech.NETWORK.send(PacketDistributor.PLAYER.with(() -> (ServerPlayerEntity) player), new TechLevelSyncPacket(techLevel.getTechLevel(), techLevel.getTechXp(), player.getId()));
     }

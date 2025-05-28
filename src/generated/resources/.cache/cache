@@ -2,8 +2,8 @@ d784bcf1bf25a1720e50ca82337c545f62cc49ed assets/et/blockstates/caranite_block.js
 f6171f84edcde6683d417285a2f586863cb1644b assets/et/blockstates/caranite_ore.json
 8dcc050d56c85bed9a321d63bc6bd844683c781a assets/et/blockstates/coal_generator.json
 bd578401815878cd9a011dc5fa88f71300b2b513 assets/et/blockstates/iron_energy_pipe.json
-4f8d0e9a34bddfb73f52f9b024702e6c3f5085bb assets/et/lang/en_us.json
-328559019e6bf30fddcab5d718f387ae560cf977 assets/et/lang/fr_fr.json
+528b6a8bf309a0af3b0a970dad9f09ca792774aa assets/et/lang/en_us.json
+151ad68d33ff7f5c6111ffb42bef3496698ac62a assets/et/lang/fr_fr.json
 e6bc2fe142b78a36614ae8254802340b66426127 assets/et/models/block/caranite_block.json
 a74b1c5bf5f50a81d06cc98e81e91c8de8076bfa assets/et/models/block/caranite_ore.json
 5081e170023d0c7c65a2d1482e7626457d48b2c1 assets/et/models/block/coal_generator.json

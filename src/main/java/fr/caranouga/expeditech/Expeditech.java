@@ -4,7 +4,6 @@ import fr.caranouga.expeditech.configs.ClientConfig;
 import fr.caranouga.expeditech.configs.CommonConfig;
 import fr.caranouga.expeditech.configs.ServerConfig;
 import fr.caranouga.expeditech.registry.*;
-import fr.caranouga.expeditech.screens.Truc;
 import net.minecraft.block.Block;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
@@ -28,7 +27,8 @@ import static fr.caranouga.expeditech.utils.StringUtils.modLocation;
 @Mod(Expeditech.MODID)
 public class Expeditech
 {
-    // TODO: Enlever Truc
+    // TODO: Advancements
+    // TODO: Patchouli
 
     public static final Logger LOGGER = LogManager.getLogger();
     public static final String MODID = "et";
@@ -73,7 +73,6 @@ public class Expeditech
     private void doClientStuff(final FMLClientSetupEvent event) {
         event.enqueueWork(() -> {
             ModScreens.register();
-            Truc.register();
             ModKeybinds.register();
         });
     }
