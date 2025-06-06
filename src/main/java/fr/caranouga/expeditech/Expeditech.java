@@ -28,7 +28,8 @@ import static fr.caranouga.expeditech.utils.StringUtils.modLocation;
 public class Expeditech
 {
     // TODO: Advancements
-    // TODO: Patchouli
+    // TODO: Patchouli (changer texture du livre)
+    // TODO: Patch les pipes
 
     public static final Logger LOGGER = LogManager.getLogger();
     public static final String MODID = "et";
@@ -80,11 +81,4 @@ public class Expeditech
     private void enqueueIMC(final InterModEnqueueEvent event) {}
 
     private void processIMC(final InterModProcessEvent event) {}
-
-    @Mod.EventBusSubscriber(bus=Mod.EventBusSubscriber.Bus.MOD)
-    public static class RegistryEvents {
-        @SubscribeEvent
-        public static void onBlocksRegistry(final RegistryEvent.Register<Block> blockRegistryEvent) {
-        }
-    }
 }
