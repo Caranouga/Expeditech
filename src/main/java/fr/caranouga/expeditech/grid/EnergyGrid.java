@@ -9,7 +9,6 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.energy.CapabilityEnergy;
 import net.minecraftforge.energy.IEnergyStorage;
-import software.bernie.shadowed.eliotlash.mclib.math.functions.classic.Exp;
 
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -17,57 +16,48 @@ import java.util.Queue;
 import java.util.Set;
 
 public class EnergyGrid {
-    private Set<AbstractEnergyPipeTile> pipes = new HashSet<>();
-    private Set<IEnergyStorage> producers = new HashSet<>();
-    private Set<IEnergyStorage> consumers = new HashSet<>();
+    private final Set<AbstractEnergyPipeTile> pipes = new HashSet<>();
+    private final Set<IEnergyStorage> producers = new HashSet<>();
+    private final Set<IEnergyStorage> consumers = new HashSet<>();
 
-    public static EnergyGrid rebuildFrom(AbstractEnergyPipeTile startPipe) {
-        EnergyGrid network = new EnergyGrid();
-        Queue<BlockPos> queue = new LinkedList<>();
-        Set<BlockPos> visited = new HashSet<>();
+    public static EnergyGrid rebuildFrom(AbstractEnergyPipeTile startPipe){
+        EnergyGrid grid = new EnergyGrid();
+        Queue<BlockPos> toProcess = new LinkedList<>();
+        Set<BlockPos> processed = new HashSet<>();
+        toProcess.add(startPipe.getBlockPos());
 
         World world = startPipe.getLevel();
-        queue.add(startPipe.getBlockPos());
 
-        while (!queue.isEmpty()) {
-            BlockPos current = queue.poll();
-            if (!visited.add(current)) continue;
+        while(!toProcess.isEmpty()){
+            BlockPos pos = toProcess.poll();
+            if(processed.contains(pos)) continue;
+            processed.add(pos);
 
-            TileEntity te = world.getBlockEntity(current);
-            if (te instanceof AbstractEnergyPipeTile) {
-                AbstractEnergyPipeTile pipe = (AbstractEnergyPipeTile) te;
-                pipe.grid = network;
-                network.pipes.add(pipe);
+            TileEntity tileEntity = world.getBlockEntity(pos);
+            if(tileEntity instanceof AbstractEnergyPipeTile) {
+                AbstractEnergyPipeTile pipe = (AbstractEnergyPipeTile) tileEntity;
+                grid.pipes.add(pipe);
+                pipe.grid = grid;
 
                 for (Direction dir : Direction.values()) {
-                    BlockPos neighborPos = current.relative(dir);
-                    TileEntity neighbor = world.getBlockEntity(neighborPos);
-                    if (neighbor != null) {
-                        LazyOptional<IEnergyStorage> cap = neighbor.getCapability(CapabilityEnergy.ENERGY, dir.getOpposite());
-                        cap.ifPresent(storage -> {
-                            if (storage.canExtract()) network.producers.add(storage);
-                            if (storage.canReceive()) network.consumers.add(storage);
-                            if (!(neighbor instanceof AbstractEnergyPipeTile)) {
-                                for (Direction adj : Direction.values()) {
-                                    TileEntity adjTe = world.getBlockEntity(neighborPos.relative(adj));
-                                    if (adjTe instanceof AbstractEnergyPipeTile) {
-                                        ((AbstractEnergyPipeTile) adjTe).markGridForRebuild();
-                                    }
-                                }
-                            }
-                        });
+                    BlockPos adjacentPos = pos.relative(dir);
+                    TileEntity neighbour = world.getBlockEntity(adjacentPos);
+                    if (!processed.contains(adjacentPos)) {
+                        toProcess.add(adjacentPos);
+                    }
 
-                        if (!visited.contains(neighborPos)) {
-                            if (neighbor instanceof AbstractEnergyPipeTile) {
-                                queue.add(neighborPos);
-                            }
-                        }
+                    if (neighbour != null) {
+                        LazyOptional<IEnergyStorage> energyStorage = neighbour.getCapability(CapabilityEnergy.ENERGY, dir.getOpposite());
+                        energyStorage.ifPresent(storage -> {
+                            if (storage.canExtract()) grid.producers.add(storage);
+                            if (storage.canReceive()) grid.consumers.add(storage);
+                        });
                     }
                 }
             }
         }
 
-        return network;
+        return grid;
     }
 
     public void tick(){
@@ -99,7 +89,6 @@ public class EnergyGrid {
     public void invalidate() {
         for (AbstractEnergyPipeTile pipe : pipes) {
             pipe.grid = null;
-            pipe.markGridForRebuild();
         }
         pipes.clear();
         producers.clear();

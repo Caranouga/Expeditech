@@ -4,11 +4,8 @@ import fr.caranouga.expeditech.configs.ClientConfig;
 import fr.caranouga.expeditech.configs.CommonConfig;
 import fr.caranouga.expeditech.configs.ServerConfig;
 import fr.caranouga.expeditech.registry.*;
-import net.minecraft.block.Block;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
@@ -31,7 +28,8 @@ public class Expeditech
     // TODO: Patchouli (changer texture du livre)
     // TODO: Patch les pipes (début de nouveau pipes)
     // TODO: Faire en sorte que les pipes soient connectés aux machines adjacentes
-
+    // TODO: Check si on peut faire plusieurs grid séparés (ex: une grid A et une grid B avec différentes machines connectées)
+    // peut sembler que oui, mais je pense que non (ex: 2 consummers sur la grid alors qu'ils sont sur des grids différentes)
     public static final Logger LOGGER = LogManager.getLogger();
     public static final String MODID = "et";
 
