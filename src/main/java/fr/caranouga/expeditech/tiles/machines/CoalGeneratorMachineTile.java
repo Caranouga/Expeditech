@@ -76,6 +76,9 @@ public class CoalGeneratorMachineTile extends AbstractEnergyMachineTile implemen
             }
             currentBurnTime++;
         }
+
+        sendOutEnergy();
+
         setChanged();
     }
 

@@ -29,7 +29,8 @@ public class Expeditech
 {
     // TODO: Advancements
     // TODO: Patchouli (changer texture du livre)
-    // TODO: Patch les pipes
+    // TODO: Patch les pipes (début de nouveau pipes)
+    // TODO: Faire en sorte que les pipes soient connectés aux machines adjacentes
 
     public static final Logger LOGGER = LogManager.getLogger();
     public static final String MODID = "et";

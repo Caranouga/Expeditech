@@ -3,9 +3,8 @@ package fr.caranouga.expeditech.registry;
 import fr.caranouga.expeditech.Expeditech;
 import fr.caranouga.expeditech.blocks.machines.AbstractMachineBlock;
 import fr.caranouga.expeditech.blocks.machines.CoalGeneratorMachine;
-import fr.caranouga.expeditech.blocks.pipes.AbstractPipeBlock;
-import fr.caranouga.expeditech.blocks.pipes.PipeType;
-import fr.caranouga.expeditech.blocks.pipes.energy.IronEnergyPipe;
+import fr.caranouga.expeditech.blocks.machines.VoidMachine;
+import fr.caranouga.expeditech.blocks.IronEnergyPipe;
 import fr.caranouga.expeditech.utils.BlockEntry;
 import fr.caranouga.expeditech.utils.BlockStateType;
 import fr.caranouga.expeditech.utils.LootTypeEntry;
@@ -38,11 +37,15 @@ public class ModBlocks {
     // Machines
     public static final RegistryObject<CoalGeneratorMachine> COAL_GENERATOR = registerMachineBlock("coal_generator", CoalGeneratorMachine::new);
 
+    public static final RegistryObject<VoidMachine> VOID_MACHINE = BLOCKS.register("void_machine", VoidMachine::new);
+    public static final RegistryObject<IronEnergyPipe> IRON_ENERGY_PIPE = BLOCKS.register("iron_energy_pipe", IronEnergyPipe::new);
+    //public static final RegistryObject<EnergyDuctBlock> ENERGY_DUCT = BLOCKS.register("energy_duct", EnergyDuctBlock::new);
+
     // Pipes
-    public static final RegistryObject<IronEnergyPipe> IRON_ENERGY_PIPE = registerPipe("iron", PipeType.ENERGY, IronEnergyPipe::new);
+    //public static final RegistryObject<IronEnergyPipe> IRON_ENERGY_PIPE = registerPipe("iron", PipeType.ENERGY, IronEnergyPipe::new);
 
     // region Utility methods
-    private static <T extends AbstractPipeBlock> RegistryObject<T> registerPipe(String name, PipeType type, Supplier<T> blockSupplier){
+    /*private static <T extends AbstractPipeBlock> RegistryObject<T> registerPipe(String name, PipeType type, Supplier<T> blockSupplier){
         RegistryObject<T> block = BLOCKS.register(type.getName(name), blockSupplier);
 
         // Register the block item
@@ -50,7 +53,7 @@ public class ModBlocks {
         addBlockEntry(block, new BlockEntry(new LootTypeEntry(LootTypeEntry.LootType.DROP_SELF), BlockStateType.PIPE_BLOCK));
 
         return block;
-    }
+    }*/
 
     private static <T extends AbstractMachineBlock> RegistryObject<T> registerMachineBlock(String name, Supplier<T> blockSupplier) {
         RegistryObject<T> block = BLOCKS.register(name, blockSupplier);

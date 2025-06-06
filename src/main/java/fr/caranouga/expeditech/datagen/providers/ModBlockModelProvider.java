@@ -2,7 +2,6 @@ package fr.caranouga.expeditech.datagen.providers;
 
 import fr.caranouga.expeditech.Expeditech;
 import fr.caranouga.expeditech.blocks.machines.AbstractMachineBlock;
-import fr.caranouga.expeditech.blocks.pipes.AbstractPipeBlock;
 import fr.caranouga.expeditech.registry.ModBlocks;
 import fr.caranouga.expeditech.utils.BlockStateType;
 import net.minecraft.block.Block;
@@ -39,11 +38,11 @@ public class ModBlockModelProvider extends BlockModelProvider {
                 }
 
                 case PIPE_BLOCK: {
-                    if (blockInstance instanceof AbstractPipeBlock) {
+                    /*if (blockInstance instanceof AbstractPipeBlock) {
                         generatePipeBlock(blockInstance);
                     } else {
                         throw new RuntimeException("Block " + blockInstance.getRegistryName() + " is not an instance of AbstractMachineBlock but is registered as a PIPE_BLOCK");
-                    }
+                    }*/
                     break;
                 }
                 default: {
