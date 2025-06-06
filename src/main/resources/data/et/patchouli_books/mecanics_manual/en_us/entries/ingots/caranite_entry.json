@@ -1,0 +1,17 @@
+{
+  "name": "Caranite",
+  "category": "et:ingot_category",
+  "icon": "et:caranite",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "et:caranite,et:impure_caranite",
+      "text": "",
+      "anchor": "caranite_desc"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "...."
+    }
+  ]
+}

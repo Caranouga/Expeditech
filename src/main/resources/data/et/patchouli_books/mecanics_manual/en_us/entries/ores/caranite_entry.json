@@ -1,0 +1,14 @@
+{
+  "name": "Caranite Ore",
+  "category": "et:ore_category",
+  "icon": "et:caranite_ore",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "et:caranite_ore"
+      },
+      "text": "test"
+    }
+  ]
+}
