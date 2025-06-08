@@ -39,4 +39,4 @@ Please confirm the following before requesting a review:
 
 ---
 
-Thank you for contributing to **Expeditech**! 🚂⚡
+Thank you for contributing to **Expeditech**!
