@@ -40,6 +40,8 @@ public class ModLanguageProvider extends CustomLanguageProvider {
         addCommand("techlevel", "set.levels.success.multiple", "Set %s tech levels to %s players");
         addCommand("techlevel", "set.xp.success.single", "Set %s tech XP to %s");
         addCommand("techlevel", "set.xp.success.multiple", "Set %s tech XP to %s players");
+        addCommand("techlevel", "get.levels.success", "Tech levels for %s: %s");
+        addCommand("techlevel", "get.xp.success", "Tech XP for %s: %s");
 
         addScreen("coal_generator", "Coal Generator");
 
@@ -79,6 +81,8 @@ public class ModLanguageProvider extends CustomLanguageProvider {
         addCommand("techlevel", "set.levels.success.multiple", "Niveaux technologiques de %s joueurs définis à %s");
         addCommand("techlevel", "set.xp.success.single", "XP technologique de %s défini à %s");
         addCommand("techlevel", "set.xp.success.multiple", "XP technologique de %s joueurs défini à %s");
+        addCommand("techlevel", "get.levels.success", "Niveaux technologiques pour %s: %s");
+        addCommand("techlevel", "get.xp.success", "XP technologique pour %s: %s");
 
         addScreen("coal_generator", "Générateur à Charbon");
 

@@ -1,6 +1,5 @@
 package fr.caranouga.expeditech.tiles.machines;
 
-import fr.caranouga.expeditech.Expeditech;
 import fr.caranouga.expeditech.blocks.EnergyStorages;
 import fr.caranouga.expeditech.capability.CustomEnergyStorage;
 import fr.caranouga.expeditech.registry.ModTileEntities;
@@ -60,9 +59,6 @@ public class CoalGeneratorMachineTile extends AbstractEnergyMachineTile implemen
         if(level == null || level.isClientSide) {
             return;
         }
-
-        Expeditech.LOGGER.debug("MAX EXTRACT: {}, MAX RECEIVE: {}, ENERGY: {}, CAN EXTRACT: {}, CAN RECEIVE: {}",
-                energyStorage.getMaxExtract(), energyStorage.getMaxReceive(), energyStorage.getEnergyStored(), energyStorage.canExtract(), energyStorage.canReceive());
 
         if(hasFinishedBurning()) {
             if(isItemBurnable(itemHandler.getStackInSlot(INPUT_SLOT)) && !energyStorage.isFull()){

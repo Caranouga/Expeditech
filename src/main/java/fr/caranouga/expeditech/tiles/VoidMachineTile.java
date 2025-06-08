@@ -1,4 +1,4 @@
-package fr.caranouga.expeditech.tiles;
+/*package fr.caranouga.expeditech.tiles;
 
 import fr.caranouga.expeditech.Expeditech;
 import fr.caranouga.expeditech.blocks.EnergyStorages;
@@ -24,7 +24,7 @@ public class VoidMachineTile extends AbstractEnergyMachineTile implements ITicka
 
     @Override
     protected CustomEnergyStorage createEnergyStorage() {
-        return new CustomEnergyStorage(50000, 1000, 0);
+        return new CustomEnergyStorage(50000, 50000, 0);
     }
 
     @Override
@@ -35,4 +35,4 @@ public class VoidMachineTile extends AbstractEnergyMachineTile implements ITicka
 
         setChanged();
     }
-}
+}*/

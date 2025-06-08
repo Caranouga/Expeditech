@@ -1,6 +1,5 @@
 package fr.caranouga.expeditech.containers;
 
-import fr.caranouga.expeditech.Expeditech;
 import fr.caranouga.expeditech.capability.CustomEnergyStorage;
 import fr.caranouga.expeditech.registry.ModBlocks;
 import fr.caranouga.expeditech.registry.ModContainers;

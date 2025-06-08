@@ -1,6 +1,6 @@
 package fr.caranouga.expeditech.grid;
-
-import fr.caranouga.expeditech.tiles.pipes.AbstractEnergyPipeTile;
+/*
+import fr.caranouga.expeditech.tiles.pipes.energy.IronEnergyPipeTile;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
@@ -12,12 +12,11 @@ import net.minecraftforge.energy.IEnergyStorage;
 import java.util.*;
 
 public class EnergyGrid {
-    private final Set<AbstractEnergyPipeTile> pipes = new HashSet<>();
+    private final Set<IronEnergyPipeTile> pipes = new HashSet<>();
     private final Set<IEnergyStorage> producers = new HashSet<>();
     private final Set<IEnergyStorage> consumers = new HashSet<>();
-    private UUID gridId;
 
-    public static EnergyGrid rebuildFrom(AbstractEnergyPipeTile startPipe){
+    public static EnergyGrid rebuildFrom(IronEnergyPipeTile startPipe){
         EnergyGrid grid = new EnergyGrid();
         grid.gridId = UUID.randomUUID();
         Queue<BlockPos> toProcess = new LinkedList<>();
@@ -32,8 +31,8 @@ public class EnergyGrid {
             processed.add(pos);
 
             TileEntity tileEntity = world.getBlockEntity(pos);
-            if(tileEntity instanceof AbstractEnergyPipeTile) {
-                AbstractEnergyPipeTile pipe = (AbstractEnergyPipeTile) tileEntity;
+            if(tileEntity instanceof IronEnergyPipeTile) {
+                IronEnergyPipeTile pipe = (IronEnergyPipeTile) tileEntity;
                 grid.pipes.add(pipe);
                 pipe.grid = grid;
 
@@ -82,11 +81,48 @@ public class EnergyGrid {
     }
 
     public void invalidate() {
-        for (AbstractEnergyPipeTile pipe : pipes) {
+        for (IronEnergyPipeTile pipe : pipes) {
             pipe.grid = null;
         }
         pipes.clear();
         producers.clear();
         consumers.clear();
+    }
+}
+*/
+
+import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.energy.CapabilityEnergy;
+import net.minecraftforge.energy.IEnergyStorage;
+
+public class EnergyGrid extends AbstractGrid<IEnergyStorage> {
+    @Override
+    protected AbstractGrid<IEnergyStorage> getGrid() {
+        return new EnergyGrid();
+    }
+
+    @Override
+    protected Capability<IEnergyStorage> getCapability() {
+        return CapabilityEnergy.ENERGY;
+    }
+
+    @Override
+    protected boolean isProducer(IEnergyStorage storage) {
+        return storage.canExtract();
+    }
+
+    @Override
+    protected boolean isConsumer(IEnergyStorage storage) {
+        return storage.canReceive();
+    }
+
+    @Override
+    protected int extractFrom(IEnergyStorage producer, int amount, boolean simulate) {
+        return producer.extractEnergy(amount, simulate);
+    }
+
+    @Override
+    protected int receiveTo(IEnergyStorage consumer, int amount) {
+        return consumer.receiveEnergy(amount, false);
     }
 }

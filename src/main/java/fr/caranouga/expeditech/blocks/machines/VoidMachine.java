@@ -1,4 +1,4 @@
-package fr.caranouga.expeditech.blocks.machines;
+/*package fr.caranouga.expeditech.blocks.machines;
 
 import fr.caranouga.expeditech.containers.CoalGeneratorContainer;
 import fr.caranouga.expeditech.registry.ModTileEntities;
@@ -45,4 +45,4 @@ public class VoidMachine extends Block {
     public TileEntity createTileEntity(BlockState state, IBlockReader world) {
         return ModTileEntities.VOID_MACHINE_TILE.get().create();
     }
-}
+}*/

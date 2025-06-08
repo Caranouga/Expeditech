@@ -1,10 +1,11 @@
 package fr.caranouga.expeditech.registry;
 
 import fr.caranouga.expeditech.Expeditech;
+import fr.caranouga.expeditech.blocks.PipeTypes;
 import fr.caranouga.expeditech.blocks.machines.AbstractMachineBlock;
 import fr.caranouga.expeditech.blocks.machines.CoalGeneratorMachine;
-import fr.caranouga.expeditech.blocks.machines.VoidMachine;
-import fr.caranouga.expeditech.blocks.IronEnergyPipe;
+import fr.caranouga.expeditech.blocks.pipes.AbstractPipeBlock;
+import fr.caranouga.expeditech.blocks.pipes.energy.IronEnergyPipe;
 import fr.caranouga.expeditech.utils.BlockEntry;
 import fr.caranouga.expeditech.utils.BlockStateType;
 import fr.caranouga.expeditech.utils.LootTypeEntry;
@@ -37,39 +38,29 @@ public class ModBlocks {
     // Machines
     public static final RegistryObject<CoalGeneratorMachine> COAL_GENERATOR = registerMachineBlock("coal_generator", CoalGeneratorMachine::new);
 
-    public static final RegistryObject<VoidMachine> VOID_MACHINE = registerVoidMachine(() -> new VoidMachine());
-    public static final RegistryObject<IronEnergyPipe> IRON_ENERGY_PIPE = registerIronPipe(() -> new IronEnergyPipe());
+    //public static final RegistryObject<VoidMachine> VOID_MACHINE = registerVoidMachine(() -> new VoidMachine());
 
-    public static RegistryObject<IronEnergyPipe> registerIronPipe(Supplier<IronEnergyPipe> supp){
-        RegistryObject<IronEnergyPipe> block = BLOCKS.register("iron_energy_pipe", supp);
-        registerItemBlock("iron_energy_pipe", block);
-
-        return block;
-    }
-
-    public static RegistryObject<VoidMachine> registerVoidMachine(Supplier<VoidMachine> supp){
+    /*public static RegistryObject<VoidMachine> registerVoidMachine(Supplier<VoidMachine> supp){
         RegistryObject<VoidMachine> block = BLOCKS.register("void_machine", supp);
         registerItemBlock("void_machine", block);
 
         return block;
-    }
-
-
-    //public static final RegistryObject<EnergyDuctBlock> ENERGY_DUCT = BLOCKS.register("energy_duct", EnergyDuctBlock::new);
+    }*/
 
     // Pipes
-    //public static final RegistryObject<IronEnergyPipe> IRON_ENERGY_PIPE = registerPipe("iron", PipeType.ENERGY, IronEnergyPipe::new);
+    public static final RegistryObject<IronEnergyPipe> IRON_ENERGY_PIPE = registerPipe("iron", PipeTypes.ENERGY, IronEnergyPipe::new);
 
     // region Utility methods
-    /*private static <T extends AbstractPipeBlock> RegistryObject<T> registerPipe(String name, PipeType type, Supplier<T> blockSupplier){
-        RegistryObject<T> block = BLOCKS.register(type.getName(name), blockSupplier);
+    private static <T extends AbstractPipeBlock> RegistryObject<T> registerPipe(String name, PipeTypes type, Supplier<T> blockSupplier){
+        String formattedName = type.getName(name) + "_pipe";
+        RegistryObject<T> block = BLOCKS.register(formattedName, blockSupplier);
 
         // Register the block item
-        registerItemBlock(type.getName(name), block);
+        registerItemBlock(formattedName, block);
         addBlockEntry(block, new BlockEntry(new LootTypeEntry(LootTypeEntry.LootType.DROP_SELF), BlockStateType.PIPE_BLOCK));
 
         return block;
-    }*/
+    }
 
     private static <T extends AbstractMachineBlock> RegistryObject<T> registerMachineBlock(String name, Supplier<T> blockSupplier) {
         RegistryObject<T> block = BLOCKS.register(name, blockSupplier);

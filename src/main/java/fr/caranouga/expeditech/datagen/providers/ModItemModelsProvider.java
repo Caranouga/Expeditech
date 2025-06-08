@@ -1,6 +1,7 @@
 package fr.caranouga.expeditech.datagen.providers;
 
 import fr.caranouga.expeditech.Expeditech;
+import fr.caranouga.expeditech.blocks.pipes.AbstractPipeBlock;
 import fr.caranouga.expeditech.registry.ModBlocks;
 import fr.caranouga.expeditech.registry.ModItems;
 import fr.caranouga.expeditech.utils.BlockEntry;
@@ -51,11 +52,11 @@ public class ModItemModelsProvider extends ItemModelProvider {
                     }
 
                     case PIPE_BLOCK: {
-                        /*if (associatedBlock instanceof AbstractPipeBlock) {
+                        if (associatedBlock instanceof AbstractPipeBlock) {
                             withExistingParent(name, modLoc("block/" + name + "_core"));
                         } else {
                             throw new RuntimeException("Block " + associatedBlock.getRegistryName() + " is not an instance of AbstractMachineBlock but is registered as a PIPE_BLOCK");
-                        }*/
+                        }
                         break;
                     }
                     default: {

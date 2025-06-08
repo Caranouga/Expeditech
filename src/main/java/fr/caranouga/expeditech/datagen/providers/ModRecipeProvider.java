@@ -34,7 +34,7 @@ public class ModRecipeProvider extends RecipeProvider {
 
         sanding(finishedRecipeConsumer, ModItems.IMPURE_CARANITE.get(), ModItems.CARANITE.get());
 
-        /*ShapedRecipeBuilder.shaped(ModBlocks.IRON_ENERGY_PIPE.get(), 8)
+        ShapedRecipeBuilder.shaped(ModBlocks.IRON_ENERGY_PIPE.get(), 8)
                 .pattern("III")
                 .pattern(" R ")
                 .pattern("III")
@@ -42,7 +42,7 @@ public class ModRecipeProvider extends RecipeProvider {
                 .define('R', Tags.Items.STORAGE_BLOCKS_REDSTONE)
                 .unlockedBy("has_iron", has(Tags.Items.INGOTS_IRON))
                 .unlockedBy("has_redstone", has(Tags.Items.STORAGE_BLOCKS_REDSTONE))
-                .save(finishedRecipeConsumer, modLocation("iron_energy_pipe"));*/
+                .save(finishedRecipeConsumer, modLocation("iron_energy_pipe"));
     }
 
     private void sanding(Consumer<IFinishedRecipe> finishedRecipeConsumer, Item input, Item output) {
