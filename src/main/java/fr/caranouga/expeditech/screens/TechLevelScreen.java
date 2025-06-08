@@ -29,6 +29,7 @@ public class TechLevelScreen {
 
             AbstractGui.blit(pMatrixStack, 0, 0, 0, 0, 82, 8, 82, 8);
             new ProgressBarWidget(1, 1, 0xFFEE00).render(pMatrixStack, 0, 0, xpBarWidth);
+            // TODO: Render the tech level text
         });
     }
 

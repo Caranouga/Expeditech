@@ -78,9 +78,9 @@ public class TechLevelImplementation implements ITechLevel {
         if(xp >= 0 && xp <= 352){
             return (int) (Math.sqrt(xp + 9) - 3);
         } else if(xp > 352 && xp <= 1507) {
-            return (int) (80.0 / 10 * Math.sqrt(2.0 / 5 * (xp - 7839.0 / 40)));
+            return (int) ((81.0/10) + Math.sqrt((2.0/5) * (xp - (7839.0/40))));
         } else if(xp > 1507){
-            return (int) (325.0 / 18 * Math.sqrt(2.0 / 9 * (xp - 54215.0 / 72)));
+            return (int) ((325.0 / 18) + Math.sqrt((2.0 / 9) * (xp - (54215.0 / 72))));
         } else {
             return 0;
         }
