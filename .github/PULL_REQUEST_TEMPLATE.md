@@ -14,8 +14,6 @@ This PR introduces/fixes/improves:
 <!-- Describe how you tested your changes -->
 - [ ] Ran in development environment (`runClient`)
 - [ ] Ran in dedicated server mode (`runServer`)
-- [ ] Verified energy transfer / machine behavior
-- [ ] Checked block/item registration
 - [ ] Confirmed no crashes or console errors
 
 ## 📷 Screenshots (if applicable)
