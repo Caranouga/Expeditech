@@ -1,0 +1,87 @@
+- type: input
+  id: os
+  attributes:
+    label: Operating System
+    description: Please specify the operating system you are using (e.g., Windows, macOS, Linux).
+    placeholder: "e.g., Windows 10, Ubuntu 20.04"
+  validations:
+    required: true
+
+- type: input
+  id: forge_version
+  attributes:
+    label: Forge Version
+    description: Please specify the version of Forge you are using.
+    placeholder: "e.g., 1.16.5 - 36.2.42"
+  validations:
+    required: true
+
+- type: input
+  id: minecraft_version
+  attributes:
+    label: Minecraft Version
+    description: Please specify the version of Minecraft you are using.
+    placeholder: "e.g., 1.16.5"
+  validations:
+    required: true
+
+- type: input
+  id: mod_version
+  attributes:
+    label: Mod Version
+    description: Please specify the version of the mod you are using.
+    placeholder: "e.g., 1.0.0"
+  validations:
+    required: true
+
+- type: textarea
+  id: description
+  attributes:
+    label: Description of the bug
+    description: Please provide a clear and concise description of the bug you are experiencing.
+  validations:
+    required: true
+
+- type: textarea
+  id: steps_to_reproduce
+  attributes:
+    label: Steps to Reproduce
+    description: Please list the steps to reproduce the bug.
+    value: |
+      1.
+      2.
+      3.
+      ...
+    render: bash
+  validations:
+    required: true
+
+- type: textarea
+  id: expected_behavior
+  attributes:
+      label: Expected Behavior
+      description: Please describe what you expected to happen.
+  validations:
+      required: true
+
+- type: textarea
+  id: actual_behavior
+  attributes:
+      label: Actual Behavior
+      description: Please describe what actually happened.
+  validations:
+      required: true
+
+- type: textarea
+  id: screenshots
+  attributes:
+    label: Screenshots
+    description: If applicable, add screenshots to help explain your problem.
+    placeholder: "Add links to screenshots or attach them directly."
+
+- type: textarea
+  id: additional_context
+  attributes:
+    label: Additional Context
+    description: Add any other context about the problem here.
+    placeholder: "Any additional information that might help us understand the issue."
