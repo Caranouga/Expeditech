@@ -3,9 +3,13 @@
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
 [![MIT License][license-shield]][license-url]
+[![Build Status][jenkins-shield]][jenkins-url]
 
 <br />
 <div align="center">
+    <a href="https://github.com/caranouga/Expeditech">
+        <img src="images/icon.png" alt="Latest Release" width="200" height="200" />
+    </a>
     <h3 align="center">Expeditech</h3>
     <p align="center">
         Expeditech is a Minecraft 1.16.5 mod that adds a variety of new features to the game, including new blocks, items, and gameplay mechanics. It is designed to enhance the Minecraft experience and provide players with new challenges and opportunities for exploration.
@@ -47,6 +51,13 @@
 
 ## Getting Started
 
+You can download the latest version of Expeditech from the [Releases](https://github.com/caranouga/Expeditech/releases) page or from [CurseForge](https://github.com/Caranouga/Expeditech) (SOON)
+<br />
+You can also download the latest development version from the [Jenkins][jenkins-url] server.
+<br />
+<br />
+If you want to contribute to the project, you can clone the repository and build the mod yourself.
+<br />
 To get a local copy up and running follow these simple steps.
 
 ### Prerequisites
@@ -117,4 +128,6 @@ Project Link: [https://github.com/caranouga/Expeditech](https://github.com/caran
 [issues-shield]: https://img.shields.io/github/issues/caranouga/Expeditech.svg?style=for-the-badge
 [issues-url]: https://github.com/caranouga/Expeditech/issues
 [license-shield]: https://img.shields.io/github/license/caranouga/Expeditech.svg?style=for-the-badge
-[license-url]: https://github.com/caranouga/Expeditech/blob/master/LICENSE.txt
+[license-url]: https://github.com/caranouga/Expeditech/blob/master/LICENSE
+[jenkins-shield]: https://jenkins.caradev.fr/job/Expeditech/badge/icon?style=flat-square&subject=Jenkins%20Status
+[jenkins-url]: https://jenkins.caradev.fr/job/Expeditech/
