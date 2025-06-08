@@ -106,6 +106,15 @@ body:
     validations:
         required: true
 
+  - type: checkboxes
+    id: no_duplicate
+    attributes:
+      label: Duplicate Check
+      description: Please check if this bug is a duplicate of an existing one.
+      options:
+        - label: "I have checked the existing issues and this is not a duplicate."
+          required: true
+
   - type: markdown
     attributes:
       value: |

@@ -17,9 +17,9 @@
         It is heavily technology focused, but it also includes some exploration and adventure elements.
         <br />
         <br />
-        <a href="https://github.com/caranouga/Expeditech/issues">Report Bug</a>
+        <a href="https://github.com/Caranouga/Expeditech/issues/new?template=bug_report.yml">Report Bug</a>
         ·
-        <a href="https://github.com/caranouga/Expeditech/issues">Request Feature</a>
+        <a href="https://github.com/Caranouga/Expeditech/issues/new?template=feature_request.yml">Request Feature</a>
     </p>
 </div>
 <details>
