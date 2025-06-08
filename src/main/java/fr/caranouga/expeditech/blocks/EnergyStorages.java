@@ -3,10 +3,7 @@ package fr.caranouga.expeditech.blocks;
 import fr.caranouga.expeditech.capability.CustomEnergyStorage;
 
 public enum EnergyStorages {
-    TEST_MACHINE(1000, 100, 0),
-
     COAL_GENERATOR(5000, 0, 100),
-    IRON_PIPE(200, 100, 100),
     ;
 
     private final int capacity;

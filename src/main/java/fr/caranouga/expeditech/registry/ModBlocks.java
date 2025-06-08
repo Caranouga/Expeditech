@@ -37,8 +37,24 @@ public class ModBlocks {
     // Machines
     public static final RegistryObject<CoalGeneratorMachine> COAL_GENERATOR = registerMachineBlock("coal_generator", CoalGeneratorMachine::new);
 
-    public static final RegistryObject<VoidMachine> VOID_MACHINE = BLOCKS.register("void_machine", VoidMachine::new);
-    public static final RegistryObject<IronEnergyPipe> IRON_ENERGY_PIPE = BLOCKS.register("iron_energy_pipe", IronEnergyPipe::new);
+    public static final RegistryObject<VoidMachine> VOID_MACHINE = registerVoidMachine(() -> new VoidMachine());
+    public static final RegistryObject<IronEnergyPipe> IRON_ENERGY_PIPE = registerIronPipe(() -> new IronEnergyPipe());
+
+    public static RegistryObject<IronEnergyPipe> registerIronPipe(Supplier<IronEnergyPipe> supp){
+        RegistryObject<IronEnergyPipe> block = BLOCKS.register("iron_energy_pipe", supp);
+        registerItemBlock("iron_energy_pipe", block);
+
+        return block;
+    }
+
+    public static RegistryObject<VoidMachine> registerVoidMachine(Supplier<VoidMachine> supp){
+        RegistryObject<VoidMachine> block = BLOCKS.register("void_machine", supp);
+        registerItemBlock("void_machine", block);
+
+        return block;
+    }
+
+
     //public static final RegistryObject<EnergyDuctBlock> ENERGY_DUCT = BLOCKS.register("energy_duct", EnergyDuctBlock::new);
 
     // Pipes
