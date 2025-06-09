@@ -1,6 +1,5 @@
 package fr.caranouga.expeditech.blocks.pipes;
 
-import fr.caranouga.expeditech.Expeditech;
 import fr.caranouga.expeditech.tiles.pipes.AbstractPipeTile;
 import fr.caranouga.expeditech.utils.VoxelUtils;
 import net.minecraft.block.AbstractBlock;
@@ -9,13 +8,11 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.IWaterLoggable;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.PushReaction;
-import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
-import net.minecraft.tags.FluidTags;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.Direction;
@@ -25,13 +22,8 @@ import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
-import software.bernie.shadowed.eliotlash.mclib.math.functions.classic.Exp;
 
 import javax.annotation.Nullable;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 public abstract class AbstractPipeBlock extends Block implements IWaterLoggable {
     public static final BooleanProperty NORTH       = BooleanProperty.create("north");
@@ -92,7 +84,7 @@ public abstract class AbstractPipeBlock extends Block implements IWaterLoggable 
         if(canConnect || pState.getValue(getProperty(pFacing))){
             TileEntity tileEntity = pLevel.getBlockEntity(pCurrentPos);
             if (tileEntity instanceof AbstractPipeTile) {
-                ((AbstractPipeTile<?>) tileEntity).onNeighborChanged(pFacingPos);
+                ((AbstractPipeTile<?>) tileEntity).onNeighborChanged();
             }
         }
 
