@@ -8,7 +8,8 @@ public class ServerConfig {
 
     public static final ForgeConfigSpec.ConfigValue<Integer> exampleInteger;
     public static final ForgeConfigSpec.ConfigValue<Boolean> exampleBoolean;
-    public static final ForgeConfigSpec.ConfigValue<Boolean> machineDurabilitySwitch;
+    public static final ForgeConfigSpec.ConfigValue<Boolean> machineDurability;
+    public static final ForgeConfigSpec.ConfigValue<Boolean> broadcastMachineDurability;
 
     static {
         BUILDER.push("Expeditech Server Config");
@@ -20,9 +21,13 @@ public class ServerConfig {
                 .comment("An example boolean config value.")
                 .define("exampleBoolean", true);
 
-        machineDurabilitySwitch = BUILDER
+        machineDurability = BUILDER
                 .comment("Enable or disable machine durability.")
-                .define("machineDurabilitySwitch", true);
+                .define("machineDurability", true);
+
+        broadcastMachineDurability = BUILDER
+                .comment("Enable or disable broadcasting machine breakage to players.")
+                .define("broadcastMachineDurability", true);
 
         BUILDER.pop();
         SERVER_CONFIG = BUILDER.build();
