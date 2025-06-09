@@ -27,6 +27,9 @@ public class Expeditech
 {
     // TODO: Advancements
     // TODO: Patchouli (changer texture du livre)
+    // TODO: Add different level of pipes (copper, iron, gold, diamond, netherite)
+    // each with different speed and capacity
+    // TODO: Add a way to limit transfer rate of items/fluids/energy
 
     public static final Logger LOGGER = LogManager.getLogger();
     public static final String MODID = "et";
