@@ -1,13 +1,13 @@
 {
   "display": {
     "icon": {
-      "item": "et:caranite"
+      "item": "minecraft:acacia_leaves"
     },
     "title": {
-      "translate": "advancements.et.root.title"
+      "translate": "advancements.expeditech.root.title"
     },
     "description": {
-      "translate": "advancements.et.root.description"
+      "translate": "advancements.expeditech.root.description"
     },
     "frame": "goal",
     "show_toast": true,
@@ -15,20 +15,14 @@
     "hidden": false
   },
   "criteria": {
-    "caranite": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "item": "et:caranite"
-          }
-        ]
-      }
+    "on_start": {
+      "trigger": "minecraft:tick",
+      "conditions": {}
     }
   },
   "requirements": [
     [
-      "caranite"
+      "on_start"
     ]
   ]
 }

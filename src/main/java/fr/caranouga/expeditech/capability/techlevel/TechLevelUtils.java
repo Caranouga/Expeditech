@@ -3,6 +3,7 @@ package fr.caranouga.expeditech.capability.techlevel;
 import fr.caranouga.expeditech.Expeditech;
 import fr.caranouga.expeditech.packets.TechLevelSyncPacket;
 import fr.caranouga.expeditech.registry.ModCapabilities;
+import fr.caranouga.expeditech.triggers.AdvancementTriggers;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
@@ -56,7 +57,7 @@ public class TechLevelUtils {
     }
 
     private static void update(PlayerEntity player, ITechLevel techLevel) {
-        // Adv
+        AdvancementTriggers.TECHLEVEL_TRIGGER.trigger((ServerPlayerEntity) player);
         Expeditech.NETWORK.send(PacketDistributor.PLAYER.with(() -> (ServerPlayerEntity) player), new TechLevelSyncPacket(techLevel.getTechLevel(), techLevel.getTechXp(), player.getId()));
     }
 }

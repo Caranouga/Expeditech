@@ -57,7 +57,7 @@ public class TechLevelImplementation implements ITechLevel {
      * @param level the level to reach
      * @return the total amount of xp needed to reach the given level
      */
-    private int getXpForLevel(int level) {
+    public static int getXpForLevel(int level) {
         if(level >= 0 && level <= 16){
             return (int) (Math.pow(level, 2) + 6 * level);
         } else if(level > 16 && level <= 31){
@@ -74,7 +74,7 @@ public class TechLevelImplementation implements ITechLevel {
      * @param xp the amount of xp
      * @return the level for the given amount of xp
      */
-    private int getLevelForXp(int xp) {
+    public static int getLevelForXp(int xp) {
         if(xp >= 0 && xp <= 352){
             return (int) (Math.sqrt(xp + 9) - 3);
         } else if(xp > 352 && xp <= 1507) {

@@ -4,6 +4,7 @@ import fr.caranouga.expeditech.configs.ClientConfig;
 import fr.caranouga.expeditech.configs.CommonConfig;
 import fr.caranouga.expeditech.configs.ServerConfig;
 import fr.caranouga.expeditech.registry.*;
+import fr.caranouga.expeditech.triggers.AdvancementTriggers;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.ModLoadingContext;
@@ -26,7 +27,6 @@ public class Expeditech
 {
     // TODO: Advancements
     // TODO: Patchouli (changer texture du livre)
-    // TODO: Faire un achivement (caché) qui se débloque quand on a la valeur maximale de tech xp (Integer.MAX_VALUE)
 
     public static final Logger LOGGER = LogManager.getLogger();
     public static final String MODID = "et";
@@ -66,6 +66,7 @@ public class Expeditech
     private void setup(final FMLCommonSetupEvent event) {
         ModCapabilities.register();
         ModPackets.register();
+        AdvancementTriggers.registerTriggers();
     }
 
     private void doClientStuff(final FMLClientSetupEvent event) {
