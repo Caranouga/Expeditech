@@ -2,7 +2,7 @@ name: Feature Request
 description: Suggest an idea for this project
 title: "[ENHANCEMENT] "
 labels: ["enhancement"]
-projects: ["caranouga/3"]
+projects: ["Caranouga/3"]
 assignees:
   - caranouga
 body:
