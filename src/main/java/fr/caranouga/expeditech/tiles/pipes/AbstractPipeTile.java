@@ -1,17 +1,15 @@
 package fr.caranouga.expeditech.tiles.pipes;
 
-import fr.caranouga.expeditech.Expeditech;
 import fr.caranouga.expeditech.grid.AbstractGrid;
 import net.minecraft.block.BlockState;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityType;
-import net.minecraft.util.Direction;
-import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.common.capabilities.Capability;
 
 public abstract class AbstractPipeTile<C> extends TileEntity implements ITickableTileEntity {
     private AbstractGrid<C> grid;
+    private boolean isTickLeader = false;
 
     public AbstractPipeTile(TileEntityType<?> tileEntityType) {
         super(tileEntityType);
@@ -25,7 +23,9 @@ public abstract class AbstractPipeTile<C> extends TileEntity implements ITickabl
 
         if(grid == null) {
             grid = getGrid().rebuildFrom(this);
-        }else{
+        }
+
+        if (isTickLeader()) {
             grid.tick();
         }
     }
@@ -33,19 +33,12 @@ public abstract class AbstractPipeTile<C> extends TileEntity implements ITickabl
     @Override
     public void setRemoved() {
         super.setRemoved();
-        if(grid != null) {
-            grid.invalidate();
+        if (grid != null && isTickLeader()) {
+            grid.invalidate(); // This will invalidate the whole grid and clear tickLeader
         }
     }
 
-    public void onNeighborChanged(BlockPos changedPos) {
-        /*TileEntity neighbor = level.getBlockEntity(changedPos);
-        for (Direction dir : Direction.values()) {
-            if (neighbor != null && neighbor.getCapability(getCapability(), dir).isPresent()) {
-                rebuildGrid();
-                return;
-            }
-        }*/
+    public void onNeighborChanged() {
         rebuildGrid();
     }
 
@@ -61,6 +54,14 @@ public abstract class AbstractPipeTile<C> extends TileEntity implements ITickabl
 
     public void setGrid(AbstractGrid<C> grid) {
         this.grid = grid;
+    }
+
+    public boolean isTickLeader() {
+        return isTickLeader;
+    }
+
+    public void setTickLeader(boolean tickLeader) {
+        this.isTickLeader = tickLeader;
     }
 
     protected abstract AbstractGrid<C> getGrid();
