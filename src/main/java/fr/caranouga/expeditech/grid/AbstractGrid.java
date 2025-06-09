@@ -68,14 +68,15 @@ public abstract class AbstractGrid<C> {
         return grid;
     }
 
-    public void tick(){
+    public boolean tick(){
         int totalAvailable = producers.stream().mapToInt(pipe -> extractFrom(pipe, Integer.MAX_VALUE, true)).sum();
-        if(totalAvailable <= 0) return;
+        if(totalAvailable <= 0) return false;
 
         int numberOfConsumers = consumers.size();
-        if(numberOfConsumers == 0) return;
+        if(numberOfConsumers == 0) return false;
 
         int totalPerConsumer = totalAvailable / numberOfConsumers;
+        if(totalPerConsumer == 0) return false;
 
         for(C consumer : consumers){
             for(C producer : producers) {
@@ -87,6 +88,8 @@ public abstract class AbstractGrid<C> {
                 }
             }
         }
+
+        return true;
     }
 
     public void invalidate() {

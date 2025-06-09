@@ -1,10 +1,10 @@
 package fr.caranouga.expeditech.tiles.machines;
 
+import fr.caranouga.expeditech.tiles.ETTileEntity;
 import net.minecraft.block.BlockState;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.Direction;
 import net.minecraftforge.common.capabilities.Capability;
@@ -16,16 +16,13 @@ import net.minecraftforge.items.ItemStackHandler;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-public abstract class AbstractMachineTile extends TileEntity {
+public abstract class AbstractMachineTile extends ETTileEntity {
     protected final ItemStackHandler itemHandler;
     private final LazyOptional<IItemHandler> lazyItemHandler;
 
-    private int maxUses;
-
     public AbstractMachineTile(TileEntityType<?> tileEntityType, int maxUses, int invSize) {
-        super(tileEntityType);
+        super(tileEntityType, maxUses);
 
-        this.maxUses = maxUses;
         this.itemHandler = createItemHandler(invSize);
         this.lazyItemHandler = LazyOptional.of(() -> itemHandler);
     }
@@ -64,11 +61,6 @@ public abstract class AbstractMachineTile extends TileEntity {
             itemHandler.deserializeNBT(nbt.getCompound("inv"));
         }
 
-        // Custom data
-        if(nbt.contains("maxUses")) {
-            maxUses = nbt.getInt("maxUses");
-        }
-
         super.load(state, nbt);
     }
 
@@ -76,8 +68,6 @@ public abstract class AbstractMachineTile extends TileEntity {
     public CompoundNBT save(CompoundNBT pCompound) {
         // Capability
         pCompound.put("inv", itemHandler.serializeNBT());
-
-        pCompound.putInt("maxUses", maxUses);
 
         return super.save(pCompound);
     }
