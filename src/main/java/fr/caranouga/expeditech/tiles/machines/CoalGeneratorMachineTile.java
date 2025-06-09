@@ -63,6 +63,7 @@ public class CoalGeneratorMachineTile extends AbstractEnergyMachineTile implemen
         if(hasFinishedBurning()) {
             if(isItemBurnable(itemHandler.getStackInSlot(INPUT_SLOT)) && !energyStorage.isFull()){
                 consumeFuel();
+                use();
                 setState(true);
             }else{
                 currentBurnTime = 0;

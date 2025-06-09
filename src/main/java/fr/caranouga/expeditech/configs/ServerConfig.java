@@ -8,6 +8,7 @@ public class ServerConfig {
 
     public static final ForgeConfigSpec.ConfigValue<Integer> exampleInteger;
     public static final ForgeConfigSpec.ConfigValue<Boolean> exampleBoolean;
+    public static final ForgeConfigSpec.ConfigValue<Boolean> machineDurabilitySwitch;
 
     static {
         BUILDER.push("Expeditech Server Config");
@@ -18,6 +19,10 @@ public class ServerConfig {
         exampleBoolean = BUILDER
                 .comment("An example boolean config value.")
                 .define("exampleBoolean", true);
+
+        machineDurabilitySwitch = BUILDER
+                .comment("Enable or disable machine durability.")
+                .define("machineDurabilitySwitch", true);
 
         BUILDER.pop();
         SERVER_CONFIG = BUILDER.build();

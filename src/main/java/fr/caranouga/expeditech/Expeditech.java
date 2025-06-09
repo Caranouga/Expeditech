@@ -31,6 +31,7 @@ public class Expeditech
     // TODO: Check si on peut faire plusieurs grid séparés (ex: une grid A et une grid B avec différentes machines connectées)
     // peut sembler que oui, mais je pense que non (ex: 2 consummers sur la grid alors qu'ils sont sur des grids différentes)
     // TODO: Faire un achivement (caché) qui se débloque quand on a la valeur maximale de tech xp (Integer.MAX_VALUE)
+    // TODO: Patch les pipes (ils sont ticks plrs fois par ticks (ils sont ticks par toutes les pipes connectées))
 
     public static final Logger LOGGER = LogManager.getLogger();
     public static final String MODID = "et";

@@ -1,20 +1,17 @@
 package fr.caranouga.expeditech.tiles.pipes;
 
-import fr.caranouga.expeditech.Expeditech;
 import fr.caranouga.expeditech.grid.AbstractGrid;
-import net.minecraft.block.BlockState;
+import fr.caranouga.expeditech.tiles.ETTileEntity;
 import net.minecraft.tileentity.ITickableTileEntity;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityType;
-import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.common.capabilities.Capability;
 
-public abstract class AbstractPipeTile<C> extends TileEntity implements ITickableTileEntity {
+public abstract class AbstractPipeTile<C> extends ETTileEntity implements ITickableTileEntity {
     private AbstractGrid<C> grid;
 
     public AbstractPipeTile(TileEntityType<?> tileEntityType) {
-        super(tileEntityType);
+        super(tileEntityType, 10);
     }
 
     @Override
