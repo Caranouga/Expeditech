@@ -23,6 +23,7 @@ public class ModLanguageProvider extends CustomLanguageProvider {
         addBlock(ModBlocks.CARANITE_BLOCK, "Caranite Block");
         addBlock(ModBlocks.CARANITE_ORE, "Caranite Ore");
         addBlock(ModBlocks.COAL_GENERATOR, "Coal Generator");
+        addBlock(ModBlocks.IRON_ENERGY_PIPE, "Iron Energy Pipe");
 
         addItemGroup(ModTabs.EXPEDITECH, "Expeditech");
 
@@ -52,6 +53,8 @@ public class ModLanguageProvider extends CustomLanguageProvider {
 
         addKey("techlevel", "Tech Level Screen");
 
+        addOther("machine_broken", "A %s has broken at %s, %s, %s");
+
         // fr_fr
         switchLocale();
         addItem(ModItems.CARANITE, "Caranite");
@@ -60,6 +63,7 @@ public class ModLanguageProvider extends CustomLanguageProvider {
         addItem(ModItems.CARANITE_NUGGET, "Pépite de Caranite");
         addItem(ModItems.SANDING_PAPER, "Papier de Ponçage");
         addItem(ModItems.CARANITE_COAL, "Charbon en Caranite");
+        addBlock(ModBlocks.IRON_ENERGY_PIPE, "Tuyau d'Énergie en Fer");
 
         addBlock(ModBlocks.CARANITE_BLOCK, "Bloc de Caranite");
         addBlock(ModBlocks.CARANITE_ORE, "Minerai de Caranite");
@@ -92,5 +96,7 @@ public class ModLanguageProvider extends CustomLanguageProvider {
         addKeyCategory("main", "Expeditech");
 
         addKey("techlevel", "Écran de Niveau Technologique");
+
+        addOther("machine_broken", "Un %s s'est cassé en %s, %s, %s");
     }
 }
