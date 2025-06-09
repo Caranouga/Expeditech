@@ -26,10 +26,6 @@ public class Expeditech
 {
     // TODO: Advancements
     // TODO: Patchouli (changer texture du livre)
-    // TODO: Patch les pipes (début de nouveau pipes)
-    // TODO: Faire en sorte que les pipes soient connectés aux machines adjacentes
-    // TODO: Check si on peut faire plusieurs grid séparés (ex: une grid A et une grid B avec différentes machines connectées)
-    // peut sembler que oui, mais je pense que non (ex: 2 consummers sur la grid alors qu'ils sont sur des grids différentes)
     // TODO: Faire un achivement (caché) qui se débloque quand on a la valeur maximale de tech xp (Integer.MAX_VALUE)
 
     public static final Logger LOGGER = LogManager.getLogger();
