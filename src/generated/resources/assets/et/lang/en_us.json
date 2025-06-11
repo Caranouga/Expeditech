@@ -3,6 +3,7 @@
   "block.et.caranite_ore": "Caranite Ore",
   "block.et.coal_generator": "Coal Generator",
   "block.et.iron_energy_pipe": "Iron Energy Pipe",
+  "block.et.sanding_machine": "Sanding Machine",
   "commands.et.techlevel.add.levels.success.multiple": "Added %s tech levels to %s players",
   "commands.et.techlevel.add.levels.success.single": "Added %s tech level to %s",
   "commands.et.techlevel.add.xp.success.multiple": "Added %s tech XP to %s players",
@@ -28,6 +29,9 @@
   "key.category.et.main": "Expeditech",
   "key.et.techlevel": "Tech Level Screen",
   "screen.et.coal_generator": "Coal Generator",
+  "screen.et.sanding_machine": "Sanding Machine",
   "tooltip.et.coal_generator.energy": "Energy: %s/%s",
-  "tooltip.et.coal_generator.progress": "Progress: %s/%s (%s%s)"
+  "tooltip.et.coal_generator.progress": "Progress: %s/%s (%s%s)",
+  "tooltip.et.sanding_machine.energy": "Energy: %s/%s",
+  "tooltip.et.sanding_machine.progress": "Progress: %s/%s (%s%s)"
 }

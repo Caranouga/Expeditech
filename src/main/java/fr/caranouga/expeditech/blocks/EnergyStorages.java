@@ -4,6 +4,7 @@ import fr.caranouga.expeditech.capability.CustomEnergyStorage;
 
 public enum EnergyStorages {
     COAL_GENERATOR(5000, 0, 100),
+    SANDING_MACHINE(10000, 100, 0)
     ;
 
     private final int capacity;

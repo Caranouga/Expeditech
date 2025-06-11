@@ -20,8 +20,8 @@ public abstract class AbstractMachineTile extends ETTileEntity {
     protected final ItemStackHandler itemHandler;
     private final LazyOptional<IItemHandler> lazyItemHandler;
 
-    public AbstractMachineTile(TileEntityType<?> tileEntityType, int maxUses, int invSize) {
-        super(tileEntityType, maxUses);
+    public AbstractMachineTile(TileEntityType<?> tileEntityType, int invSize) {
+        super(tileEntityType);
 
         this.itemHandler = createItemHandler(invSize);
         this.lazyItemHandler = LazyOptional.of(() -> itemHandler);

@@ -3,6 +3,7 @@ package fr.caranouga.expeditech.registry;
 import fr.caranouga.expeditech.Expeditech;
 import fr.caranouga.expeditech.blocks.PipeTypes;
 import fr.caranouga.expeditech.tiles.machines.CoalGeneratorMachineTile;
+import fr.caranouga.expeditech.tiles.machines.SandingMachineTile;
 import fr.caranouga.expeditech.tiles.pipes.energy.IronEnergyPipeTile;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityType;
@@ -19,10 +20,12 @@ public class ModTileEntities {
     // Machines
     public static final RegistryObject<TileEntityType<CoalGeneratorMachineTile>> COAL_GENERATOR_TILE = register("coal_generator_tile",
             () -> TileEntityType.Builder.of(CoalGeneratorMachineTile::new, ModBlocks.COAL_GENERATOR.get()).build(null));
+    public static final RegistryObject<TileEntityType<SandingMachineTile>> SANDING_MACHINE_TILE = register("sanding_machine_tile",
+            () -> TileEntityType.Builder.of(SandingMachineTile::new, ModBlocks.SANDING_MACHINE.get()).build(null));
 
     /*public static final RegistryObject<TileEntityType<VoidMachineTile>> VOID_MACHINE_TILE = register("void_machine_tile",
-            () -> TileEntityType.Builder.of(VoidMachineTile::new, ModBlocks.VOID_MACHINE.get()).build(null));
-    */
+            () -> TileEntityType.Builder.of(VoidMachineTile::new, ModBlocks.VOID_MACHINE.get()).build(null));*/
+
     // Pipes
     public static final RegistryObject<TileEntityType<IronEnergyPipeTile>> IRON_ENERGY_PIPE_TILE = registerPipe("iron",
             PipeTypes.ENERGY, () -> TileEntityType.Builder.of(IronEnergyPipeTile::new, ModBlocks.IRON_ENERGY_PIPE.get()).build(null));

@@ -62,9 +62,15 @@ public class IronEnergyPipeTile extends TileEntity implements ITickableTileEntit
 */
 
 import fr.caranouga.expeditech.registry.ModTileEntities;
+import fr.caranouga.expeditech.tiles.IHasDurability;
 
-public class IronEnergyPipeTile extends AbstractEnergyPipeTile {
+public class IronEnergyPipeTile extends AbstractEnergyPipeTile implements IHasDurability {
     public IronEnergyPipeTile() {
-        super(ModTileEntities.IRON_ENERGY_PIPE_TILE.get());
+        super(ModTileEntities.IRON_ENERGY_PIPE_TILE.get(), 1000);
+    }
+
+    @Override
+    public int getMaxUses() {
+        return 10;
     }
 }

@@ -24,20 +24,24 @@ import static fr.caranouga.expeditech.utils.StringUtils.modLocation;
 public class SandingRecipeBuilder {
     private final Item result;
     private final int count;
+    private final int duration;
+    private final int energy;
     private Ingredient ingredient;
     private final Advancement.Builder advancement = Advancement.Builder.advancement();
 
-    public SandingRecipeBuilder(IItemProvider pResult, int pCount) {
+    public SandingRecipeBuilder(IItemProvider pResult, int pCount, int duration, int energy) {
         this.result = pResult.asItem();
         this.count = pCount;
+        this.duration = duration;
+        this.energy = energy;
     }
 
-    public static SandingRecipeBuilder sanding(IItemProvider pResult) {
-        return new SandingRecipeBuilder(pResult, 1);
+    public static SandingRecipeBuilder sanding(IItemProvider pResult, int duration, int energy) {
+        return new SandingRecipeBuilder(pResult, 1, duration, energy);
     }
     
-    public static SandingRecipeBuilder sanding(IItemProvider pResult, int pCount) {
-        return new SandingRecipeBuilder(pResult, pCount);
+    public static SandingRecipeBuilder sanding(IItemProvider pResult, int pCount, int duration, int energy) {
+        return new SandingRecipeBuilder(pResult, pCount, duration, energy);
     }
 
     // Requires
@@ -86,6 +90,8 @@ public class SandingRecipeBuilder {
                 location,
                 this.result,
                 this.count,
+                this.duration,
+                this.energy,
                 this.ingredient,
                 this.advancement,
                 modLocation("recipes/" + location.getPath())
@@ -110,14 +116,18 @@ public class SandingRecipeBuilder {
         private final Item result;
         private final int count;
         private final Ingredient ingredient;
+        private final int duration;
+        private final int energy;
         private final Advancement.Builder advancement;
         private final ResourceLocation advancementId;
 
-        public Result(ResourceLocation pId, Item pResult, int pCount, Ingredient pIngredient, Advancement.Builder pAdvancement, ResourceLocation pAdvancementId) {
+        public Result(ResourceLocation pId, Item pResult, int pCount, int pDuration, int pEnergy, Ingredient pIngredient, Advancement.Builder pAdvancement, ResourceLocation pAdvancementId) {
             this.id = pId;
             this.result = pResult;
             this.count = pCount;
             this.ingredient = pIngredient;
+            this.duration = pDuration;
+            this.energy = pEnergy;
             this.advancement = pAdvancement;
             this.advancementId = pAdvancementId;
         }
@@ -133,6 +143,8 @@ public class SandingRecipeBuilder {
             }
 
             pJson.add("result", jsonobject);
+            pJson.addProperty("duration", this.duration);
+            pJson.addProperty("energy", this.energy);
         }
 
         public IRecipeSerializer<?> getType() {

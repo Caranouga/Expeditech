@@ -24,6 +24,7 @@ public class ModLanguageProvider extends CustomLanguageProvider {
         addBlock(ModBlocks.CARANITE_ORE, "Caranite Ore");
         addBlock(ModBlocks.COAL_GENERATOR, "Coal Generator");
         addBlock(ModBlocks.IRON_ENERGY_PIPE, "Iron Energy Pipe");
+        addBlock(ModBlocks.SANDING_MACHINE, "Sanding Machine");
 
         addItemGroup(ModTabs.EXPEDITECH, "Expeditech");
 
@@ -45,9 +46,12 @@ public class ModLanguageProvider extends CustomLanguageProvider {
         addCommand("techlevel", "get.xp.success", "Tech XP for %s: %s");
 
         addScreen("coal_generator", "Coal Generator");
+        addScreen("sanding_machine", "Sanding Machine");
 
         addTooltip("coal_generator.progress", "Progress: %s/%s (%s%s)");
         addTooltip("coal_generator.energy", "Energy: %s/%s");
+        addTooltip("sanding_machine.progress", "Progress: %s/%s (%s%s)");
+        addTooltip("sanding_machine.energy", "Energy: %s/%s");
 
         addKeyCategory("main", "Expeditech");
 
@@ -68,6 +72,7 @@ public class ModLanguageProvider extends CustomLanguageProvider {
         addBlock(ModBlocks.CARANITE_BLOCK, "Bloc de Caranite");
         addBlock(ModBlocks.CARANITE_ORE, "Minerai de Caranite");
         addBlock(ModBlocks.COAL_GENERATOR, "Générateur à Charbon");
+        addBlock(ModBlocks.SANDING_MACHINE, "Machine de Ponçage");
 
         addItemGroup(ModTabs.EXPEDITECH, "Expeditech");
 
@@ -89,9 +94,12 @@ public class ModLanguageProvider extends CustomLanguageProvider {
         addCommand("techlevel", "get.xp.success", "XP technologique pour %s: %s");
 
         addScreen("coal_generator", "Générateur à Charbon");
+        addScreen("sanding_machine", "Machine de Ponçage");
 
         addTooltip("coal_generator.progress", "Progression: %s/%s (%s%s)");
         addTooltip("coal_generator.energy", "Énergie: %s/%s");
+        addTooltip("sanding_machine.progress", "Progression: %s/%s (%s%s)");
+        addTooltip("sanding_machine.energy", "Énergie: %s/%s");
 
         addKeyCategory("main", "Expeditech");
 

@@ -56,21 +56,21 @@ public class ModBlockModelProvider extends BlockModelProvider {
     private void generateMachineBlock(Block block){
         String name = block.getRegistryName().getPath();
         withExistingParent(name, mcLoc("block/orientable"))
-                .texture("front", modLocation("block/" + name + "_front"))
-                .texture("side", modLocation("block/" + name + "_side"))
-                .texture("top", modLocation("block/" + name + "_top"));
+                .texture("front", modLocation("block/" + name + "/" + name + "_front"))
+                .texture("side", modLocation("block/" + name + "/" + name + "_side"))
+                .texture("top", modLocation("block/" + name + "/" + name + "_top"));
 
         withExistingParent(name + "_on", mcLoc("block/orientable"))
-                .texture("front", modLocation("block/" + name + "_front_on"))
-                .texture("side", modLocation("block/" + name + "_side"))
-                .texture("top", modLocation("block/" + name + "_top"));
+                .texture("front", modLocation("block/" + name + "/" + name + "_front_on"))
+                .texture("side", modLocation("block/" + name + "/" + name + "_side"))
+                .texture("top", modLocation("block/" + name + "/" + name + "_top"));
     }
 
     private void generatePipeBlock(Block block) {
         String name = block.getRegistryName().getPath();
         withExistingParent(name + "_core", modLocation("block/pipe_core"))
-                .texture("0", modLocation("block/" + name + "_core"));
+                .texture("0", modLocation("block/pipes/" + name + "/" + name + "_core"));
         withExistingParent(name + "_connection", modLocation("block/pipe_connection"))
-                .texture("0", modLocation("block/" + name + "_connection"));
+                .texture("0", modLocation("block/pipes/" + name + "/" + name + "_connection"));
     }
 }

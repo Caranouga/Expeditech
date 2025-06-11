@@ -2,6 +2,7 @@ package fr.caranouga.expeditech.compat.jei;
 
 import fr.caranouga.expeditech.compat.jei.coal_generator.CoalGeneratorFuelRecipe;
 import fr.caranouga.expeditech.compat.jei.coal_generator.CoalGeneratorRecipeCategory;
+import fr.caranouga.expeditech.compat.jei.sanding.SandingMachineRecipeCategory;
 import fr.caranouga.expeditech.compat.jei.sanding.SandingRecipeCategory;
 import fr.caranouga.expeditech.recipes.SandingRecipe;
 import fr.caranouga.expeditech.registry.ModBlocks;
@@ -40,6 +41,8 @@ public class ExpeditechJeiPlugin implements IModPlugin {
     @Override
     public void registerCategories(IRecipeCategoryRegistration registration) {
         registration.addRecipeCategories(new SandingRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
+        registration.addRecipeCategories(new SandingMachineRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
+
         registration.addRecipeCategories(new CoalGeneratorRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
     }
 
@@ -50,6 +53,7 @@ public class ExpeditechJeiPlugin implements IModPlugin {
         List<SandingRecipe> sandingRecipes = recipeManager.getAllRecipesFor(ModRecipes.SANDING_RECIPE).stream()
                         .filter(r -> r instanceof SandingRecipe).collect(Collectors.toList());
         registration.addRecipes(sandingRecipes, SandingRecipeCategory.UID);
+        registration.addRecipes(sandingRecipes, SandingMachineRecipeCategory.UID);
 
         Collection<ItemStack> allItemStacks = registration.getIngredientManager().getAllIngredients(VanillaTypes.ITEM);
         List<CoalGeneratorFuelRecipe> fuelRecipes = new ArrayList<>();
@@ -71,6 +75,8 @@ public class ExpeditechJeiPlugin implements IModPlugin {
     @Override
     public void registerRecipeCatalysts(IRecipeCatalystRegistration registration) {
         registration.addRecipeCatalyst(new ItemStack(ModItems.SANDING_PAPER.get()), SandingRecipeCategory.UID);
+        registration.addRecipeCatalyst(new ItemStack(ModBlocks.SANDING_MACHINE.get()), SandingMachineRecipeCategory.UID);
+
         registration.addRecipeCatalyst(new ItemStack(ModBlocks.COAL_GENERATOR.get()), CoalGeneratorRecipeCategory.UID);
     }
 }

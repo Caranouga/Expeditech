@@ -46,7 +46,7 @@ public class ModRecipeProvider extends RecipeProvider {
     }
 
     private void sanding(Consumer<IFinishedRecipe> finishedRecipeConsumer, Item input, Item output) {
-        SandingRecipeBuilder.sanding(output)
+        SandingRecipeBuilder.sanding(output, 200, 1000)
                 .requires(input)
                 .unlockedBy("has_item", has(input))
                 .save(finishedRecipeConsumer, modLocation("sanding_" + getName(output) + "_from_" + getName(input)));

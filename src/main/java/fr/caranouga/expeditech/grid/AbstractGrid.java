@@ -38,11 +38,7 @@ public abstract class AbstractGrid<C> {
             if(tileEntity instanceof AbstractPipeTile) {
                 AbstractPipeTile<C> pipe = (AbstractPipeTile<C>) tileEntity;
 
-                if (grid.pipes.isEmpty()) {
-                    pipe.setTickLeader(true);
-                } else {
-                    pipe.setTickLeader(false);
-                }
+                pipe.setTickLeader(grid.pipes.isEmpty());
 
                 grid.pipes.add(pipe);
                 pipe.setGrid(grid);

@@ -1,6 +1,6 @@
 package fr.caranouga.expeditech.datagen.providers.advancements;
 
-import fr.caranouga.expeditech.triggers.TechLevelTrigger;
+import fr.caranouga.expeditech.registry.ModItems;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.FrameType;
 import net.minecraft.advancements.criterion.EntityPredicate;
@@ -10,21 +10,29 @@ import net.minecraft.util.text.TranslationTextComponent;
 
 import java.util.function.Consumer;
 
-import static fr.caranouga.expeditech.datagen.providers.advancements.AdvancementUtils.id;
-import static fr.caranouga.expeditech.datagen.providers.advancements.AdvancementUtils.techLevelAdvancement;
+import static fr.caranouga.expeditech.datagen.providers.advancements.AdvancementUtils.*;
+import static fr.caranouga.expeditech.utils.StringUtils.modLocation;
 
 public class MainAdvancements implements Consumer<Consumer<Advancement>> {
     @Override
     public void accept(Consumer<Advancement> advancementConsumer) {
-        Advancement root = Advancement.Builder.advancement()
-                .display(Items.ACACIA_LEAVES,
-                        new TranslationTextComponent("advancements.expeditech.root.title"),
-                        new TranslationTextComponent("advancements.expeditech.root.description"),
-                        null,
-                        FrameType.GOAL,
-                        true, true, false)
+        Advancement root = advancement("main", "root", ModItems.CARANITE.get(),
+                modLocation("textures/block/caranite_block.png"),
+                FrameType.GOAL, false, false, false)
                 .addCriterion("on_start", new TickTrigger.Instance(EntityPredicate.AndPredicate.ANY))
                 .save(advancementConsumer, id("root"));
+
+        Advancement firstTechXp = generateDisplay(techLevelAdvancement(1, false), "main",
+                "first_tech_xp", ModItems.CARANITE.get(), FrameType.GOAL, true, true,
+                false)
+                .parent(root)
+                .save(advancementConsumer, id("first_tech_xp"));
+
+        Advancement firstTechLevel = generateDisplay(techLevelAdvancement(1, true), "main",
+                "first_tech_level", ModItems.CARANITE.get(), FrameType.GOAL, true, true,
+                false)
+                .parent(firstTechXp)
+                .save(advancementConsumer, id("first_tech_level"));
 
         Advancement techLevelCheater = techLevelAdvancement(Integer.MAX_VALUE, false)
                 .display(Items.COMMAND_BLOCK,
@@ -33,7 +41,7 @@ public class MainAdvancements implements Consumer<Consumer<Advancement>> {
                         null,
                         FrameType.CHALLENGE,
                         true, true, true)
-                .parent(root)
+                .parent(firstTechLevel)
                 .save(advancementConsumer, id("tech_level_cheater"));
 
     }

@@ -88,41 +88,6 @@ public class ModBlockStateProvider extends BlockStateProvider {
         ModelFile core = models().getExistingFile(modLocation("block/" + block.getRegistryName().getPath() + "_core"));
         ModelFile part = models().getExistingFile(modLocation("block/" + block.getRegistryName().getPath() + "_connection"));
 
-        /**
-         * {
-         *   "multipart": [
-         *     {
-         *       "apply": { "model": "et:block/pipe_core" }
-         *     },
-         *     {
-         *       "when": { "north": "true" },
-         *       "apply": { "model": "et:block/pipe_connection", "y": 0 }
-         *     },
-         *     {
-         *       "when": { "south": "true" },
-         *       "apply": { "model": "et:block/pipe_connection", "y": 180 }
-         *     },
-         *     {
-         *       "when": { "west": "true" },
-         *       "apply": { "model": "et:block/pipe_connection", "y": 270 }
-         *     },
-         *     {
-         *       "when": { "east": "true" },
-         *       "apply": { "model": "et:block/pipe_connection", "y": 90 }
-         *     },
-         *     {
-         *       "when": { "up": "true" },
-         *       "apply": { "model": "et:block/pipe_connection", "x": 270 }
-         *     },
-         *     {
-         *       "when": { "down": "true" },
-         *       "apply": { "model": "et:block/pipe_connection", "x": 90 }
-         *     }
-         *   ]
-         * }
-         */
-
-
         getMultipartBuilder(block)
                 .part().modelFile(core).addModel().end()
                 .part().modelFile(part).rotationY(0).addModel().condition(BlockStateProperties.NORTH, true).end()

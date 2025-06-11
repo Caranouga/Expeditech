@@ -2,6 +2,7 @@ package fr.caranouga.expeditech.screens.widgets;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
+import mezz.jei.api.gui.drawable.IDrawableAnimated;
 
 public abstract class AbstractWidget {
     protected final int x;

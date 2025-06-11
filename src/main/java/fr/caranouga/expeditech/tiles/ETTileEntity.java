@@ -14,19 +14,20 @@ import net.minecraft.util.text.ChatType;
 import net.minecraft.util.text.TranslationTextComponent;
 
 public abstract class ETTileEntity extends TileEntity {
-    private int maxUses;
+    private int usesLeft;
 
-    public ETTileEntity(TileEntityType<?> tileEntityType, int maxUses) {
+    public ETTileEntity(TileEntityType<?> tileEntityType) {
         super(tileEntityType);
 
-        this.maxUses = maxUses;
+        if(hasDurability()) this.usesLeft = ((IHasDurability) this).getMaxUses();
+        else this.usesLeft = -1; // No durability
     }
 
     // region Data Saving (World load/save)
     @Override
     public void load(BlockState state, CompoundNBT nbt) {
-        if(nbt.contains("maxUses")) {
-            maxUses = nbt.getInt("maxUses");
+        if(nbt.contains("maxUses") && hasDurability()) {
+            usesLeft = nbt.getInt("maxUses");
         }
 
         super.load(state, nbt);
@@ -34,16 +35,22 @@ public abstract class ETTileEntity extends TileEntity {
 
     @Override
     public CompoundNBT save(CompoundNBT pCompound) {
-        pCompound.putInt("maxUses", maxUses);
+        if(hasDurability()) {
+            pCompound.putInt("maxUses", usesLeft);
+        }
 
         return super.save(pCompound);
     }
     // endregion
 
     protected void use(){
-        maxUses--;
+        if(!hasDurability()) {
+            throw new IllegalStateException("use() can only be called on IHasDurability implementations");
+        }
 
-        if(maxUses <= 0 && level != null && !level.isClientSide && ServerConfig.machineDurability.get()) {
+        usesLeft--;
+
+        if(usesLeft <= 0 && level != null && !level.isClientSide && ServerConfig.machineDurability.get()) {
             BlockState state = level.getBlockState(getBlockPos());
             Block block = state.getBlock();
 
@@ -60,5 +67,9 @@ public abstract class ETTileEntity extends TileEntity {
             block.onRemove(state, level, getBlockPos(), state, false);
             this.level.removeBlock(getBlockPos(), false);
         }
+    }
+
+    private boolean hasDurability() {
+        return this instanceof IHasDurability;
     }
 }

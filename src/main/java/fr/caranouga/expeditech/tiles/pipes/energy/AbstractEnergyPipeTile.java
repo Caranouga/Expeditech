@@ -9,8 +9,8 @@ import net.minecraftforge.energy.CapabilityEnergy;
 import net.minecraftforge.energy.IEnergyStorage;
 
 public abstract class AbstractEnergyPipeTile extends AbstractPipeTile<IEnergyStorage> {
-    public AbstractEnergyPipeTile(TileEntityType<?> tileEntityType) {
-        super(tileEntityType);
+    public AbstractEnergyPipeTile(TileEntityType<?> tileEntityType, int maxTransfer) {
+        super(tileEntityType, maxTransfer);
     }
 
     @Override

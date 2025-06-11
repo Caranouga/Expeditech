@@ -4,6 +4,7 @@ import fr.caranouga.expeditech.Expeditech;
 import fr.caranouga.expeditech.blocks.PipeTypes;
 import fr.caranouga.expeditech.blocks.machines.AbstractMachineBlock;
 import fr.caranouga.expeditech.blocks.machines.CoalGeneratorMachine;
+import fr.caranouga.expeditech.blocks.machines.SandingMachine;
 import fr.caranouga.expeditech.blocks.pipes.AbstractPipeBlock;
 import fr.caranouga.expeditech.blocks.pipes.energy.IronEnergyPipe;
 import fr.caranouga.expeditech.utils.BlockEntry;
@@ -37,10 +38,11 @@ public class ModBlocks {
 
     // Machines
     public static final RegistryObject<CoalGeneratorMachine> COAL_GENERATOR = registerMachineBlock("coal_generator", CoalGeneratorMachine::new);
+    public static final RegistryObject<SandingMachine> SANDING_MACHINE = registerMachineBlock("sanding_machine", SandingMachine::new);
 
-    //public static final RegistryObject<VoidMachine> VOID_MACHINE = registerVoidMachine(() -> new VoidMachine());
+    /*public static final RegistryObject<VoidMachine> VOID_MACHINE = registerVoidMachine(() -> new VoidMachine());
 
-    /*public static RegistryObject<VoidMachine> registerVoidMachine(Supplier<VoidMachine> supp){
+    public static RegistryObject<VoidMachine> registerVoidMachine(Supplier<VoidMachine> supp){
         RegistryObject<VoidMachine> block = BLOCKS.register("void_machine", supp);
         registerItemBlock("void_machine", block);
 

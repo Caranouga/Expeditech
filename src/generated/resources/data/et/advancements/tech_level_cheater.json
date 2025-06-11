@@ -1,5 +1,5 @@
 {
-  "parent": "et:root",
+  "parent": "et:first_tech_level",
   "display": {
     "icon": {
       "item": "minecraft:command_block"

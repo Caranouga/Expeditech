@@ -21,11 +21,15 @@ public class SandingRecipe implements ISandingRecipe {
     private final ResourceLocation id;
     private final ItemStack result;
     private final Ingredient ingredient;
+    private final int energyNeeded;
+    private final int duration;
 
-    public SandingRecipe(ResourceLocation id, ItemStack result, Ingredient ingredient) {
+    public SandingRecipe(ResourceLocation id, ItemStack result, Ingredient ingredient, int energyNeeded, int duration) {
         this.id = id;
         this.result = result;
         this.ingredient = ingredient;
+        this.energyNeeded = energyNeeded;
+        this.duration = duration;
     }
 
     @Override
@@ -58,6 +62,14 @@ public class SandingRecipe implements ISandingRecipe {
         return ModRecipes.SANDING_SERIALIZER.get();
     }
 
+    public int getEnergyNeeded() {
+        return energyNeeded;
+    }
+
+    public int getDuration() {
+        return duration;
+    }
+
     public static class Type implements IRecipeType<SandingRecipe> {
         @Override
         public String toString() {
@@ -71,8 +83,10 @@ public class SandingRecipe implements ISandingRecipe {
         public SandingRecipe fromJson(ResourceLocation pRecipeId, JsonObject pJson) {
             ItemStack result = ShapedRecipe.itemFromJson(JSONUtils.getAsJsonObject(pJson, "result"));
             Ingredient ingredient = Ingredient.fromJson(JSONUtils.getAsJsonObject(pJson,  "ingredient"));
+            int energyNeeded = JSONUtils.getAsInt(pJson, "energy", 0);
+            int duration = JSONUtils.getAsInt(pJson, "duration", 200);
 
-            return new SandingRecipe(pRecipeId, result, ingredient);
+            return new SandingRecipe(pRecipeId, result, ingredient, energyNeeded, duration);
         }
 
         @Nullable
@@ -80,14 +94,18 @@ public class SandingRecipe implements ISandingRecipe {
         public SandingRecipe fromNetwork(ResourceLocation pRecipeId, PacketBuffer pBuffer) {
             Ingredient ingredient = Ingredient.fromNetwork(pBuffer);
             ItemStack result = pBuffer.readItem();
+            int energyNeeded = pBuffer.readVarInt();
+            int duration = pBuffer.readVarInt();
 
-            return new SandingRecipe(pRecipeId, result, ingredient);
+            return new SandingRecipe(pRecipeId, result, ingredient, energyNeeded, duration);
         }
 
         @Override
         public void toNetwork(PacketBuffer pBuffer, SandingRecipe pRecipe) {
             pRecipe.ingredient.toNetwork(pBuffer);
             pBuffer.writeItemStack(pRecipe.getResultItem(), false);
+            pBuffer.writeVarInt(pRecipe.getEnergyNeeded());
+            pBuffer.writeVarInt(pRecipe.getDuration());
         }
     }
 }

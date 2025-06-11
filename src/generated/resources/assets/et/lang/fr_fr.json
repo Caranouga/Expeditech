@@ -3,6 +3,7 @@
   "block.et.caranite_ore": "Minerai de Caranite",
   "block.et.coal_generator": "G\u00E9n\u00E9rateur \u00E0 Charbon",
   "block.et.iron_energy_pipe": "Tuyau d'\u00C9nergie en Fer",
+  "block.et.sanding_machine": "Machine de Pon\u00E7age",
   "commands.et.techlevel.add.levels.success.multiple": "Ajout\u00E9 %s niveaux technologiques \u00E0 %s joueurs",
   "commands.et.techlevel.add.levels.success.single": "Ajout\u00E9 %s niveau technologique \u00E0 %s",
   "commands.et.techlevel.add.xp.success.multiple": "Ajout\u00E9 %s XP technologique \u00E0 %s joueurs",
@@ -28,6 +29,9 @@
   "key.category.et.main": "Expeditech",
   "key.et.techlevel": "\u00C9cran de Niveau Technologique",
   "screen.et.coal_generator": "G\u00E9n\u00E9rateur \u00E0 Charbon",
+  "screen.et.sanding_machine": "Machine de Pon\u00E7age",
   "tooltip.et.coal_generator.energy": "\u00C9nergie: %s/%s",
-  "tooltip.et.coal_generator.progress": "Progression: %s/%s (%s%s)"
+  "tooltip.et.coal_generator.progress": "Progression: %s/%s (%s%s)",
+  "tooltip.et.sanding_machine.energy": "\u00C9nergie: %s/%s",
+  "tooltip.et.sanding_machine.progress": "Progression: %s/%s (%s%s)"
 }

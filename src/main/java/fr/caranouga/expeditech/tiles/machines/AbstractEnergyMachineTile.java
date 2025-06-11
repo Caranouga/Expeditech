@@ -19,8 +19,8 @@ public abstract class AbstractEnergyMachineTile extends AbstractMachineTile {
     protected final CustomEnergyStorage energyStorage = createEnergyStorage();
     private final LazyOptional<CustomEnergyStorage> lazyEnergyStorage = LazyOptional.of(() -> energyStorage);
 
-    public AbstractEnergyMachineTile(TileEntityType<?> tileEntityType, int maxUses, int invSize) {
-        super(tileEntityType, maxUses, invSize);
+    public AbstractEnergyMachineTile(TileEntityType<?> tileEntityType, int invSize) {
+        super(tileEntityType, invSize);
     }
 
     protected abstract CustomEnergyStorage createEnergyStorage();

@@ -2,6 +2,8 @@ package fr.caranouga.expeditech.registry;
 
 import fr.caranouga.expeditech.Expeditech;
 import fr.caranouga.expeditech.containers.CoalGeneratorContainer;
+import fr.caranouga.expeditech.containers.SandingMachineContainer;
+import fr.caranouga.expeditech.screens.SandingMachineScreen;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.util.math.BlockPos;
@@ -22,6 +24,12 @@ public class ModContainers {
                 BlockPos pos = data.readBlockPos();
                 World world = inv.player.level;
                 return new CoalGeneratorContainer(windowId, world, pos, inv, inv.player);
+            })));
+    public static final RegistryObject<ContainerType<SandingMachineContainer>> SANDING_MACHINE_CONTAINER = register("sanding_machine_container",
+            () -> IForgeContainerType.create(((windowId, inv, data) -> {
+                BlockPos pos = data.readBlockPos();
+                World world = inv.player.level;
+                return new SandingMachineContainer(windowId, world, pos, inv, inv.player);
             })));
 
     // region Utility methods

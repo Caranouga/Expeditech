@@ -4,7 +4,7 @@ import com.mojang.blaze3d.matrix.MatrixStack;
 import fr.caranouga.expeditech.Expeditech;
 import fr.caranouga.expeditech.blocks.EnergyStorages;
 import fr.caranouga.expeditech.registry.ModBlocks;
-import fr.caranouga.expeditech.screens.widgets.AbstractAnimatableWidget;
+import fr.caranouga.expeditech.screens.widgets.jei.AbstractJeiAnimatableWidget;
 import fr.caranouga.expeditech.screens.widgets.ProgressBarWidget;
 import fr.caranouga.expeditech.tiles.machines.CoalGeneratorMachineTile;
 import mezz.jei.api.constants.VanillaTypes;
@@ -36,8 +36,8 @@ public class CoalGeneratorRecipeCategory implements IRecipeCategory<CoalGenerato
     private final IGuiHelper helper;
 
     // Energy bar and progress bar depends on the recipe
-    private final Map<CoalGeneratorFuelRecipe, AbstractAnimatableWidget> energyBarCache = new HashMap<>();
-    private final Map<CoalGeneratorFuelRecipe, AbstractAnimatableWidget> progressBarCache = new HashMap<>();
+    private final Map<CoalGeneratorFuelRecipe, AbstractJeiAnimatableWidget> energyBarCache = new HashMap<>();
+    private final Map<CoalGeneratorFuelRecipe, AbstractJeiAnimatableWidget> progressBarCache = new HashMap<>();
 
     public CoalGeneratorRecipeCategory(IGuiHelper guiHelper) {
         this.background = guiHelper.createDrawable(TEXTURE, 0, 0, 82, 54);
@@ -83,13 +83,13 @@ public class CoalGeneratorRecipeCategory implements IRecipeCategory<CoalGenerato
             int maxEnergyStored = EnergyStorages.COAL_GENERATOR.getCapacity();
             float energyBarSize = (float) energyStored / (float) maxEnergyStored;
 
-            AbstractAnimatableWidget energyBar = new ProgressBarWidget(1, 45, 0xa02000)
+            AbstractJeiAnimatableWidget energyBar = new ProgressBarWidget(1, 45, 0xa02000)
                     .createAnimated(helper, energyBarSize, recipe.getBurnTime());
             energyBarCache.put(recipe, energyBar);
         }
 
         if (!progressBarCache.containsKey(recipe)) {
-            AbstractAnimatableWidget progressBar = new ProgressBarWidget(1, 1, 0x3da000)
+            AbstractJeiAnimatableWidget progressBar = new ProgressBarWidget(1, 1, 0x3da000)
                     .createAnimatedWithoutWidth(helper, ProgressBarWidget.WIDTH, recipe.getBurnTime());
             progressBarCache.put(recipe, progressBar);
         }
@@ -102,13 +102,13 @@ public class CoalGeneratorRecipeCategory implements IRecipeCategory<CoalGenerato
 
     @Override
     public void draw(CoalGeneratorFuelRecipe recipe, MatrixStack matrixStack, double mouseX, double mouseY) {
-        AbstractAnimatableWidget energyBar = energyBarCache.get(recipe);
+        AbstractJeiAnimatableWidget energyBar = energyBarCache.get(recipe);
         if (energyBar != null) {
             energyBar.renderAnimated(matrixStack);
         }
 
         // Draw progress bar at top
-        AbstractAnimatableWidget progressBar = progressBarCache.get(recipe);
+        AbstractJeiAnimatableWidget progressBar = progressBarCache.get(recipe);
         if (progressBar != null) {
             progressBar.renderAnimated(matrixStack);
         }

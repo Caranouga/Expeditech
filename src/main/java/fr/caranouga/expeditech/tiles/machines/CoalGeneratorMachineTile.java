@@ -3,6 +3,7 @@ package fr.caranouga.expeditech.tiles.machines;
 import fr.caranouga.expeditech.blocks.EnergyStorages;
 import fr.caranouga.expeditech.capability.CustomEnergyStorage;
 import fr.caranouga.expeditech.registry.ModTileEntities;
+import fr.caranouga.expeditech.tiles.IHasDurability;
 import net.minecraft.block.BlockState;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipeType;
@@ -13,16 +14,37 @@ import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.common.util.Constants;
+import net.minecraftforge.items.ItemStackHandler;
 
-public class CoalGeneratorMachineTile extends AbstractEnergyMachineTile implements ITickableTileEntity {
+import javax.annotation.Nonnull;
+
+public class CoalGeneratorMachineTile extends AbstractEnergyMachineTile implements ITickableTileEntity, IHasDurability {
     private static final int INPUT_SLOT = 0;
     public static final int ENERGY_PER_TICK = 2;
 
-    private int burnTime = -1;
+    private int burnTime = 0;
     private int currentBurnTime = 0;
 
     public CoalGeneratorMachineTile() {
-        super(ModTileEntities.COAL_GENERATOR_TILE.get(), 10, 1);
+        super(ModTileEntities.COAL_GENERATOR_TILE.get(), 1);
+    }
+
+    @Override
+    protected ItemStackHandler createItemHandler(int size) {
+        return new ItemStackHandler(size) {
+            @Override
+            protected void onContentsChanged(int slot) {
+                setChanged();
+            }
+
+            @Override
+            public boolean isItemValid(int slot, @Nonnull ItemStack stack) {
+                if (slot == INPUT_SLOT) {// Input slot can only accept burnable items
+                    return isItemBurnable(stack);
+                }
+                return false; // Invalid slot
+            }
+        };
     }
 
     @Override
@@ -146,5 +168,10 @@ public class CoalGeneratorMachineTile extends AbstractEnergyMachineTile implemen
         if(tag.contains("burnTime")) {
             burnTime = tag.getInt("burnTime");
         }
+    }
+
+    @Override
+    public int getMaxUses() {
+        return 10;
     }
 }

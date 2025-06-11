@@ -9,9 +9,11 @@ import net.minecraftforge.common.capabilities.Capability;
 public abstract class AbstractPipeTile<C> extends ETTileEntity implements ITickableTileEntity {
     private AbstractGrid<C> grid;
     private boolean isTickLeader = false;
+    private final int maxTransfer;
 
-    public AbstractPipeTile(TileEntityType<?> tileEntityType) {
-        super(tileEntityType, 10);
+    public AbstractPipeTile(TileEntityType<?> tileEntityType, int maxTransfer) {
+        super(tileEntityType);
+        this.maxTransfer = maxTransfer;
     }
 
     @Override
@@ -61,6 +63,10 @@ public abstract class AbstractPipeTile<C> extends ETTileEntity implements ITicka
 
     public void setTickLeader(boolean tickLeader) {
         this.isTickLeader = tickLeader;
+    }
+
+    public int getMaxTransfer() {
+        return this.maxTransfer;
     }
 
     protected abstract AbstractGrid<C> getGrid();
