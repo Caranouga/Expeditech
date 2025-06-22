@@ -7,6 +7,8 @@ import fr.caranouga.expeditech.client.ClientState;
 import fr.caranouga.expeditech.commands.TechLevelCommand;
 import fr.caranouga.expeditech.registry.ModCapabilities;
 import fr.caranouga.expeditech.screens.TechLevelScreen;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.entity.player.ClientPlayerEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
@@ -57,8 +59,11 @@ public class ModEvents {
 
     @SubscribeEvent
     public static void onRenderGameOverlay(RenderGameOverlayEvent event) {
+        ClientPlayerEntity player = Minecraft.getInstance().player;
+        if(player == null) return;
+
         if(event.getType() == RenderGameOverlayEvent.ElementType.EXPERIENCE){
-            if(ClientState.isShowExpBar()){
+            if(ClientState.isShowExpBar() && !player.isSpectator()){
                 TechLevelScreen.render(event.getMatrixStack());
             }
         }
