@@ -1,6 +1,7 @@
 package fr.caranouga.expeditech.grid;
 
 import fr.caranouga.expeditech.Expeditech;
+import fr.caranouga.expeditech.tiles.IHasDurability;
 import fr.caranouga.expeditech.tiles.pipes.AbstractPipeTile;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Direction;
@@ -64,15 +65,15 @@ public abstract class AbstractGrid<C> {
         return grid;
     }
 
-    public boolean tick(){
+    public void tick(){
         int totalAvailable = producers.stream().mapToInt(pipe -> extractFrom(pipe, Integer.MAX_VALUE, true)).sum();
-        if(totalAvailable <= 0) return false;
+        if(totalAvailable <= 0) return;
 
         int numberOfConsumers = consumers.size();
-        if(numberOfConsumers == 0) return false;
+        if(numberOfConsumers == 0) return;
 
         int totalPerConsumer = totalAvailable / numberOfConsumers;
-        if(totalPerConsumer == 0) return false;
+        if(totalPerConsumer == 0) return;
 
         for(C consumer : consumers){
             for(C producer : producers) {
@@ -85,7 +86,13 @@ public abstract class AbstractGrid<C> {
             }
         }
 
-        return true;
+        for(AbstractPipeTile<C> pipe : pipes) {
+            if (pipe instanceof IHasDurability){
+                pipe.use();
+            }
+        }
+
+        return;
     }
 
     public void invalidate() {

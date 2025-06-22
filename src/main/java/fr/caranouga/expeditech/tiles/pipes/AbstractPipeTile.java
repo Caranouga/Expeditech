@@ -27,7 +27,7 @@ public abstract class AbstractPipeTile<C> extends ETTileEntity implements ITicka
         }
 
         if (isTickLeader()) {
-            if(grid.tick()) use();
+            grid.tick();
         }
     }
 

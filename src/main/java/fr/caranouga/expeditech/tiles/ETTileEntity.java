@@ -43,7 +43,7 @@ public abstract class ETTileEntity extends TileEntity {
     }
     // endregion
 
-    protected void use(){
+    public void use(){
         if(!hasDurability()) {
             throw new IllegalStateException("use() can only be called on IHasDurability implementations");
         }
