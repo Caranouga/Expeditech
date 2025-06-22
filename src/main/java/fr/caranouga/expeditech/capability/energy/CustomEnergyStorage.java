@@ -1,4 +1,4 @@
-package fr.caranouga.expeditech.capability;
+package fr.caranouga.expeditech.capability.energy;
 
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraftforge.common.util.INBTSerializable;
