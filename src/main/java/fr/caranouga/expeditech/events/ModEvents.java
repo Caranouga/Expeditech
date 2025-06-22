@@ -57,7 +57,7 @@ public class ModEvents {
 
     @SubscribeEvent
     public static void onRenderGameOverlay(RenderGameOverlayEvent event) {
-        if(event.getType() == RenderGameOverlayEvent.ElementType.ALL){
+        if(event.getType() == RenderGameOverlayEvent.ElementType.EXPERIENCE){
             if(ClientState.isShowExpBar()){
                 TechLevelScreen.render(event.getMatrixStack());
             }
