@@ -4,6 +4,8 @@ import fr.caranouga.expeditech.compat.jei.coal_generator.CoalGeneratorFuelRecipe
 import fr.caranouga.expeditech.compat.jei.coal_generator.CoalGeneratorRecipeCategory;
 import fr.caranouga.expeditech.compat.jei.sanding.SandingMachineRecipeCategory;
 import fr.caranouga.expeditech.compat.jei.sanding.SandingRecipeCategory;
+import fr.caranouga.expeditech.containers.CoalGeneratorContainer;
+import fr.caranouga.expeditech.containers.SandingMachineContainer;
 import fr.caranouga.expeditech.recipes.SandingRecipe;
 import fr.caranouga.expeditech.registry.ModBlocks;
 import fr.caranouga.expeditech.registry.ModItems;
@@ -11,11 +13,9 @@ import fr.caranouga.expeditech.registry.ModRecipes;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
 import mezz.jei.api.constants.VanillaTypes;
-import mezz.jei.api.registration.IGuiHandlerRegistration;
-import mezz.jei.api.registration.IRecipeCatalystRegistration;
-import mezz.jei.api.registration.IRecipeCategoryRegistration;
-import mezz.jei.api.registration.IRecipeRegistration;
+import mezz.jei.api.registration.*;
 import net.minecraft.client.Minecraft;
+import net.minecraft.inventory.container.Container;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipeType;
 import net.minecraft.item.crafting.RecipeManager;
@@ -78,5 +78,16 @@ public class ExpeditechJeiPlugin implements IModPlugin {
         registration.addRecipeCatalyst(new ItemStack(ModBlocks.SANDING_MACHINE.get()), SandingMachineRecipeCategory.UID);
 
         registration.addRecipeCatalyst(new ItemStack(ModBlocks.COAL_GENERATOR.get()), CoalGeneratorRecipeCategory.UID);
+    }
+
+    @Override
+    public void registerRecipeTransferHandlers(IRecipeTransferRegistration registration) {
+        addRecipeTransferHandler(registration, SandingMachineRecipeCategory.UID, SandingMachineContainer.class, 0, 1);
+        addRecipeTransferHandler(registration, CoalGeneratorRecipeCategory.UID, CoalGeneratorContainer.class, 0, 1);
+    }
+
+    private <C extends Container> void addRecipeTransferHandler(IRecipeTransferRegistration registration, ResourceLocation recipeCategoryUid, Class<C> containerClass, int recipeStartIndex, int recipeSlotsCount) {
+        int vanillaInventorySlots = 36; // Vanilla inventory slots
+        registration.addRecipeTransferHandler(containerClass, recipeCategoryUid, vanillaInventorySlots + recipeStartIndex, recipeSlotsCount, 0, vanillaInventorySlots);
     }
 }

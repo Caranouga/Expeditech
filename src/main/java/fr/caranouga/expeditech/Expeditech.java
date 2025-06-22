@@ -32,7 +32,6 @@ public class Expeditech
     // TODO: Add a way to limit transfer rate of items/fluids/energy
     // TODO: Changer la texture de la sanding machine
     // TODO: Ajouter une anim sur le feu du coal generator
-    // TODO: Use tout les pipes dans les grids pas seulement le master pipe
 
     public static final Logger LOGGER = LogManager.getLogger();
     public static final String MODID = "et";
