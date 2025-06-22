@@ -1,6 +1,6 @@
 package fr.caranouga.expeditech.blocks;
 
-import fr.caranouga.expeditech.capability.CustomEnergyStorage;
+import fr.caranouga.expeditech.capability.energy.CustomEnergyStorage;
 
 public enum EnergyStorages {
     COAL_GENERATOR(5000, 0, 100),

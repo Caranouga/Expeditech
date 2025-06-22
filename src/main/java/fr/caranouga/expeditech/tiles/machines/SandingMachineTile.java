@@ -1,8 +1,7 @@
 package fr.caranouga.expeditech.tiles.machines;
 
-import fr.caranouga.expeditech.Expeditech;
 import fr.caranouga.expeditech.blocks.EnergyStorages;
-import fr.caranouga.expeditech.capability.CustomEnergyStorage;
+import fr.caranouga.expeditech.capability.energy.CustomEnergyStorage;
 import fr.caranouga.expeditech.recipes.SandingRecipe;
 import fr.caranouga.expeditech.registry.ModRecipes;
 import fr.caranouga.expeditech.registry.ModTileEntities;

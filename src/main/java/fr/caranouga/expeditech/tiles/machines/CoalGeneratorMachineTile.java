@@ -1,7 +1,7 @@
 package fr.caranouga.expeditech.tiles.machines;
 
 import fr.caranouga.expeditech.blocks.EnergyStorages;
-import fr.caranouga.expeditech.capability.CustomEnergyStorage;
+import fr.caranouga.expeditech.capability.energy.CustomEnergyStorage;
 import fr.caranouga.expeditech.registry.ModTileEntities;
 import fr.caranouga.expeditech.tiles.IHasDurability;
 import net.minecraft.block.BlockState;

@@ -1,6 +1,6 @@
 package fr.caranouga.expeditech.tiles.machines;
 
-import fr.caranouga.expeditech.capability.CustomEnergyStorage;
+import fr.caranouga.expeditech.capability.energy.CustomEnergyStorage;
 import net.minecraft.block.BlockState;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.tileentity.TileEntity;

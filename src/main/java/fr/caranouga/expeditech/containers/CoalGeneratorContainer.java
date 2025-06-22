@@ -1,6 +1,6 @@
 package fr.caranouga.expeditech.containers;
 
-import fr.caranouga.expeditech.capability.CustomEnergyStorage;
+import fr.caranouga.expeditech.capability.energy.CustomEnergyStorage;
 import fr.caranouga.expeditech.registry.ModBlocks;
 import fr.caranouga.expeditech.registry.ModContainers;
 import fr.caranouga.expeditech.tiles.machines.CoalGeneratorMachineTile;
