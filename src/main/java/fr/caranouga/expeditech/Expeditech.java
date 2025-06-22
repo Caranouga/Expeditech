@@ -27,9 +27,7 @@ public class Expeditech
 {
     // TODO: Advancements
     // TODO: Patchouli (changer texture du livre)
-    // TODO: Add different level of pipes (copper, iron, gold, diamond, netherite)
-    // each with different speed and capacity
-    // TODO: Add a way to limit transfer rate of items/fluids/energy
+    // TODO: Refaire les pipes
     // TODO: Changer la texture de la sanding machine
     // TODO: Ajouter une anim sur le feu du coal generator
 
@@ -59,6 +57,7 @@ public class Expeditech
         ModRecipes.register(modEBus);
         ModTileEntities.register(modEBus);
         ModContainers.register(modEBus);
+        //ModMultiblocks.register();
 
         MinecraftForge.EVENT_BUS.register(this);
 
