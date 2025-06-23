@@ -3,6 +3,7 @@ package fr.caranouga.expeditech.registry;
 import fr.caranouga.expeditech.Expeditech;
 import fr.caranouga.expeditech.items.FuelItem;
 import fr.caranouga.expeditech.items.SandingPaperItem;
+import fr.caranouga.expeditech.items.WrenchItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -25,6 +26,9 @@ public class ModItems {
     // TODO: Add custom animation for the sanding paper
     public static final RegistryObject<SandingPaperItem> SANDING_PAPER = registerItem("sanding_paper",
             () -> new SandingPaperItem(new Item.Properties().tab(ModTabs.EXPEDITECH)));
+
+    public static final RegistryObject<WrenchItem> WRENCH = registerItem("wrench",
+            () -> new WrenchItem(new Item.Properties().tab(ModTabs.EXPEDITECH)));
 
     // region Utility methods
     private static RegistryObject<Item> registerItem(String name) {

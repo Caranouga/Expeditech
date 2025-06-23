@@ -5,11 +5,13 @@ import fr.caranouga.expeditech.blocks.PipeTypes;
 import fr.caranouga.expeditech.blocks.machines.AbstractMachineBlock;
 import fr.caranouga.expeditech.blocks.machines.CoalGeneratorMachine;
 import fr.caranouga.expeditech.blocks.machines.SandingMachine;
+import fr.caranouga.expeditech.blocks.mb.MasterMbBlock;
 import fr.caranouga.expeditech.blocks.pipes.AbstractPipeBlock;
 import fr.caranouga.expeditech.blocks.pipes.energy.IronEnergyPipe;
 import fr.caranouga.expeditech.utils.BlockEntry;
 import fr.caranouga.expeditech.utils.BlockStateType;
 import fr.caranouga.expeditech.utils.LootTypeEntry;
+import fr.caranouga.expeditech.world.gen.OreType;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -51,6 +53,18 @@ public class ModBlocks {
 
     // Pipes
     public static final RegistryObject<IronEnergyPipe> IRON_ENERGY_PIPE = registerPipe("iron", PipeTypes.ENERGY, IronEnergyPipe::new);
+
+    public static final RegistryObject<MasterMbBlock> MB_MASTER = registerMb("mb_master", MasterMbBlock::new);
+
+    private static RegistryObject<MasterMbBlock> registerMb(String name, Supplier<MasterMbBlock> blockSupplier) {
+        RegistryObject<MasterMbBlock> block = BLOCKS.register(name, blockSupplier);
+
+        // Register the block item
+        registerItemBlock(name, block);
+        addBlockEntry(block, new BlockEntry(new LootTypeEntry(LootTypeEntry.LootType.DROP_SELF), BlockStateType.CUBE_ALL));
+
+        return block;
+    }
 
     // region Utility methods
     private static <T extends AbstractPipeBlock> RegistryObject<T> registerPipe(String name, PipeTypes type, Supplier<T> blockSupplier){

@@ -1,5 +1,7 @@
 package fr.caranouga.expeditech.events;
 
+import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.systems.RenderSystem;
 import fr.caranouga.expeditech.Expeditech;
 import fr.caranouga.expeditech.capability.techlevel.TechLevelProvider;
 import fr.caranouga.expeditech.capability.techlevel.TechLevelUtils;
@@ -12,6 +14,7 @@ import net.minecraft.client.entity.player.ClientPlayerEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
+import net.minecraftforge.client.event.RenderWorldLastEvent;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
@@ -55,6 +58,7 @@ public class ModEvents {
     @SubscribeEvent
     public static void onRegisterCommands(RegisterCommandsEvent event) {
         new TechLevelCommand(event.getDispatcher());
+        //TestCommand.register(event.getDispatcher());
     }
 
     @SubscribeEvent
@@ -67,5 +71,15 @@ public class ModEvents {
                 TechLevelScreen.render(event.getMatrixStack());
             }
         }
+    }
+
+    @SubscribeEvent
+    public static void onRenderWorldLast(RenderWorldLastEvent event) {
+        MatrixStack pMatrixStack = event.getMatrixStack();
+
+        RenderSystem.pushMatrix();
+        RenderSystem.multMatrix(pMatrixStack.last().pose());
+        ClientState.getMultiblockErrorRenderer().render();
+        RenderSystem.popMatrix();
     }
 }

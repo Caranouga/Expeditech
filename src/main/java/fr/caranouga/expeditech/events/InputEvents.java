@@ -37,6 +37,4 @@ public class InputEvents {
 
         ModKeybinds.handleKey(key, action);
     }
-
-
 }

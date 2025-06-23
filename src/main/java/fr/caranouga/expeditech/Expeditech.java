@@ -30,6 +30,9 @@ public class Expeditech
     // TODO: Refaire les pipes
     // TODO: Changer la texture de la sanding machine
     // TODO: Ajouter une anim sur le feu du coal generator
+    // TODO: Test sur srv
+    // TODO: Completer les mb
+    // TODO: Meilleur vérification des mb (et feedback au joueur)
 
     public static final Logger LOGGER = LogManager.getLogger();
     public static final String MODID = "et";
@@ -57,7 +60,6 @@ public class Expeditech
         ModRecipes.register(modEBus);
         ModTileEntities.register(modEBus);
         ModContainers.register(modEBus);
-        //ModMultiblocks.register();
 
         MinecraftForge.EVENT_BUS.register(this);
 
