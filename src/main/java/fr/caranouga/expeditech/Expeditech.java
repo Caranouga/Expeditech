@@ -45,6 +45,8 @@ public class Expeditech
             PROTOCOL_VERSION::equals
     );
 
+    public static final boolean IS_IN_IDE = Boolean.parseBoolean(System.getProperty("isInIDE", "false"));
+
     public Expeditech() {
         IEventBus modEBus = FMLJavaModLoadingContext.get().getModEventBus();
         ModLoadingContext modLoadingCtx = ModLoadingContext.get();

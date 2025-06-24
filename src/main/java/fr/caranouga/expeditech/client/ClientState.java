@@ -4,7 +4,7 @@ import fr.caranouga.expeditech.screens.MultiblockErrorRenderer;
 
 public class ClientState {
     private static boolean showExpBar = false;
-    private static MultiblockErrorRenderer multiblockErrorRenderer = new MultiblockErrorRenderer();
+    private static final MultiblockErrorRenderer multiblockErrorRenderer = new MultiblockErrorRenderer();
 
     public static boolean isShowExpBar() {
         return showExpBar;
