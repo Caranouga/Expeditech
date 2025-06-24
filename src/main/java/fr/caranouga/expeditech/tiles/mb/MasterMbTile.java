@@ -71,10 +71,7 @@ public class MasterMbTile extends TileEntity implements ITickableTileEntity {
 
         if(mismatchesMap.isEmpty()) {
             build();
-            Expeditech.LOGGER.info("Multiblock structure built successfully at {}", getBlockPos());
         } else {
-            Expeditech.LOGGER.warn("Cannot build multiblock structure at {}, shape does not match", getBlockPos());
-
             Map<BlockPos, ITextComponent> goodMasterMismatch = getGoodMasterMismatch(mismatchesMap, firstDirection);
             Map<BlockPos, ITextComponent> mismatches = null;
             if(goodMasterMismatch != null){
@@ -91,8 +88,6 @@ public class MasterMbTile extends TileEntity implements ITickableTileEntity {
             for(Map.Entry<BlockPos, ITextComponent> entry : mismatches.entrySet()) {
                 BlockPos pos = entry.getKey();
                 ITextComponent message = entry.getValue();
-                Expeditech.LOGGER.warn("Mismatch at {}: {}", pos, message.getString());
-
                 // Send packet to client to display the error
                 Expeditech.NETWORK.send(PacketDistributor.ALL.noArg(), new MultiblockErrorPacket(pos, 0xCCFF0000, message, 5000));
             }
@@ -100,21 +95,6 @@ public class MasterMbTile extends TileEntity implements ITickableTileEntity {
     }
 
     private Map<BlockPos, ITextComponent> getMinMismatch(Map<Direction, Map<BlockPos, ITextComponent>> mismatchesMap) {
-        /*// Find the minimum number of mismatches
-        int minCount = Integer.MAX_VALUE;
-        for(Map<BlockPos, ITextComponent> mismatches : mismatchesMap.values()) {
-            if(mismatches.size() < minCount) {
-                minCount = mismatches.size();
-            }
-        }
-
-        // Collect all mismatches with the minimum count
-        for(Map.Entry<Direction, Map<BlockPos, ITextComponent>> entry : mismatchesMap.entrySet()) {
-            Map<BlockPos, ITextComponent> mismatches = entry.getValue();
-            if(mismatches.size() == minCount) return mismatches;
-        }
-
-        return null;*/
         List<Map<BlockPos, ITextComponent>> mismatchesList = new ArrayList<>(mismatchesMap.values());
         return getMinMismatch(mismatchesList).get(0);
     }
@@ -132,7 +112,6 @@ public class MasterMbTile extends TileEntity implements ITickableTileEntity {
 
         // Collect all mismatches with the minimum count
         for(Map<BlockPos, ITextComponent> entry : mismatchesList) {
-            //if(entry.size() == minCount) return entry;
             if(entry.size() == minCount) {
                 minMismatches.add(entry);
             }
@@ -156,11 +135,6 @@ public class MasterMbTile extends TileEntity implements ITickableTileEntity {
             }
         }
 
-        mismatchesList.forEach(m -> {
-            Expeditech.LOGGER.debug("Good master mismatch found with {} mismatches: ", m.size());
-            m.forEach((pos, message) -> Expeditech.LOGGER.debug("Mismatch at {}: {} (dir: {})", pos, message.getString(), goodDirections.get(mismatchesList.indexOf(m))));
-        });
-
         List<Map<BlockPos, ITextComponent>> minMismatch = getMinMismatch(mismatchesList);
         for(Map<BlockPos, ITextComponent> entry : minMismatch) {
             if(goodDirections.get(mismatchesList.indexOf(entry)) == firstDirection) {
@@ -169,7 +143,6 @@ public class MasterMbTile extends TileEntity implements ITickableTileEntity {
         }
 
         return null;
-        //return getMinMismatch(mismatchesList);
     }
 
     private void build(){

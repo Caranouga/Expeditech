@@ -19,7 +19,6 @@ public class MultiblockShape {
             Direction.NORTH, Direction.SOUTH, Direction.WEST, Direction.EAST
     };
 
-
     public MultiblockShape(BlockPos masterRelative, BlockState[][]... layers) {
         this.masterRelative = masterRelative;
         this.layers = layers;
@@ -41,21 +40,12 @@ public class MultiblockShape {
         for (int y = 0; y < layers.length; y++) {
             for (int z = 0; z < layers[y].length; z++) {
                 for (int x = 0; x < layers[y][z].length; x++) {
-                    /*Expeditech.LOGGER.debug("Checking block at {}, {}, {} ({}, {}, {})",
-                            startPos.getX() + x, startPos.getY() + y, startPos.getZ() + z,
-                            x, y, z);*/
-
                     BlockPos pos = offset(startPos, direction, x, y, z);
                     BlockState expectedState = layers[y][z][x];
                     BlockState actualState = world.getBlockState(pos);
 
-                    world.setBlock(pos.offset(0, 10, 0), expectedState, 3); // For debugging, set the block at a higher position
-
                     if (!actualState.is(expectedState.getBlock())) {
-                        /*Expeditech.LOGGER.debug("Block at {}, {}, {} does not match expected state: {} != {}",
-                                pos.getX(), pos.getY(), pos.getZ(),
-                                actualState, expectedState);*/
-                        TranslationTextComponent message = new TranslationTextComponent("mb." + Expeditech.MODID + ".error.at", expectedState, actualState);
+                        TranslationTextComponent message = new TranslationTextComponent("mb." + Expeditech.MODID + ".error.at", expectedState.getBlock().getName(), actualState.getBlock().getName());
                         mismatches.put(pos, message);
                     }
                 }
