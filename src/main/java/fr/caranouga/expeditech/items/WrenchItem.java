@@ -6,6 +6,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUseContext;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ActionResultType;
+import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
@@ -19,13 +20,14 @@ public class WrenchItem extends Item {
         BlockPos pos = context.getClickedPos();
         TileEntity tileEntity = context.getLevel().getBlockEntity(pos);
         World world = context.getLevel();
+        Direction clickedFace = context.getClickedFace();
 
         if(world.isClientSide()) return ActionResultType.PASS;
 
         if(tileEntity instanceof MasterMbTile){
             MasterMbTile mbTile = (MasterMbTile) tileEntity;
 
-            mbTile.tryBuild();
+            mbTile.tryBuild(clickedFace.getOpposite());
         }
 
         return ActionResultType.PASS;

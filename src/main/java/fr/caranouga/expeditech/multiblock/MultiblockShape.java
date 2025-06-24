@@ -15,6 +15,10 @@ public class MultiblockShape {
     private final BlockState[][][] layers;
     private final BlockPos masterRelative;
 
+    public static final Direction[] DIRECTIONS = new Direction[]{
+            Direction.NORTH, Direction.SOUTH, Direction.WEST, Direction.EAST
+    };
+
 
     public MultiblockShape(BlockPos masterRelative, BlockState[][]... layers) {
         this.masterRelative = masterRelative;
@@ -30,129 +34,9 @@ public class MultiblockShape {
      * @return           Returns a Map of BlockPos where mismatches were found.
      */
     public Map<BlockPos, ITextComponent> test(Direction direction, World world, BlockPos masterPos) {
-        /*switch (direction) {
-            case NORTH: {
-                BlockPos startPos = masterPos.offset(masterRelative);
-                Expeditech.LOGGER.debug("startPos: {}", startPos);
-                for (int y = 0; y < layers.length; y++) {
-                    for (int z = 0; z < layers[0].length; z++) {
-                        for (int x = 0; x < layers[0][0].length; x++) {
-                            Expeditech.LOGGER.debug("Checking block at {}, {}, {} ({}, {}, {})",
-                                    startPos.getX() + x, startPos.getY() + y, startPos.getZ() + z,
-                                    x, y, z);
-
-                            BlockPos pos = startPos.offset(x, y, z);
-                            BlockState expectedState = layers[y][z][x];
-                            BlockState actualState = world.getBlockState(pos);
-
-                            world.setBlock(pos.offset(0, 10, 0), expectedState, 3); // For debugging, set the block at a higher position
-
-                            if (!actualState.is(expectedState.getBlock())) {
-                                Expeditech.LOGGER.debug("Block at {}, {}, {} does not match expected state: {} != {}",
-                                        pos.getX(), pos.getY(), pos.getZ(),
-                                        actualState, expectedState);
-                                StringTextComponent message = new StringTextComponent("Expected " + expectedState + ", but found " + actualState);
-                                Expeditech.NETWORK.send(PacketDistributor.ALL.noArg(), new MultiblockErrorPacket(pos, 0xCCFF0000, message, 5000));
-                                //return false;
-                            }
-                        }
-                    }
-                }
-
-                break;
-            }
-            case WEST: {
-                BlockPos startPos = masterPos.offset(masterRelative.getZ(), masterRelative.getY(), -masterRelative.getX());
-                Expeditech.LOGGER.debug("startPos: {}", startPos);
-                for (int y = 0; y < layers.length; y++) {
-                    for (int z = 0; z < layers[0].length; z++) {
-                        for (int x = 0; x < layers[0][0].length; x++) {
-                            Expeditech.LOGGER.debug("Checking block at {}, {}, {} ({}, {}, {})",
-                                    startPos.getX() + x, startPos.getY() + y, startPos.getZ() + z,
-                                    x, y, z);
-
-                            BlockPos pos = startPos.offset(z, y, -x);
-                            BlockState expectedState = layers[y][z][x];
-                            BlockState actualState = world.getBlockState(pos);
-
-                            world.setBlock(pos.offset(0, 10, 0), expectedState, 3); // For debugging, set the block at a higher position
-
-                            if (!actualState.is(expectedState.getBlock())) {
-                                Expeditech.LOGGER.debug("Block at {}, {}, {} does not match expected state: {} != {}",
-                                        pos.getX(), pos.getY(), pos.getZ(),
-                                        actualState, expectedState);
-                                StringTextComponent message = new StringTextComponent("Expected " + expectedState + ", but found " + actualState);
-                                Expeditech.NETWORK.send(PacketDistributor.ALL.noArg(), new MultiblockErrorPacket(pos, 0xCCFF0000, message, 5000));
-                                //return false;
-                            }
-                        }
-                    }
-                }
-            }
-            case SOUTH: {
-                BlockPos startPos = masterPos.offset(-masterRelative.getX(), masterRelative.getY(), -masterRelative.getZ());
-                Expeditech.LOGGER.debug("startPos: {}", startPos);
-                for (int y = 0; y < layers.length; y++) {
-                    for (int z = 0; z < layers[0].length; z++) {
-                        for (int x = 0; x < layers[0][0].length; x++) {
-                            Expeditech.LOGGER.debug("Checking block at {}, {}, {} ({}, {}, {})",
-                                    startPos.getX() + x, startPos.getY() + y, startPos.getZ() + z,
-                                    x, y, z);
-
-                            BlockPos pos = startPos.offset(-x, y, -z);
-                            BlockState expectedState = layers[y][z][x];
-                            BlockState actualState = world.getBlockState(pos);
-
-                            world.setBlock(pos.offset(0, 10, 0), expectedState, 3); // For debugging, set the block at a higher position
-
-                            if (!actualState.is(expectedState.getBlock())) {
-                                Expeditech.LOGGER.debug("Block at {}, {}, {} does not match expected state: {} != {}",
-                                        pos.getX(), pos.getY(), pos.getZ(),
-                                        actualState, expectedState);
-                                StringTextComponent message = new StringTextComponent("Expected " + expectedState + ", but found " + actualState);
-                                Expeditech.NETWORK.send(PacketDistributor.ALL.noArg(), new MultiblockErrorPacket(pos, 0xCCFF0000, message, 5000));
-                                //return false;
-                            }
-                        }
-                    }
-                }
-
-                break;
-            }
-            case EAST: {
-                BlockPos startPos = masterPos.offset(-masterRelative.getZ(), masterRelative.getY(), masterRelative.getX());
-                Expeditech.LOGGER.debug("startPos: {}", startPos);
-                for (int y = 0; y < layers.length; y++) {
-                    for (int z = 0; z < layers[0].length; z++) {
-                        for (int x = 0; x < layers[0][0].length; x++) {
-                            Expeditech.LOGGER.debug("Checking block at {}, {}, {} ({}, {}, {})",
-                                    startPos.getX() + x, startPos.getY() + y, startPos.getZ() + z,
-                                    x, y, z);
-
-                            BlockPos pos = startPos.offset(-z, y, x);
-                            BlockState expectedState = layers[y][z][x];
-                            BlockState actualState = world.getBlockState(pos);
-
-                            world.setBlock(pos.offset(0, 10, 0), expectedState, 3); // For debugging, set the block at a higher position
-
-                            if (!actualState.is(expectedState.getBlock())) {
-                                Expeditech.LOGGER.debug("Block at {}, {}, {} does not match expected state: {} != {}",
-                                        pos.getX(), pos.getY(), pos.getZ(),
-                                        actualState, expectedState);
-                                StringTextComponent message = new StringTextComponent("Expected " + expectedState + ", but found " + actualState);
-                                Expeditech.NETWORK.send(PacketDistributor.ALL.noArg(), new MultiblockErrorPacket(pos, 0xCCFF0000, message, 5000));
-                                //return false;
-                            }
-                        }
-                    }
-                }
-            }
-        }*/
-
         Map<BlockPos, ITextComponent> mismatches = new HashMap<>();
 
         BlockPos startPos = offset(masterPos, direction, masterRelative);
-        //Expeditech.LOGGER.debug("startPos: {}", startPos);
 
         for (int y = 0; y < layers.length; y++) {
             for (int z = 0; z < layers[y].length; z++) {
@@ -179,6 +63,15 @@ public class MultiblockShape {
         }
 
         return mismatches;
+    }
+
+    public boolean isMasterAtGoodPos(BlockPos testPos){
+        for(Direction dir : DIRECTIONS){
+            BlockPos offsetPos = offset(testPos, dir, masterRelative);
+            if(offsetPos.equals(testPos)) return true;
+        }
+
+        return false;
     }
 
     private BlockPos offset(BlockPos pos, Direction direction, int xOffset, int yOffset, int zOffset) {
