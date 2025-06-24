@@ -26,9 +26,9 @@ public class MultiblockSetupCommand {
             return 0;
         }
 
-        int offsetX = masterPos.getX() - bottomLeft.getX();
-        int offsetY = masterPos.getY() - bottomLeft.getY();
-        int offsetZ = masterPos.getZ() - bottomLeft.getZ();
+        int offsetX = bottomLeft.getX() - masterPos.getX();
+        int offsetY = bottomLeft.getY() - masterPos.getY();
+        int offsetZ = bottomLeft.getZ() - masterPos.getZ();
 
         source.sendSuccess(new StringTextComponent("x:" + offsetX + " y:" + offsetY + " z:" + offsetZ), false);
         return 1;
