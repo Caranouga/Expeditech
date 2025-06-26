@@ -6,12 +6,12 @@ import fr.caranouga.expeditech.blocks.machines.AbstractMachineBlock;
 import fr.caranouga.expeditech.blocks.machines.CoalGeneratorMachine;
 import fr.caranouga.expeditech.blocks.machines.SandingMachine;
 import fr.caranouga.expeditech.blocks.mb.MasterMbBlock;
+import fr.caranouga.expeditech.blocks.mb.SlaveMbBlock;
 import fr.caranouga.expeditech.blocks.pipes.AbstractPipeBlock;
 import fr.caranouga.expeditech.blocks.pipes.energy.IronEnergyPipe;
 import fr.caranouga.expeditech.utils.BlockEntry;
 import fr.caranouga.expeditech.utils.BlockStateType;
 import fr.caranouga.expeditech.utils.LootTypeEntry;
-import fr.caranouga.expeditech.world.gen.OreType;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -55,9 +55,10 @@ public class ModBlocks {
     public static final RegistryObject<IronEnergyPipe> IRON_ENERGY_PIPE = registerPipe("iron", PipeTypes.ENERGY, IronEnergyPipe::new);
 
     public static final RegistryObject<MasterMbBlock> MB_MASTER = registerMb("mb_master", MasterMbBlock::new);
+    public static final RegistryObject<SlaveMbBlock> MB_SLAVE = registerMb("mb_slave", SlaveMbBlock::new);
 
-    private static RegistryObject<MasterMbBlock> registerMb(String name, Supplier<MasterMbBlock> blockSupplier) {
-        RegistryObject<MasterMbBlock> block = BLOCKS.register(name, blockSupplier);
+    private static <T extends Block> RegistryObject<T> registerMb(String name, Supplier<T> blockSupplier) {
+        RegistryObject<T> block = BLOCKS.register(name, blockSupplier);
 
         // Register the block item
         registerItemBlock(name, block);

@@ -5,13 +5,22 @@ import fr.caranouga.expeditech.multiblock.MultiblockShape;
 import fr.caranouga.expeditech.packets.MultiblockErrorPacket;
 import fr.caranouga.expeditech.registry.ModBlocks;
 import fr.caranouga.expeditech.registry.ModTileEntities;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.network.NetworkManager;
+import net.minecraft.network.play.server.SUpdateTileEntityPacket;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.shapes.ISelectionContext;
+import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.text.*;
+import net.minecraft.world.IBlockReader;
+import net.minecraft.world.World;
+import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.fml.network.PacketDistributor;
 
 import java.util.ArrayList;
@@ -24,6 +33,7 @@ import static fr.caranouga.expeditech.multiblock.MultiblockShape.DIRECTIONS;
 public class MasterMbTile extends TileEntity implements ITickableTileEntity {
     private boolean isFormed = false;
     private final MultiblockShape shape;
+    private final Map<BlockPos, Block> savedBlocks = new HashMap<>();
 
     public MasterMbTile() {
         super(ModTileEntities.MB_MASTER.get());
@@ -54,22 +64,26 @@ public class MasterMbTile extends TileEntity implements ITickableTileEntity {
 
         if(!isFormed) Expeditech.LOGGER.debug("MasterMbTile is not formed yet at {}", getBlockPos());
         else Expeditech.LOGGER.debug("MasterMbTile is formed at {}", getBlockPos());
+
+        setChanged();
     }
 
     public void tryBuild(Direction firstDirection) {
         Map<Direction, Map<BlockPos, ITextComponent>> mismatchesMap = new HashMap<>();
+        Direction goodDirection = null;
 
         for(Direction dir : DIRECTIONS) {
             Map<BlockPos, ITextComponent> mismatches = this.shape.test(dir, level, getBlockPos());
             if(mismatches.isEmpty()) {
-                mismatchesMap.clear();
+                goodDirection = dir;
                 break; // No mismatches, we can build
             } else {
                 mismatchesMap.put(dir, mismatches);
             }
         }
 
-        if(mismatchesMap.isEmpty()) {
+        if(goodDirection != null) {
+            this.shape.saveAndPrepareMultiblock(goodDirection, level, getBlockPos(), savedBlocks);
             build();
         } else {
             Map<BlockPos, ITextComponent> goodMasterMismatch = getGoodMasterMismatch(mismatchesMap, firstDirection);
@@ -147,5 +161,63 @@ public class MasterMbTile extends TileEntity implements ITickableTileEntity {
 
     private void build(){
         this.isFormed = true;
+        level.sendBlockUpdated(getBlockPos(), getBlockState(), getBlockState(), Constants.BlockFlags.BLOCK_UPDATE | Constants.BlockFlags.NOTIFY_NEIGHBORS);
+    }
+
+    public void slaveBroken(SlaveMbTile slaveTile) {
+        // Handle the case when a slave tile is broken
+        if(!unform()) return;
+
+        BlockPos slavePos = slaveTile.getBlockPos();
+        World world = slaveTile.getLevel();
+
+        world.destroyBlock(slavePos, true);
+
+        Expeditech.LOGGER.debug("SlaveMbTile at {} is broken, unforming the multiblock structure", slavePos);
+    }
+
+    private boolean unform() {
+        if(!isFormed) return false;
+
+        // Logic to unform the multiblock structure
+        this.isFormed = false;
+        level.sendBlockUpdated(getBlockPos(), getBlockState(), getBlockState(), Constants.BlockFlags.BLOCK_UPDATE | Constants.BlockFlags.NOTIFY_NEIGHBORS);
+        replaceOriginalBlocks();
+
+        return true;
+    }
+
+    private void replaceOriginalBlocks(){
+        this.savedBlocks.forEach((pos, block) -> {
+            if(level.getBlockState(pos).getBlock() != block) {
+                level.setBlockAndUpdate(pos, block.defaultBlockState());
+            }
+        });
+    }
+
+    @Override
+    public void setRemoved() {
+        unform();
+        super.setRemoved();
+    }
+
+    @Override
+    public SUpdateTileEntityPacket getUpdatePacket(){
+        CompoundNBT nbtTag = new CompoundNBT();
+        //Write your data into the nbtTag
+
+        nbtTag.putBoolean("isFormed", isFormed);
+
+        return new SUpdateTileEntityPacket(this.worldPosition, -1, nbtTag);
+    }
+
+    @Override
+    public void onDataPacket(NetworkManager net, SUpdateTileEntityPacket pkt){
+        CompoundNBT tag = pkt.getTag();
+        //Handle your Data
+
+        if(tag.contains("isFormed")) {
+            isFormed = tag.getBoolean("isFormed");
+        }
     }
 }

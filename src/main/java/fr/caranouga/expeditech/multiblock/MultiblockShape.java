@@ -1,7 +1,11 @@
 package fr.caranouga.expeditech.multiblock;
 
 import fr.caranouga.expeditech.Expeditech;
+import fr.caranouga.expeditech.registry.ModBlocks;
+import fr.caranouga.expeditech.tiles.mb.SlaveMbTile;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
@@ -53,6 +57,29 @@ public class MultiblockShape {
         }
 
         return mismatches;
+    }
+
+    public void saveAndPrepareMultiblock(Direction direction, World world, BlockPos masterPos, Map<BlockPos, Block> savedBlocks) {
+        BlockPos startPos = offset(masterPos, direction, masterRelative);
+
+        for (int y = 0; y < layers.length; y++) {
+            for (int z = 0; z < layers[y].length; z++) {
+                for (int x = 0; x < layers[y][z].length; x++) {
+                    BlockPos pos = offset(startPos, direction, x, y, z);
+                    if(pos.equals(masterPos)) continue;
+
+                    savedBlocks.put(pos, world.getBlockState(pos).getBlock());
+                    world.setBlockAndUpdate(pos, ModBlocks.MB_SLAVE.get().defaultBlockState());
+
+                    TileEntity tile = world.getBlockEntity(pos);
+                    if (tile instanceof SlaveMbTile) {
+                        ((SlaveMbTile) tile).setMaster(masterPos, world);
+                    } else {
+                        Expeditech.LOGGER.error("Failed to set SlaveMbTile at {}, expected a SlaveMbTile but found: {}", pos, world.getBlockEntity(pos));
+                    }
+                }
+            }
+        }
     }
 
     public boolean isMasterAtGoodPos(BlockPos testPos){

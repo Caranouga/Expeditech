@@ -5,8 +5,8 @@ import fr.caranouga.expeditech.blocks.PipeTypes;
 import fr.caranouga.expeditech.tiles.machines.CoalGeneratorMachineTile;
 import fr.caranouga.expeditech.tiles.machines.SandingMachineTile;
 import fr.caranouga.expeditech.tiles.mb.MasterMbTile;
+import fr.caranouga.expeditech.tiles.mb.SlaveMbTile;
 import fr.caranouga.expeditech.tiles.pipes.energy.IronEnergyPipeTile;
-import fr.caranouga.expeditech.world.gen.OreType;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -34,6 +34,8 @@ public class ModTileEntities {
 
     public static final RegistryObject<TileEntityType<MasterMbTile>> MB_MASTER = register("mb_master_tile",
             () -> TileEntityType.Builder.of(MasterMbTile::new, ModBlocks.MB_MASTER.get()).build(null));
+    public static final RegistryObject<TileEntityType<SlaveMbTile>> MB_SLAVE = register("mb_slave_tile",
+            () -> TileEntityType.Builder.of(SlaveMbTile::new, ModBlocks.MB_SLAVE.get()).build(null));
 
     // region Utility methods
     private static <T extends TileEntityType<? extends TileEntity>> RegistryObject<T> registerPipe(String name, PipeTypes type, Supplier<T> tileEntityType) {

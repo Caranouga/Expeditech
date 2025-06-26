@@ -1,5 +1,6 @@
 package fr.caranouga.expeditech.datagen.providers;
 
+import fr.caranouga.expeditech.Expeditech;
 import fr.caranouga.expeditech.registry.ModBlocks;
 import fr.caranouga.expeditech.registry.ModItems;
 import fr.caranouga.expeditech.registry.ModTabs;
@@ -58,6 +59,7 @@ public class ModLanguageProvider extends CustomLanguageProvider {
         addKey("techlevel", "Tech Level Screen");
 
         addOther("machine_broken", "A %s has broken at %s, %s, %s");
+        add("mb." + Expeditech.MODID + ".error.at", "Expected %s but found %s");
 
         // fr_fr
         switchLocale();
@@ -106,5 +108,6 @@ public class ModLanguageProvider extends CustomLanguageProvider {
         addKey("techlevel", "Écran de Niveau Technologique");
 
         addOther("machine_broken", "Un %s s'est cassé en %s, %s, %s");
+        add("mb." + Expeditech.MODID + ".error.at", "Attendu %s mais trouvé %s");
     }
 }
