@@ -1,28 +1,24 @@
 package fr.caranouga.expeditech.tiles.mb;
-/*
+
 import fr.caranouga.expeditech.Expeditech;
 import fr.caranouga.expeditech.multiblock.MultiblockShape;
 import fr.caranouga.expeditech.packets.MultiblockErrorPacket;
-import fr.caranouga.expeditech.registry.ModBlocks;
-import fr.caranouga.expeditech.registry.ModTileEntities;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SUpdateTileEntityPacket;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.shapes.ISelectionContext;
-import net.minecraft.util.math.shapes.VoxelShape;
-import net.minecraft.util.text.*;
-import net.minecraft.world.IBlockReader;
+import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.fml.network.PacketDistributor;
 
+import javax.annotation.Nonnull;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -30,40 +26,31 @@ import java.util.Map;
 
 import static fr.caranouga.expeditech.multiblock.MultiblockShape.DIRECTIONS;
 
-public class MasterMbTile extends TileEntity implements ITickableTileEntity {
+public abstract class AbstractMultiblockTile extends TileEntity implements ITickableTileEntity {
     private boolean isFormed = false;
     private final MultiblockShape shape;
     private final Map<BlockPos, Block> savedBlocks = new HashMap<>();
 
-    public MasterMbTile() {
-        super(ModTileEntities.MB_MASTER.get());
+    public AbstractMultiblockTile(TileEntityType<?> tileEntityType) {
+        super(tileEntityType);
 
-        BlockState stone = Blocks.STONE.defaultBlockState();
-        BlockState thisState = ModBlocks.MB_MASTER.get().defaultBlockState();
-        this.shape = new MultiblockShape(new BlockPos(-1, -1, 0),
-                new BlockState[][] {
-                    {stone, stone, stone},
-                    {stone, stone, stone},
-                    {stone, stone, stone}
-                },
-                new BlockState[][] {
-                    {stone, thisState, stone},
-                    {stone, stone, stone},
-                    {stone, stone, stone}
-                },
-                new BlockState[][] {
-                    {stone, stone, stone},
-                    {stone, stone, stone},
-                    {stone, stone, stone}
-                });
+        this.shape = getShape();
     }
+
+    @Nonnull
+    protected abstract MultiblockShape getShape();
+    protected abstract void formedTick();
+    protected abstract void unformedTick();
 
     @Override
     public void tick() {
         if(level == null || level.isClientSide) return;
 
-        //if(!isFormed) Expeditech.LOGGER.debug("MasterMbTile is not formed yet at {}", getBlockPos());
-        //else Expeditech.LOGGER.debug("MasterMbTile is formed at {}", getBlockPos());
+        if(!isFormed){
+            unformedTick();
+        }else{
+            formedTick();
+        }
 
         setChanged();
     }
@@ -172,8 +159,6 @@ public class MasterMbTile extends TileEntity implements ITickableTileEntity {
         World world = slaveTile.getLevel();
 
         world.destroyBlock(slavePos, true);
-
-        Expeditech.LOGGER.debug("SlaveMbTile at {} is broken, unforming the multiblock structure", slavePos);
     }
 
     private boolean unform() {
@@ -201,6 +186,7 @@ public class MasterMbTile extends TileEntity implements ITickableTileEntity {
         super.setRemoved();
     }
 
+    // region Data Saving (World load/save)
     @Override
     public SUpdateTileEntityPacket getUpdatePacket(){
         CompoundNBT nbtTag = new CompoundNBT();
@@ -220,51 +206,23 @@ public class MasterMbTile extends TileEntity implements ITickableTileEntity {
             isFormed = tag.getBoolean("isFormed");
         }
     }
-}
-*/
 
-import fr.caranouga.expeditech.multiblock.MultiblockShape;
-import fr.caranouga.expeditech.registry.ModBlocks;
-import fr.caranouga.expeditech.registry.ModTileEntities;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.util.math.BlockPos;
-
-import javax.annotation.Nonnull;
-
-public class MasterMbTile extends AbstractMultiblockTile{
-    public MasterMbTile() {
-        super(ModTileEntities.MB_MASTER.get());
-    }
-
-    @Nonnull
     @Override
-    protected MultiblockShape getShape() {
-        BlockState stone = Blocks.STONE.defaultBlockState();
-        BlockState thisState = ModBlocks.MB_MASTER.get().defaultBlockState();
-        return new MultiblockShape(new BlockPos(-1, -1, 0),
-                new BlockState[][] {
-                        {stone, stone, stone},
-                        {stone, stone, stone},
-                        {stone, stone, stone}
-                },
-                new BlockState[][] {
-                        {stone, thisState, stone},
-                        {stone, stone, stone},
-                        {stone, stone, stone}
-                },
-                new BlockState[][] {
-                        {stone, stone, stone},
-                        {stone, stone, stone},
-                        {stone, stone, stone}
-                });
+    public void load(BlockState state, CompoundNBT nbt) {
+        if(nbt.contains("isFormed")){
+            isFormed = nbt.getBoolean("isFormed");
+        } else {
+            isFormed = false; // Default value if not present
+        }
+
+        super.load(state, nbt);
     }
 
     @Override
-    protected void formedTick() {
-    }
+    public CompoundNBT save(CompoundNBT pCompound) {
+        pCompound.putBoolean("isFormed", isFormed);
 
-    @Override
-    protected void unformedTick() {
+        return super.save(pCompound);
     }
+    // endregion
 }
