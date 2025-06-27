@@ -20,6 +20,7 @@ public class ModLanguageProvider extends CustomLanguageProvider {
         addItem(ModItems.CARANITE_NUGGET, "Caranite Nugget");
         addItem(ModItems.SANDING_PAPER, "Sanding Paper");
         addItem(ModItems.CARANITE_COAL, "Caranite Coal");
+        addItem(ModItems.WRENCH, "Wrench");
 
         addBlock(ModBlocks.CARANITE_BLOCK, "Caranite Block");
         addBlock(ModBlocks.CARANITE_ORE, "Caranite Ore");
@@ -69,11 +70,12 @@ public class ModLanguageProvider extends CustomLanguageProvider {
         addItem(ModItems.CARANITE_NUGGET, "Pépite de Caranite");
         addItem(ModItems.SANDING_PAPER, "Papier de Ponçage");
         addItem(ModItems.CARANITE_COAL, "Charbon en Caranite");
-        addBlock(ModBlocks.IRON_ENERGY_PIPE, "Tuyau d'Énergie en Fer");
+        addItem(ModItems.WRENCH, "Clé à Molette");
 
         addBlock(ModBlocks.CARANITE_BLOCK, "Bloc de Caranite");
         addBlock(ModBlocks.CARANITE_ORE, "Minerai de Caranite");
         addBlock(ModBlocks.COAL_GENERATOR, "Générateur à Charbon");
+        addBlock(ModBlocks.IRON_ENERGY_PIPE, "Tuyau d'Énergie en Fer");
         addBlock(ModBlocks.SANDING_MACHINE, "Machine de Ponçage");
 
         addItemGroup(ModTabs.EXPEDITECH, "Expeditech");

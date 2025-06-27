@@ -12,6 +12,26 @@
     {
       "type": "patchouli:text",
       "text": "...."
+    },
+    {
+      "type": "patchouli:multiblock",
+      "name": "Caranite Multiblock",
+      "multiblock_id": "multiblock",
+      "multiblock": {
+        "pattern": [
+          ["SSS", "SSS", "SSS"],
+          ["SSS", "SSM", "SSS"],
+          ["SSS", "SS0", "SSS"]
+        ],
+        "mapping": {
+          "S": "minecraft:stone",
+          "M": "et:mb_master",
+          "0": "minecraft:stone"
+        },
+        "symmetrical": false
+      },
+      "enable_visualize": true,
+      "text": "The Caranite Multiblock is used to process Caranite and Impure Caranite into pure Caranite ingots. It requires a redstone signal to operate."
     }
   ]
 }

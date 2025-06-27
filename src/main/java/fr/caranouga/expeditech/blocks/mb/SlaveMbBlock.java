@@ -5,13 +5,8 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.PushReaction;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.Explosion;
 import net.minecraft.world.IBlockReader;
-import net.minecraft.world.IWorld;
-import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
 
@@ -30,6 +25,18 @@ public class SlaveMbBlock extends Block {
     public boolean hasTileEntity(BlockState state) {
         return true;
     }
+
+    // TODO: Find a way to make this work
+    /*@Nullable
+    @Override
+    public ToolType getHarvestTool(BlockState state) {
+        return
+    }*/
+
+    /*@Override
+    public int getHarvestLevel(BlockState state) {
+        return super.getHarvestLevel(state);
+    }*/
 
     @Override
     public PushReaction getPistonPushReaction(BlockState pState) {

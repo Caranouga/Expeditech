@@ -28,6 +28,7 @@
   "jei.et.sanding": "Pon\u00E7age",
   "key.category.et.main": "Expeditech",
   "key.et.techlevel": "\u00C9cran de Niveau Technologique",
+  "mb.et.error.at": "Attendu %s mais trouv\u00E9 %s",
   "screen.et.coal_generator": "G\u00E9n\u00E9rateur \u00E0 Charbon",
   "screen.et.sanding_machine": "Machine de Pon\u00E7age",
   "tooltip.et.coal_generator.energy": "\u00C9nergie: %s/%s",
