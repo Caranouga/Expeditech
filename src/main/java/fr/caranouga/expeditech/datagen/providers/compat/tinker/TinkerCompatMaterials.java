@@ -1,6 +1,6 @@
 package fr.caranouga.expeditech.datagen.providers.compat.tinker;
 
-import fr.caranouga.expeditech.Expeditech;
+import fr.caranouga.expeditech.common.Expeditech;
 import slimeknights.tconstruct.library.materials.definition.MaterialId;
 
 public final class TinkerCompatMaterials {

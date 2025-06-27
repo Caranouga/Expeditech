@@ -21,6 +21,7 @@
   "item.et.caranite_nugget": "P\u00E9pite de Caranite",
   "item.et.impure_caranite": "Caranite Impure",
   "item.et.sanding_paper": "Papier de Pon\u00E7age",
+  "item.et.wrench": "Cl\u00E9 \u00E0 Molette",
   "itemGroup.expeditech": "Expeditech",
   "jei.et.coal_generator": "G\u00E9n\u00E9rateur \u00E0 Charbon",
   "jei.et.coal_generator.tooltips.energy": "\u00C9nergie: %s/%s",

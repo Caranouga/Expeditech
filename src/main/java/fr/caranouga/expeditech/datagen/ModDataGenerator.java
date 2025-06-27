@@ -1,6 +1,6 @@
 package fr.caranouga.expeditech.datagen;
 
-import fr.caranouga.expeditech.Expeditech;
+import fr.caranouga.expeditech.common.Expeditech;
 import fr.caranouga.expeditech.datagen.providers.*;
 import fr.caranouga.expeditech.datagen.providers.compat.tinker.ModMaterialDataProvider;
 import fr.caranouga.expeditech.datagen.providers.compat.tinker.ModMaterialRecipeProvider;

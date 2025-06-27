@@ -1,9 +1,9 @@
 package fr.caranouga.expeditech.datagen.providers;
 
-import fr.caranouga.expeditech.Expeditech;
-import fr.caranouga.expeditech.registry.ModBlocks;
-import fr.caranouga.expeditech.registry.ModItems;
-import fr.caranouga.expeditech.registry.ModTabs;
+import fr.caranouga.expeditech.common.Expeditech;
+import fr.caranouga.expeditech.common.registry.ModBlocks;
+import fr.caranouga.expeditech.common.registry.ModItems;
+import fr.caranouga.expeditech.common.registry.ModTabs;
 import net.minecraft.data.DataGenerator;
 
 public class ModLanguageProvider extends CustomLanguageProvider {

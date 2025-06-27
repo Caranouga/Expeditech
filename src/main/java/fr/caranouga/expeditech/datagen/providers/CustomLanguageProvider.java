@@ -2,7 +2,7 @@ package fr.caranouga.expeditech.datagen.providers;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import fr.caranouga.expeditech.Expeditech;
+import fr.caranouga.expeditech.common.Expeditech;
 import net.minecraft.block.Block;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.DirectoryCache;

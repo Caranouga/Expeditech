@@ -21,6 +21,7 @@
   "item.et.caranite_nugget": "Caranite Nugget",
   "item.et.impure_caranite": "Impure Caranite",
   "item.et.sanding_paper": "Sanding Paper",
+  "item.et.wrench": "Wrench",
   "itemGroup.expeditech": "Expeditech",
   "jei.et.coal_generator": "Coal Generator",
   "jei.et.coal_generator.tooltips.energy": "Energy: %s/%s",

@@ -1,8 +1,8 @@
 package fr.caranouga.expeditech.datagen.providers;
 
 import fr.caranouga.expeditech.datagen.builder.SandingRecipeBuilder;
-import fr.caranouga.expeditech.registry.ModBlocks;
-import fr.caranouga.expeditech.registry.ModItems;
+import fr.caranouga.expeditech.common.registry.ModBlocks;
+import fr.caranouga.expeditech.common.registry.ModItems;
 import net.minecraft.block.Block;
 import net.minecraft.data.*;
 import net.minecraft.item.Item;
@@ -12,7 +12,7 @@ import net.minecraftforge.registries.ForgeRegistryEntry;
 
 import java.util.function.Consumer;
 
-import static fr.caranouga.expeditech.utils.StringUtils.modLocation;
+import static fr.caranouga.expeditech.common.utils.StringUtils.modLocation;
 
 public class ModRecipeProvider extends RecipeProvider {
     public ModRecipeProvider(DataGenerator generatorIn) {

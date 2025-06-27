@@ -1,7 +1,7 @@
 package fr.caranouga.expeditech.datagen.builder;
 
 import com.google.gson.JsonObject;
-import fr.caranouga.expeditech.registry.ModRecipes;
+import fr.caranouga.expeditech.common.registry.ModRecipes;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.AdvancementRewards;
 import net.minecraft.advancements.ICriterionInstance;
@@ -19,7 +19,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import javax.annotation.Nullable;
 import java.util.function.Consumer;
 
-import static fr.caranouga.expeditech.utils.StringUtils.modLocation;
+import static fr.caranouga.expeditech.common.utils.StringUtils.modLocation;
 
 public class SandingRecipeBuilder {
     private final Item result;

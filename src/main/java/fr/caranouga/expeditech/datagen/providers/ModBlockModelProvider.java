@@ -1,16 +1,16 @@
 package fr.caranouga.expeditech.datagen.providers;
 
-import fr.caranouga.expeditech.Expeditech;
-import fr.caranouga.expeditech.blocks.machines.AbstractMachineBlock;
-import fr.caranouga.expeditech.blocks.pipes.AbstractPipeBlock;
-import fr.caranouga.expeditech.registry.ModBlocks;
-import fr.caranouga.expeditech.utils.BlockStateType;
+import fr.caranouga.expeditech.common.Expeditech;
+import fr.caranouga.expeditech.common.content.blocks.machines.AbstractMachineBlock;
+import fr.caranouga.expeditech.common.content.blocks.pipes.AbstractPipeBlock;
+import fr.caranouga.expeditech.common.registry.ModBlocks;
+import fr.caranouga.expeditech.common.utils.BlockStateType;
 import net.minecraft.block.Block;
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.client.model.generators.BlockModelProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
-import static fr.caranouga.expeditech.utils.StringUtils.modLocation;
+import static fr.caranouga.expeditech.common.utils.StringUtils.modLocation;
 
 public class ModBlockModelProvider extends BlockModelProvider {
     public ModBlockModelProvider(DataGenerator gen, ExistingFileHelper exFileHelper) {

@@ -1,11 +1,11 @@
 package fr.caranouga.expeditech.datagen.providers;
 
-import fr.caranouga.expeditech.Expeditech;
-import fr.caranouga.expeditech.blocks.pipes.AbstractPipeBlock;
-import fr.caranouga.expeditech.registry.ModBlocks;
-import fr.caranouga.expeditech.registry.ModItems;
-import fr.caranouga.expeditech.utils.BlockEntry;
-import fr.caranouga.expeditech.utils.BlockStateType;
+import fr.caranouga.expeditech.common.Expeditech;
+import fr.caranouga.expeditech.common.content.blocks.pipes.AbstractPipeBlock;
+import fr.caranouga.expeditech.common.registry.ModBlocks;
+import fr.caranouga.expeditech.common.registry.ModItems;
+import fr.caranouga.expeditech.common.utils.BlockEntry;
+import fr.caranouga.expeditech.common.utils.BlockStateType;
 import net.minecraft.block.Block;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.item.BlockItem;
@@ -17,7 +17,6 @@ import net.minecraftforge.fml.RegistryObject;
 import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class ModItemModelsProvider extends ItemModelProvider {
     public ModItemModelsProvider(DataGenerator generator, ExistingFileHelper exFileHelper) {

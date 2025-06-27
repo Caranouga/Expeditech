@@ -1,7 +1,7 @@
 package fr.caranouga.expeditech.datagen.providers.advancements;
 
-import fr.caranouga.expeditech.capability.techlevel.TechLevelImplementation;
-import fr.caranouga.expeditech.triggers.TechLevelTrigger;
+import fr.caranouga.expeditech.common.capability.techlevel.TechLevelImplementation;
+import fr.caranouga.expeditech.common.triggers.TechLevelTrigger;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.FrameType;
 import net.minecraft.advancements.criterion.ItemPredicate;
@@ -12,7 +12,7 @@ import net.minecraft.util.text.TranslationTextComponent;
 
 import javax.annotation.Nullable;
 
-import static fr.caranouga.expeditech.utils.StringUtils.modLocation;
+import static fr.caranouga.expeditech.common.utils.StringUtils.modLocation;
 
 public class AdvancementUtils {
     protected static String id(String s) {

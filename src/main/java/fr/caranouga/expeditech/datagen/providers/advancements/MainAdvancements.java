@@ -1,6 +1,6 @@
 package fr.caranouga.expeditech.datagen.providers.advancements;
 
-import fr.caranouga.expeditech.registry.ModItems;
+import fr.caranouga.expeditech.common.registry.ModItems;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.FrameType;
 import net.minecraft.advancements.criterion.EntityPredicate;
@@ -11,7 +11,7 @@ import net.minecraft.util.text.TranslationTextComponent;
 import java.util.function.Consumer;
 
 import static fr.caranouga.expeditech.datagen.providers.advancements.AdvancementUtils.*;
-import static fr.caranouga.expeditech.utils.StringUtils.modLocation;
+import static fr.caranouga.expeditech.common.utils.StringUtils.modLocation;
 
 public class MainAdvancements implements Consumer<Consumer<Advancement>> {
     @Override

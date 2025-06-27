@@ -2,9 +2,8 @@ package fr.caranouga.expeditech.datagen.providers;
 
 import com.google.common.collect.ImmutableList;
 import com.mojang.datafixers.util.Pair;
-import fr.caranouga.expeditech.Expeditech;
-import fr.caranouga.expeditech.registry.ModBlocks;
-import fr.caranouga.expeditech.utils.LootTypeEntry;
+import fr.caranouga.expeditech.common.registry.ModBlocks;
+import fr.caranouga.expeditech.common.utils.LootTypeEntry;
 import net.minecraft.block.Block;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.LootTableProvider;
@@ -51,6 +50,11 @@ public class ModBlockLootTableProvider extends LootTableProvider {
                     }
                     case ORE_DROP: {
                         this.add(block.get(), blockLoot -> createOreDrop(block.get(), lootTypeEntry.getDrop().get()));
+                        break;
+                    }
+                    case DO_NOT_DROP: {
+                        // No drop for this block
+                        this.add(block.get(), blockLoot -> LootTable.lootTable());
                         break;
                     }
                     default: {

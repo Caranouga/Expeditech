@@ -3,10 +3,9 @@ f6171f84edcde6683d417285a2f586863cb1644b assets/et/blockstates/caranite_ore.json
 8dcc050d56c85bed9a321d63bc6bd844683c781a assets/et/blockstates/coal_generator.json
 bd578401815878cd9a011dc5fa88f71300b2b513 assets/et/blockstates/iron_energy_pipe.json
 e77e474603ef34d79ce539c4246aea549e6f984b assets/et/blockstates/mb_master.json
-c75ab2bfde5e0d84cd1f38f4a59a93e606e386a0 assets/et/blockstates/mb_slave.json
 3612004ef6b1ce7bf1b6b2d368e9b2b626964233 assets/et/blockstates/sanding_machine.json
-bfe5b3feca57dfda96a8c2afd5d79d0d866b6232 assets/et/lang/en_us.json
-7725acbfe657ce672ababc8317aa09b7526d7502 assets/et/lang/fr_fr.json
+1eeeda59881a32ee46d667d99fda85b91c099eef assets/et/lang/en_us.json
+1f7e921105c022be642a3065ff62ba4328d4199a assets/et/lang/fr_fr.json
 e6bc2fe142b78a36614ae8254802340b66426127 assets/et/models/block/caranite_block.json
 a74b1c5bf5f50a81d06cc98e81e91c8de8076bfa assets/et/models/block/caranite_ore.json
 b77b8e5be68343f62d715447f54ffcead4c438d0 assets/et/models/block/coal_generator.json
@@ -14,7 +13,6 @@ be40019dc7101e70822ef962d67ef8cd0f98b7ca assets/et/models/block/coal_generator_o
 feef764037cecff0868600676219fc586e84860a assets/et/models/block/iron_energy_pipe_connection.json
 e882cad0850ef0643148444bf7014fc1d17d578c assets/et/models/block/iron_energy_pipe_core.json
 38cbb071c693daf7d581678876da4dc01cefc1dd assets/et/models/block/mb_master.json
-5f68be37c8e8282f21fee1b296bb40c3353b9e3f assets/et/models/block/mb_slave.json
 a567939c1ee085994a710fde21ef5d585c1d3ea3 assets/et/models/block/sanding_machine.json
 fefa08512a8c486506dbaf13bd4ef47c3f6035dc assets/et/models/block/sanding_machine_on.json
 933f04030d6eba91018aa9dff39a240cfc341b74 assets/et/models/item/caranite.json
@@ -27,7 +25,6 @@ ce7b9a155e5ff6be0aa643ebc2399102acc45046 assets/et/models/item/coal_generator.js
 d0397c334b8bd8d0a7ce3c38949a9e1d2071d964 assets/et/models/item/impure_caranite.json
 48ee6e395f7da6b0c8054299e78b65b766ce4258 assets/et/models/item/iron_energy_pipe.json
 36aa14ebbae6a86bc59ed5b6699bef2756f02f7f assets/et/models/item/mb_master.json
-0f5fca83f168813326a2e51dc32b22ffbc3b245d assets/et/models/item/mb_slave.json
 2b3c714d374e18d158a2af2cd57031764e24c34b assets/et/models/item/sanding_machine.json
 05d982e313ef462fcc93ad0f789b569dc31eb2d4 assets/et/models/item/sanding_paper.json
 a22b24f36776672a2aaf59322f5a94014b11d0e4 assets/et/models/item/wrench.json
@@ -47,7 +44,7 @@ dc95f9f4413698bb4455c5b10aeda00accccdcb4 data/et/advancements/root.json
 1712999e97d9e667823f3a8d5926052e70665bde data/et/loot_tables/blocks/coal_generator.json
 8e7f18abc2f9a588e36e8ae1f6f01dee03038d13 data/et/loot_tables/blocks/iron_energy_pipe.json
 c3c7780e93581bf971c14aef4ef91f7b457064b8 data/et/loot_tables/blocks/mb_master.json
-aabfeddd89ec2f00e63a2ee53416168546c25b66 data/et/loot_tables/blocks/mb_slave.json
+374fc761ad454802cb3e7a484cfec94537b114d8 data/et/loot_tables/blocks/mb_slave.json
 e0ae9405b52b7d1aa91cb62e741a73d200d0614c data/et/loot_tables/blocks/sanding_machine.json
 c0fa2506a959cf45b9921b628314c65b8d4f10c6 data/et/materials/definition/caranite.json
 099bec59f26913accc4e9e76e8fb255617e356a8 data/et/materials/stats/caranite.json

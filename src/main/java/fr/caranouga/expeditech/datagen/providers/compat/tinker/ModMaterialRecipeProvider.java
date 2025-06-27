@@ -1,7 +1,7 @@
 package fr.caranouga.expeditech.datagen.providers.compat.tinker;
 
-import fr.caranouga.expeditech.Expeditech;
-import fr.caranouga.expeditech.registry.ModItems;
+import fr.caranouga.expeditech.common.Expeditech;
+import fr.caranouga.expeditech.common.registry.ModItems;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.IFinishedRecipe;
 import net.minecraft.data.RecipeProvider;

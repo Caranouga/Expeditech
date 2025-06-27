@@ -1,6 +1,6 @@
 package fr.caranouga.expeditech.client;
 
-import fr.caranouga.expeditech.screens.MultiblockErrorRenderer;
+import fr.caranouga.expeditech.common.screens.MultiblockErrorRenderer;
 
 public class ClientState {
     private static boolean showExpBar = false;
