@@ -54,7 +54,7 @@ public class ModBlockLootTableProvider extends LootTableProvider {
                     }
                     case DO_NOT_DROP: {
                         // No drop for this block
-                        this.add(block.get(), blockLoot -> LootTable.lootTable());
+                        //this.add(block.get(), blockLoot -> create);
                         break;
                     }
                     default: {

@@ -23,6 +23,10 @@ public class ModItems {
     public static final RegistryObject<Item> CARANITE_COAL = registerItem("caranite_coal",
             () -> new FuelItem(new Item.Properties().tab(ModTabs.EXPEDITECH), 3200 /* 160 seconds */));
 
+    public static final RegistryObject<Item> COPPER_INGOT = registerItem("copper_ingot");
+    public static final RegistryObject<Item> COPPER_NUGGET = registerItem("copper_nugget");
+    public static final RegistryObject<Item> COPPER_DUST = registerItem("copper_dust");
+
     // TODO: Add custom animation for the sanding paper
     public static final RegistryObject<SandingPaperItem> SANDING_PAPER = registerItem("sanding_paper",
             () -> new SandingPaperItem(new Item.Properties().tab(ModTabs.EXPEDITECH)));

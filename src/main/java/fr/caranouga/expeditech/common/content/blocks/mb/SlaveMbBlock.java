@@ -1,5 +1,6 @@
 package fr.caranouga.expeditech.common.content.blocks.mb;
 
+import fr.caranouga.expeditech.common.registry.ModBlocks;
 import fr.caranouga.expeditech.common.registry.ModTileEntities;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -12,7 +13,12 @@ import javax.annotation.Nullable;
 
 public class SlaveMbBlock extends Block {
     public SlaveMbBlock() {
-        super(Properties.of(Material.BARRIER));
+        super(
+                Properties.of(Material.BARRIER)
+                        .strength(-1.0F, 3600000.0F)
+                        .noDrops()
+                        .isValidSpawn(ModBlocks::never)
+        );
     }
 
     @Nullable

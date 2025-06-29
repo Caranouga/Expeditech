@@ -14,16 +14,27 @@ public class ModLanguageProvider extends CustomLanguageProvider {
     @Override
     protected void addTranslations() {
         // en_us
+        // Caranite
         addItem(ModItems.CARANITE, "Caranite");
         addItem(ModItems.IMPURE_CARANITE, "Impure Caranite");
         addItem(ModItems.CARANITE_DUST, "Caranite Dust");
         addItem(ModItems.CARANITE_NUGGET, "Caranite Nugget");
-        addItem(ModItems.SANDING_PAPER, "Sanding Paper");
         addItem(ModItems.CARANITE_COAL, "Caranite Coal");
+        // Copper
+        addItem(ModItems.COPPER_INGOT, "Copper Ingot");
+        addItem(ModItems.COPPER_DUST, "Copper Dust");
+        addItem(ModItems.COPPER_NUGGET, "Copper Nugget");
+        // Other
         addItem(ModItems.WRENCH, "Wrench");
+        addItem(ModItems.SANDING_PAPER, "Sanding Paper");
 
+        // Caranite
         addBlock(ModBlocks.CARANITE_BLOCK, "Caranite Block");
         addBlock(ModBlocks.CARANITE_ORE, "Caranite Ore");
+        // Copper
+        addBlock(ModBlocks.COPPER_ORE, "Copper Ore");
+        addBlock(ModBlocks.COPPER_BLOCK, "Copper Block");
+        // Machines
         addBlock(ModBlocks.COAL_GENERATOR, "Coal Generator");
         addBlock(ModBlocks.IRON_ENERGY_PIPE, "Iron Energy Pipe");
         addBlock(ModBlocks.SANDING_MACHINE, "Sanding Machine");
@@ -64,16 +75,28 @@ public class ModLanguageProvider extends CustomLanguageProvider {
 
         // fr_fr
         switchLocale();
+
+        // Caranite
         addItem(ModItems.CARANITE, "Caranite");
         addItem(ModItems.IMPURE_CARANITE, "Caranite Impure");
         addItem(ModItems.CARANITE_DUST, "Poussière de Caranite");
         addItem(ModItems.CARANITE_NUGGET, "Pépite de Caranite");
-        addItem(ModItems.SANDING_PAPER, "Papier de Ponçage");
         addItem(ModItems.CARANITE_COAL, "Charbon en Caranite");
+        // Copper
+        addItem(ModItems.COPPER_INGOT, "Lingot de Cuivre");
+        addItem(ModItems.COPPER_DUST, "Poussière de Cuivre");
+        addItem(ModItems.COPPER_NUGGET, "Pépite de Cuivre");
+        // Other
         addItem(ModItems.WRENCH, "Clé à Molette");
+        addItem(ModItems.SANDING_PAPER, "Papier de Ponçage");
 
+        // Caranite
         addBlock(ModBlocks.CARANITE_BLOCK, "Bloc de Caranite");
         addBlock(ModBlocks.CARANITE_ORE, "Minerai de Caranite");
+        // Copper
+        addBlock(ModBlocks.COPPER_ORE, "Minerai de Cuivre");
+        addBlock(ModBlocks.COPPER_BLOCK, "Bloc de Cuivre");
+        // Machines
         addBlock(ModBlocks.COAL_GENERATOR, "Générateur à Charbon");
         addBlock(ModBlocks.IRON_ENERGY_PIPE, "Tuyau d'Énergie en Fer");
         addBlock(ModBlocks.SANDING_MACHINE, "Machine de Ponçage");

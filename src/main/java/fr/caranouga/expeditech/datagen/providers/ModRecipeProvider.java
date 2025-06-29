@@ -21,9 +21,8 @@ public class ModRecipeProvider extends RecipeProvider {
 
     @Override
     protected void buildShapelessRecipes(Consumer<IFinishedRecipe> finishedRecipeConsumer) {
-        storageBlock(finishedRecipeConsumer, ModBlocks.CARANITE_BLOCK.get(), ModItems.CARANITE.get());
-
-        nuggets(finishedRecipeConsumer, ModItems.CARANITE.get(), ModItems.CARANITE_NUGGET.get());
+        storageBlockAndNuggets(finishedRecipeConsumer, ModBlocks.CARANITE_BLOCK.get(), ModItems.CARANITE.get(), ModItems.CARANITE_NUGGET.get());
+        storageBlockAndNuggets(finishedRecipeConsumer, ModBlocks.COPPER_BLOCK.get(), ModItems.COPPER_INGOT.get(), ModItems.COPPER_NUGGET.get());
 
         ShapelessRecipeBuilder.shapeless(ModItems.SANDING_PAPER.get(), 1)
                 .requires(Tags.Items.SAND)
@@ -78,6 +77,11 @@ public class ModRecipeProvider extends RecipeProvider {
                 .requires(item)
                 .unlockedBy("has_item", has(item))
                 .save(finishedRecipeConsumer, modLocation(getName(nugget) + "_from_" + getName(item)));
+    }
+
+    private void storageBlockAndNuggets(Consumer<IFinishedRecipe> finishedRecipeConsumer, Block block, Item item, Item nugget) {
+        storageBlock(finishedRecipeConsumer, block, item);
+        nuggets(finishedRecipeConsumer, item, nugget);
     }
 
     private String getName(ForgeRegistryEntry<?> entry) {

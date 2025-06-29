@@ -37,9 +37,9 @@ public abstract class AbstractMachineBlock extends Block {
 
     public AbstractMachineBlock(String id) {
         super(AbstractBlock.Properties.of(Material.METAL)
-                .strength(5.0F, 6.0F)
+                .strength(3.5f)
                 .harvestTool(ToolType.PICKAXE)
-                .harvestLevel(2)
+                .harvestLevel(1)
                 .requiresCorrectToolForDrops());
         this.id = id;
 

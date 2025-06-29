@@ -6,6 +6,8 @@ import fr.caranouga.expeditech.datagen.providers.compat.tinker.ModMaterialDataPr
 import fr.caranouga.expeditech.datagen.providers.compat.tinker.ModMaterialRecipeProvider;
 import fr.caranouga.expeditech.datagen.providers.compat.tinker.ModMaterialStatsProvider;
 import fr.caranouga.expeditech.datagen.providers.compat.tinker.ModMaterialTraitsProvider;
+import fr.caranouga.expeditech.datagen.providers.tags.ModBlockTagsProvider;
+import fr.caranouga.expeditech.datagen.providers.tags.ModItemTagsProvider;
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -26,6 +28,9 @@ public class ModDataGenerator {
         generator.addProvider(new ModItemModelsProvider(generator, existingFileHelper));
         generator.addProvider(new ModLanguageProvider(generator));
         generator.addProvider(new ModRecipeProvider(generator));
+        ModBlockTagsProvider blockTagsProvider = new ModBlockTagsProvider(generator, existingFileHelper);
+        generator.addProvider(blockTagsProvider);
+        generator.addProvider(new ModItemTagsProvider(generator, blockTagsProvider, existingFileHelper));
 
         // Tinkers' Construct compatibility
         ModMaterialDataProvider materialDataProvider = new ModMaterialDataProvider(generator);

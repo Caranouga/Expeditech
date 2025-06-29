@@ -14,8 +14,12 @@ import fr.caranouga.expeditech.common.utils.BlockStateType;
 import fr.caranouga.expeditech.common.utils.LootTypeEntry;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
 import net.minecraft.block.material.Material;
+import net.minecraft.entity.EntityType;
 import net.minecraft.item.*;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockReader;
 import net.minecraftforge.common.ToolType;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.RegistryObject;
@@ -33,23 +37,34 @@ public class ModBlocks {
     public static final Map<RegistryObject<? extends Block>, BlockEntry> BLOCKS_ENTRIES = new HashMap<>();
 
     // Storage blocks
-    public static final RegistryObject<Block> CARANITE_BLOCK = registerStorageBlock("caranite_block");
+    public static final RegistryObject<Block> CARANITE_BLOCK = registerStorageBlock("caranite_block", AbstractBlock.Properties.of(Material.METAL)
+                .strength(5.0F, 6.0F)
+                .harvestTool(ToolType.PICKAXE)
+                .harvestLevel(2)
+                .requiresCorrectToolForDrops()
+    );
+    public static final RegistryObject<Block> COPPER_BLOCK = registerStorageBlock("copper_block", AbstractBlock.Properties.of(Material.METAL)
+            .strength(5.0F, 6.0F)
+            .harvestTool(ToolType.PICKAXE)
+            .harvestLevel(1)
+            .requiresCorrectToolForDrops()
+    );
 
     // Ores
-    public static final RegistryObject<Block> CARANITE_ORE = registerOre("caranite_ore", ModItems.IMPURE_CARANITE);
+    public static final RegistryObject<Block> CARANITE_ORE = registerOre("caranite_ore", AbstractBlock.Properties.of(Material.STONE)
+            .strength(3.0F, 3.0F)
+            .harvestTool(ToolType.PICKAXE)
+            .harvestLevel(2)
+            .requiresCorrectToolForDrops(), ModItems.IMPURE_CARANITE);
+    public static final RegistryObject<Block> COPPER_ORE = registerOre("copper_ore", AbstractBlock.Properties.of(Material.STONE)
+            .strength(3.0F, 3.0F)
+            .harvestTool(ToolType.PICKAXE)
+            .harvestLevel(1)
+            .requiresCorrectToolForDrops());
 
     // Machines
     public static final RegistryObject<CoalGeneratorMachine> COAL_GENERATOR = registerMachineBlock("coal_generator", CoalGeneratorMachine::new);
     public static final RegistryObject<SandingMachine> SANDING_MACHINE = registerMachineBlock("sanding_machine", SandingMachine::new);
-
-    /*public static final RegistryObject<VoidMachine> VOID_MACHINE = registerVoidMachine(() -> new VoidMachine());
-
-    public static RegistryObject<VoidMachine> registerVoidMachine(Supplier<VoidMachine> supp){
-        RegistryObject<VoidMachine> block = BLOCKS.register("void_machine", supp);
-        registerItemBlock("void_machine", block);
-
-        return block;
-    }*/
 
     // Pipes
     public static final RegistryObject<IronEnergyPipe> IRON_ENERGY_PIPE = registerPipe("iron", PipeTypes.ENERGY, IronEnergyPipe::new);
@@ -102,14 +117,6 @@ public class ModBlocks {
         return block;
     }
 
-    private static RegistryObject<Block> registerOre(String name, RegistryObject<Item> drop) {
-        return registerOre(name, AbstractBlock.Properties.of(Material.STONE)
-                .strength(3.0F, 3.0F)
-                .harvestTool(ToolType.PICKAXE)
-                .harvestLevel(2)
-                .requiresCorrectToolForDrops(), drop);
-    }
-
     private static RegistryObject<Block> registerOre(String name, AbstractBlock.Properties properties, RegistryObject<Item> drop) {
         RegistryObject<Block> block = BLOCKS.register(name, () -> new Block(properties));
 
@@ -120,13 +127,14 @@ public class ModBlocks {
         return block;
     }
 
-    private static RegistryObject<Block> registerStorageBlock(String name) {
-        return registerStorageBlock(name, AbstractBlock.Properties.of(Material.METAL)
-                .strength(5.0F, 6.0F)
-                .harvestTool(ToolType.PICKAXE)
-                .harvestLevel(2)
-                .requiresCorrectToolForDrops()
-        );
+    private static RegistryObject<Block> registerOre(String name, AbstractBlock.Properties properties) {
+        RegistryObject<Block> block = BLOCKS.register(name, () -> new Block(properties));
+
+        // Register the block item
+        registerItemBlock(name, block);
+        addBlockEntry(block, new BlockEntry(new LootTypeEntry(LootTypeEntry.LootType.DROP_SELF), BlockStateType.CUBE_ALL));
+
+        return block;
     }
 
     private static RegistryObject<Block> registerStorageBlock(String name, AbstractBlock.Properties properties){
@@ -139,21 +147,15 @@ public class ModBlocks {
         return block;
     }
 
-    /*private static RegistryObject<Block> registerBlock(String name) {
-        RegistryObject<Block> block = BLOCKS.register(name, () -> new Block(AbstractBlock.Properties.of(Material.METAL)));
-
-        // Register the block item
-        registerItemBlock(name, block);
-
-        return block;
-    }*/
-
     // Utils
     private static <T extends Block> void registerItemBlock(String name, RegistryObject<T> block) {
         registerItem(name, () -> new BlockItem(block.get(), new Item.Properties().tab(ModTabs.EXPEDITECH)));
     }
     private static <T extends Block> void addBlockEntry(RegistryObject<T> block, BlockEntry entry) {
         BLOCKS_ENTRIES.put(block, entry);
+    }
+    public static boolean never(BlockState state, IBlockReader world, BlockPos pos, EntityType<?> entType) {
+        return false;
     }
     // endregion
 
