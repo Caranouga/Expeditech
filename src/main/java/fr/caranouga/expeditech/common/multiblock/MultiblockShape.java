@@ -5,8 +5,11 @@ import fr.caranouga.expeditech.common.registry.ModBlocks;
 import fr.caranouga.expeditech.common.content.tiles.mb.SlaveMbTile;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.nbt.INBT;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Direction;
+import net.minecraft.util.Tuple;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
@@ -59,7 +62,7 @@ public class MultiblockShape {
         return mismatches;
     }
 
-    public void saveAndPrepareMultiblock(Direction direction, World world, BlockPos masterPos, Map<BlockPos, Block> savedBlocks) {
+    public void saveAndPrepareMultiblock(Direction direction, World world, BlockPos masterPos, Map<BlockPos, BlockState> savedBlocks) {
         BlockPos startPos = offset(masterPos, direction, masterRelative);
 
         for (int y = 0; y < layers.length; y++) {
@@ -68,12 +71,13 @@ public class MultiblockShape {
                     BlockPos pos = offset(startPos, direction, x, y, z);
                     if(pos.equals(masterPos)) continue;
 
-                    savedBlocks.put(pos, world.getBlockState(pos).getBlock());
+                    savedBlocks.put(pos, world.getBlockState(pos));
                     world.setBlockAndUpdate(pos, ModBlocks.MB_SLAVE.get().defaultBlockState());
 
                     TileEntity tile = world.getBlockEntity(pos);
                     if (tile instanceof SlaveMbTile) {
                         ((SlaveMbTile) tile).setMaster(masterPos, world);
+                        ((SlaveMbTile) tile).setOriginalBlock(savedBlocks.get(pos));
                     } else {
                         Expeditech.LOGGER.error("Failed to set SlaveMbTile at {}, expected a SlaveMbTile but found: {}", pos, world.getBlockEntity(pos));
                     }

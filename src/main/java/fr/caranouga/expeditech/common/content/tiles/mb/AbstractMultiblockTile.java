@@ -3,11 +3,8 @@ package fr.caranouga.expeditech.common.content.tiles.mb;
 import fr.caranouga.expeditech.common.Expeditech;
 import fr.caranouga.expeditech.common.multiblock.MultiblockShape;
 import fr.caranouga.expeditech.common.packets.MultiblockErrorPacket;
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.network.NetworkManager;
-import net.minecraft.network.play.server.SUpdateTileEntityPacket;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityType;
@@ -29,7 +26,7 @@ import static fr.caranouga.expeditech.common.multiblock.MultiblockShape.DIRECTIO
 public abstract class AbstractMultiblockTile extends TileEntity implements ITickableTileEntity {
     private boolean isFormed = false;
     private final MultiblockShape shape;
-    private final Map<BlockPos, Block> savedBlocks = new HashMap<>();
+    private final Map<BlockPos, BlockState> savedBlocks = new HashMap<>();
 
     public AbstractMultiblockTile(TileEntityType<?> tileEntityType) {
         super(tileEntityType);
@@ -56,6 +53,8 @@ public abstract class AbstractMultiblockTile extends TileEntity implements ITick
     }
 
     public boolean tryBuild(Direction firstDirection) {
+        if(isFormed) return false;
+
         Map<Direction, Map<BlockPos, ITextComponent>> mismatchesMap = new HashMap<>();
         Direction goodDirection = null;
 
@@ -152,6 +151,8 @@ public abstract class AbstractMultiblockTile extends TileEntity implements ITick
 
     private void build(){
         this.isFormed = true;
+
+        setChanged();
         level.sendBlockUpdated(getBlockPos(), getBlockState(), getBlockState(), Constants.BlockFlags.BLOCK_UPDATE | Constants.BlockFlags.NOTIFY_NEIGHBORS);
     }
 
@@ -165,21 +166,29 @@ public abstract class AbstractMultiblockTile extends TileEntity implements ITick
         world.destroyBlock(slavePos, true);
     }
 
+    public void registerNewSlave(SlaveMbTile slaveTile) {
+        savedBlocks.put(slaveTile.getBlockPos(), slaveTile.getOriginalBlockState());
+    }
+
     private boolean unform() {
         if(!isFormed) return false;
 
         // Logic to unform the multiblock structure
         this.isFormed = false;
+        setChanged();
         level.sendBlockUpdated(getBlockPos(), getBlockState(), getBlockState(), Constants.BlockFlags.BLOCK_UPDATE | Constants.BlockFlags.NOTIFY_NEIGHBORS);
         replaceOriginalBlocks();
+
+        // Clear saved blocks after unforming
+        savedBlocks.clear();
 
         return true;
     }
 
     private void replaceOriginalBlocks(){
         this.savedBlocks.forEach((pos, block) -> {
-            if(level.getBlockState(pos).getBlock() != block) {
-                level.setBlockAndUpdate(pos, block.defaultBlockState());
+            if(level.getBlockState(pos).getBlock() != block.getBlock()) {
+                level.setBlockAndUpdate(pos, block);
             }
         });
     }
@@ -191,7 +200,7 @@ public abstract class AbstractMultiblockTile extends TileEntity implements ITick
     }
 
     // region Data Saving (World load/save)
-    @Override
+    /*@Override
     public SUpdateTileEntityPacket getUpdatePacket(){
         CompoundNBT nbtTag = new CompoundNBT();
         //Write your data into the nbtTag
@@ -209,24 +218,24 @@ public abstract class AbstractMultiblockTile extends TileEntity implements ITick
         if(tag.contains("isFormed")) {
             isFormed = tag.getBoolean("isFormed");
         }
-    }
+    }*/
 
     @Override
     public void load(BlockState state, CompoundNBT nbt) {
+        super.load(state, nbt);
+
         if(nbt.contains("isFormed")){
             isFormed = nbt.getBoolean("isFormed");
-        } else {
-            isFormed = false; // Default value if not present
         }
-
-        super.load(state, nbt);
     }
 
     @Override
     public CompoundNBT save(CompoundNBT pCompound) {
-        pCompound.putBoolean("isFormed", isFormed);
+        CompoundNBT tag = super.save(pCompound);
 
-        return super.save(pCompound);
+        tag.putBoolean("isFormed", isFormed);
+
+        return tag;
     }
     // endregion
 }
