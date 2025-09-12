@@ -1,19 +1,20 @@
-package fr.caranouga.expeditech.common.screens;
+package fr.caranouga.expeditech.client.screens;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
-import fr.caranouga.expeditech.common.content.containers.SandingMachineContainer;
-import fr.caranouga.expeditech.common.screens.widgets.ProgressBarWidget;
+import fr.caranouga.expeditech.common.content.containers.CoalGeneratorContainer;
+import fr.caranouga.expeditech.client.screens.widgets.ProgressBarWidget;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.text.ITextComponent;
 
-public class SandingMachineScreen extends AbstractMachineScreen<SandingMachineContainer> {
+public class CoalGeneratorScreen extends AbstractMachineScreen<CoalGeneratorContainer> {
     private final ProgressBarWidget progressBarWidget = new ProgressBarWidget(48, 18, 0x3da000);
     private final ProgressBarWidget energyBarWidget = new ProgressBarWidget(48, 62, 0xa02000);
 
-    public SandingMachineScreen(SandingMachineContainer pMenu, PlayerInventory pPlayerInventory, ITextComponent pTitle) {
-        super(pMenu, pPlayerInventory, pTitle, "sanding_machine");
+    public CoalGeneratorScreen(CoalGeneratorContainer pMenu, PlayerInventory pPlayerInventory, ITextComponent pTitle) {
+        super(pMenu, pPlayerInventory, pTitle, "coal_generator");
     }
 
+    // TODO: Remove duplicated code, add interface ?
     @Override
     protected void renderBg(MatrixStack pMatrixStack, float pPartialTicks, int pX, int pY) {
         super.renderBg(pMatrixStack, pPartialTicks, pX, pY);
@@ -28,6 +29,7 @@ public class SandingMachineScreen extends AbstractMachineScreen<SandingMachineCo
         this.energyBarWidget.render(pMatrixStack, i, j, this.menu.getScaledEnergy());
     }
 
+    // TODO: Remove hardcoded values here, fetch them from the widget instead
     @Override
     protected void renderTooltip(MatrixStack pPoseStack, int pX, int pY) {
         if(pX >= this.leftPos + 48 && pX <= this.leftPos + 48 + ProgressBarWidget.WIDTH &&

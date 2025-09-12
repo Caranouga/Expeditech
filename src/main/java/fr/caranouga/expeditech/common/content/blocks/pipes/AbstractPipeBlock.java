@@ -135,6 +135,7 @@ public abstract class AbstractPipeBlock extends Block implements IWaterLoggable 
     private VoxelShape getShape(BlockState state) {
         VoxelShape shape = SHAPE_CORE;
 
+        //noinspection DuplicatedCode
         if (state.getValue(UP)) {
             shape = VoxelUtils.combine(shape, SHAPE_UP);
         }
@@ -144,6 +145,7 @@ public abstract class AbstractPipeBlock extends Block implements IWaterLoggable 
         if (state.getValue(SOUTH)) {
             shape = VoxelUtils.combine(shape, SHAPE_SOUTH);
         }
+        //noinspection DuplicatedCode
         if (state.getValue(NORTH)) {
             shape = VoxelUtils.combine(shape, SHAPE_NORTH);
         }

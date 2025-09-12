@@ -6,9 +6,7 @@ pluginManagement {
             name = 'MinecraftForge'
             url = 'https://maven.minecraftforge.net/'
         }
-        repositories {
-            maven { url = 'https://maven.parchmentmc.org' }
-        }
+        maven { url = 'https://maven.parchmentmc.org' }
     }
 }
 

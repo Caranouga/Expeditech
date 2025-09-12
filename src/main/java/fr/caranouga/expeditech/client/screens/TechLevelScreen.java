@@ -1,8 +1,8 @@
-package fr.caranouga.expeditech.common.screens;
+package fr.caranouga.expeditech.client.screens;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 import fr.caranouga.expeditech.common.registry.ModCapabilities;
-import fr.caranouga.expeditech.common.screens.widgets.ProgressBarWidget;
+import fr.caranouga.expeditech.client.screens.widgets.ProgressBarWidget;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.AbstractGui;
 import net.minecraft.entity.player.PlayerEntity;

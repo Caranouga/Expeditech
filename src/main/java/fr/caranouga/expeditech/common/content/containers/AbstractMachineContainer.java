@@ -1,5 +1,6 @@
 package fr.caranouga.expeditech.common.content.containers;
 
+import fr.caranouga.expeditech.common.capability.energy.CustomEnergyStorage;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -9,6 +10,9 @@ import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IWorldPosCallable;
+import net.minecraft.util.IntReferenceHolder;
+import net.minecraftforge.energy.CapabilityEnergy;
+import net.minecraftforge.energy.IEnergyStorage;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
@@ -28,6 +32,40 @@ public abstract class AbstractMachineContainer<T extends TileEntity> extends Con
         this.player = player;
         this.playerInv = new InvWrapper(playerInv);
         layoutPlayerInv(8, 86);
+
+        if(hasEnergy()) trackEnergy();
+    }
+
+    private void trackEnergy(){
+        addDataSlot(new IntReferenceHolder() {
+            @Override
+            public int get() {
+                return getEnergyStored() & 0xFFFF;
+            }
+
+            @Override
+            public void set(int pValue) {
+                tileEntity.getCapability(CapabilityEnergy.ENERGY).ifPresent(handler -> {
+                    int energyStored = handler.getEnergyStored() & 0xffff0000;
+                    ((CustomEnergyStorage) handler).setEnergy(energyStored + (pValue & 0xFFFF));
+                });
+            }
+        });
+
+        addDataSlot(new IntReferenceHolder() {
+            @Override
+            public int get() {
+                return (getEnergyStored() >> 16) & 0xFFFF;
+            }
+
+            @Override
+            public void set(int pValue) {
+                tileEntity.getCapability(CapabilityEnergy.ENERGY).ifPresent(handler -> {
+                    int energyStored = handler.getEnergyStored() & 0x0000FFFF;
+                    ((CustomEnergyStorage) handler).setEnergy(energyStored | (pValue << 16));
+                });
+            }
+        });
     }
 
     @Override
@@ -98,7 +136,7 @@ public abstract class AbstractMachineContainer<T extends TileEntity> extends Con
         return idx;
     }
 
-    private int addSlotBox(IItemHandler handler, int idx, int x, int y, int horizontalAmount, int dx, int verticalAmount, int dy){
+    private void addSlotBox(IItemHandler handler, int idx, int x, int y, int horizontalAmount, int dx, int verticalAmount, int dy){
         for (int i = 0; i < verticalAmount; i++) {
             idx = addSlotRange(handler, idx, x, y, horizontalAmount, dx);
             y += dy;
@@ -110,5 +148,17 @@ public abstract class AbstractMachineContainer<T extends TileEntity> extends Con
         return this.tileEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY)
                 .orElseThrow(() -> new IllegalArgumentException("TileEntity does not have an item handler"))
                 .getSlots();
+    }
+
+    private boolean hasEnergy() {
+        return this instanceof IHasEnergy;
+    }
+
+    public int getEnergyStored() {
+        return tileEntity.getCapability(CapabilityEnergy.ENERGY).map(IEnergyStorage::getEnergyStored).orElse(0);
+    }
+
+    public int getMaxEnergyStored() {
+        return tileEntity.getCapability(CapabilityEnergy.ENERGY).map(IEnergyStorage::getMaxEnergyStored).orElse(0);
     }
 }

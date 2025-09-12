@@ -1,7 +1,7 @@
-package fr.caranouga.expeditech.common.screens.widgets.jei;
+package fr.caranouga.expeditech.client.screens.widgets.jei;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
-import fr.caranouga.expeditech.common.screens.widgets.AbstractWidget;
+import fr.caranouga.expeditech.client.screens.widgets.AbstractWidget;
 import mezz.jei.api.gui.drawable.IDrawable;
 import mezz.jei.api.helpers.IGuiHelper;
 

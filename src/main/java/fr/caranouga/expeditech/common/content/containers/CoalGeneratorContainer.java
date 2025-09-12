@@ -1,6 +1,5 @@
 package fr.caranouga.expeditech.common.content.containers;
 
-import fr.caranouga.expeditech.common.capability.energy.CustomEnergyStorage;
 import fr.caranouga.expeditech.common.registry.ModBlocks;
 import fr.caranouga.expeditech.common.registry.ModContainers;
 import fr.caranouga.expeditech.common.content.tiles.machines.CoalGeneratorMachineTile;
@@ -14,7 +13,7 @@ import net.minecraftforge.energy.IEnergyStorage;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 
-public class CoalGeneratorContainer extends AbstractMachineContainer<CoalGeneratorMachineTile> {
+public class CoalGeneratorContainer extends AbstractMachineContainer<CoalGeneratorMachineTile> implements IHasEnergy {
     public CoalGeneratorContainer(int pContainerId, World world, BlockPos pos, PlayerInventory playerInv, PlayerEntity player) {
         super(ModContainers.COAL_GENERATOR_CONTAINER.get(), pContainerId, playerInv, player, ModBlocks.COAL_GENERATOR.get(), (CoalGeneratorMachineTile) world.getBlockEntity(pos));
 
@@ -24,40 +23,7 @@ public class CoalGeneratorContainer extends AbstractMachineContainer<CoalGenerat
             });
         }
 
-        trackPower();
         trackProgress();
-    }
-
-    private void trackPower(){
-        addDataSlot(new IntReferenceHolder() {
-            @Override
-            public int get() {
-                return getEnergyStored() & 0xFFFF;
-            }
-
-            @Override
-            public void set(int pValue) {
-                tileEntity.getCapability(CapabilityEnergy.ENERGY).ifPresent(handler -> {
-                    int energyStored = handler.getEnergyStored() & 0xffff0000;
-                    ((CustomEnergyStorage) handler).setEnergy(energyStored + (pValue & 0xFFFF));
-                });
-            }
-        });
-
-        addDataSlot(new IntReferenceHolder() {
-            @Override
-            public int get() {
-                return (getEnergyStored() >> 16) & 0xFFFF;
-            }
-
-            @Override
-            public void set(int pValue) {
-                tileEntity.getCapability(CapabilityEnergy.ENERGY).ifPresent(handler -> {
-                    int energyStored = handler.getEnergyStored() & 0x0000FFFF;
-                    ((CustomEnergyStorage) handler).setEnergy(energyStored | (pValue << 16));
-                });
-            }
-        });
     }
 
     private void trackProgress() {

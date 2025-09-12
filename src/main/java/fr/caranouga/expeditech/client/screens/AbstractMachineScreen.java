@@ -1,4 +1,4 @@
-package fr.caranouga.expeditech.common.screens;
+package fr.caranouga.expeditech.client.screens;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;

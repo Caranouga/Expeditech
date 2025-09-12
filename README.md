@@ -6,7 +6,7 @@
 [![Build Status][jenkins-shield]][jenkins-url]
 
 <br />
-<div align="center">
+<div align="center" id="top">
     <a href="https://github.com/caranouga/Expeditech">
         <img src="images/icon.png" alt="Latest Release" width="200" height="200" />
     </a>
@@ -43,6 +43,7 @@
 
 
 ## About The Project
+<div id="about-the-project"></div>
 
 ...
 
@@ -50,6 +51,7 @@
 
 
 ## Getting Started
+<div id="getting-started"></div>
 
 You can download the latest version of Expeditech from the [Releases](https://github.com/caranouga/Expeditech/releases) page or from [CurseForge](https://github.com/Caranouga/Expeditech) (SOON)
 <br />
@@ -61,9 +63,12 @@ If you want to contribute to the project, you can clone the repository and build
 To get a local copy up and running follow these simple steps.
 
 ### Prerequisites
+<div id="prerequisites"></div>
+
 * Windows 10 or later (This project was not tested on other operating systems)
 
 ### Installation
+<div id="installation"></div>
 
 1. Clone the repo
 ```sh
@@ -94,6 +99,7 @@ or
 
 
 ## Contributing
+<div id="contributing"></div>
 
 Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
 If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
@@ -107,12 +113,14 @@ Don't forget to give the project a star
 
 
 ## License
+<div id="license"></div>
 
 Distributed under the MIT License. See `LICENSE` for more information.
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 
 ## Contact
+<div id="contact"></div>
 
 Caranouga - malone.payet@caradev.fr
 Project Link: [https://github.com/caranouga/Expeditech](https://github.com/caranouga/Expeditech)

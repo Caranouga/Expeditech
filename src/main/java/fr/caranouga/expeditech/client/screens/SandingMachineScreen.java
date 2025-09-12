@@ -1,17 +1,17 @@
-package fr.caranouga.expeditech.common.screens;
+package fr.caranouga.expeditech.client.screens;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
-import fr.caranouga.expeditech.common.content.containers.CoalGeneratorContainer;
-import fr.caranouga.expeditech.common.screens.widgets.ProgressBarWidget;
+import fr.caranouga.expeditech.common.content.containers.SandingMachineContainer;
+import fr.caranouga.expeditech.client.screens.widgets.ProgressBarWidget;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.text.ITextComponent;
 
-public class CoalGeneratorScreen extends AbstractMachineScreen<CoalGeneratorContainer> {
+public class SandingMachineScreen extends AbstractMachineScreen<SandingMachineContainer> {
     private final ProgressBarWidget progressBarWidget = new ProgressBarWidget(48, 18, 0x3da000);
     private final ProgressBarWidget energyBarWidget = new ProgressBarWidget(48, 62, 0xa02000);
 
-    public CoalGeneratorScreen(CoalGeneratorContainer pMenu, PlayerInventory pPlayerInventory, ITextComponent pTitle) {
-        super(pMenu, pPlayerInventory, pTitle, "coal_generator");
+    public SandingMachineScreen(SandingMachineContainer pMenu, PlayerInventory pPlayerInventory, ITextComponent pTitle) {
+        super(pMenu, pPlayerInventory, pTitle, "sanding_machine");
     }
 
     @Override

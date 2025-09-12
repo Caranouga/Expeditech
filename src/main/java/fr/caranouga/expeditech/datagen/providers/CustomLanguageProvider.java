@@ -92,6 +92,7 @@ public abstract class CustomLanguageProvider implements IDataProvider {
         }
     }
 
+    @SuppressWarnings("UnstableApiUsage")
     private void save(DirectoryCache cache, Map<String, String> dataMap, Path path) throws IOException {
         String data = GSON.toJson(dataMap);
         data = JavaUnicodeEscaper.outsideOf(0, 0x7f).translate(data); // Escape unicode after the fact so that it's not double escaped by GSON

@@ -9,7 +9,7 @@ import fr.caranouga.expeditech.client.ClientState;
 import fr.caranouga.expeditech.common.commands.MultiblockSetupCommand;
 import fr.caranouga.expeditech.common.commands.TechLevelCommand;
 import fr.caranouga.expeditech.common.registry.ModCapabilities;
-import fr.caranouga.expeditech.common.screens.TechLevelScreen;
+import fr.caranouga.expeditech.client.screens.TechLevelScreen;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.player.ClientPlayerEntity;
 import net.minecraft.entity.Entity;
