@@ -3,11 +3,13 @@ package fr.caranouga.expeditech.common;
 import fr.caranouga.expeditech.common.configs.ClientConfig;
 import fr.caranouga.expeditech.common.configs.CommonConfig;
 import fr.caranouga.expeditech.common.configs.ServerConfig;
+import fr.caranouga.expeditech.common.content.tiles.mb.MasterMbTile;
 import fr.caranouga.expeditech.common.registry.*;
 import fr.caranouga.expeditech.common.triggers.AdvancementTriggers;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.ModLoadingContext;
+import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
@@ -25,14 +27,6 @@ import static fr.caranouga.expeditech.common.utils.StringUtils.modLocation;
 @Mod(Expeditech.MODID)
 public class Expeditech
 {
-    // TODO: Advancements
-    // TODO: Patchouli (changer texture du livre)
-    // TODO: Refaire les pipes
-    // TODO: Changer les textures
-    // TODO: Ajouter une anim sur le feu du coal generator
-    // TODO: Test sur srv
-    // TODO: Completer les mb
-
     public static final Logger LOGGER = LogManager.getLogger();
     public static final String MODID = "et";
 
