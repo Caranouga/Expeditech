@@ -141,7 +141,6 @@ public abstract class AbstractMachineContainer<T extends TileEntity> extends Con
             idx = addSlotRange(handler, idx, x, y, horizontalAmount, dx);
             y += dy;
         }
-        return idx;
     }
 
     protected int getNumberOfSlots(){
