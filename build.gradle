@@ -102,8 +102,8 @@ dependencies {
     runtimeOnly fg.deobf("vazkii.patchouli:Patchouli:${patchouli_version}")
 
     // Tinkers' Construct (+ Mantle)
-    implementation fg.deobf("slimeknights.mantle:Mantle:${minecraft_version}-${mantle_version}")
-    implementation fg.deobf("slimeknights.tconstruct:TConstruct:${minecraft_version}-${tinker_version}")
+    // implementation fg.deobf("slimeknights.mantle:Mantle:${minecraft_version}-${mantle_version}")
+    // implementation fg.deobf("slimeknights.tconstruct:TConstruct:${minecraft_version}-${tinker_version}")
 
     // GeckoLib
     implementation fg.deobf("software.bernie.geckolib:geckolib-forge-${minecraft_version}:${geckolib_version}")
