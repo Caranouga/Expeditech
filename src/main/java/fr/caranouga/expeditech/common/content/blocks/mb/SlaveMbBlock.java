@@ -107,7 +107,7 @@ public class SlaveMbBlock extends Block {
     @Override
     public float getExplosionResistance(BlockState state, IBlockReader world, BlockPos pos, Explosion explosion) {
             Expeditech.LOGGER.debug("getexplres");
-
+        // TODO: idem que en bas
         Block originalBlock = getOriginalBlock(world, pos);
         if (originalBlock != null) return originalBlock.getExplosionResistance(state, world, pos, explosion);
 
