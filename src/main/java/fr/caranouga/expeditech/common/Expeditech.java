@@ -36,6 +36,7 @@ public class Expeditech
             PROTOCOL_VERSION::equals
     );
 
+    // WARNING: The correct property to put in Intellij is -DisInIDE
     public static final boolean IS_IN_IDE = Boolean.parseBoolean(System.getProperty("isInIDE", "false"));
 
     public Expeditech() {
@@ -59,7 +60,6 @@ public class Expeditech
         modLoadingCtx.registerConfig(ModConfig.Type.COMMON, CommonConfig.COMMON_CONFIG, MODID + "-common.toml");
         modLoadingCtx.registerConfig(ModConfig.Type.CLIENT, ClientConfig.CLIENT_CONFIG, MODID + "-client.toml");
         modLoadingCtx.registerConfig(ModConfig.Type.SERVER, ServerConfig.SERVER_CONFIG, MODID + "-server.toml");
-
     }
 
     private void setup(final FMLCommonSetupEvent event) {

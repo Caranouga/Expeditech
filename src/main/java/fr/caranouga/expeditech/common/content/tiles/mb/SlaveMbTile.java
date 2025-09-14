@@ -1,6 +1,8 @@
 package fr.caranouga.expeditech.common.content.tiles.mb;
 
+import fr.caranouga.expeditech.common.content.blocks.mb.SlaveMbBlock;
 import fr.caranouga.expeditech.common.registry.ModTileEntities;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.NBTUtil;
@@ -9,9 +11,12 @@ import net.minecraft.network.play.server.SUpdateTileEntityPacket;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.common.ToolType;
 import net.minecraftforge.common.util.Constants;
 
 import javax.annotation.Nullable;
+
+import static fr.caranouga.expeditech.common.content.blocks.mb.SlaveMbBlock.convertToolType;
 
 // TODO: Ajouter inté theoneprobe (afficher le nom du multiblock et son état (complet ou non)) et pas slaveTile
 
@@ -40,7 +45,14 @@ public class SlaveMbTile extends TileEntity {
     public void setOriginalBlock(BlockState state){
         this.originalBlock = state;
 
-        level.sendBlockUpdated(getBlockPos(), getBlockState(), getBlockState(), Constants.BlockFlags.BLOCK_UPDATE | Constants.BlockFlags.NOTIFY_NEIGHBORS);
+        Block block = state.getBlock();
+        ToolType harvestTool = block.getHarvestTool(state);
+        int harvestLevel = block.getHarvestLevel(state);
+        level.setBlockAndUpdate(this.worldPosition, getBlockState()
+                .setValue(SlaveMbBlock.TOOL_TYPE, convertToolType(harvestTool))
+                .setValue(SlaveMbBlock.HARVEST_LEVEL, harvestLevel));
+
+        //level.sendBlockUpdated(getBlockPos(), getBlockState(), getBlockState(), Constants.BlockFlags.BLOCK_UPDATE | Constants.BlockFlags.NOTIFY_NEIGHBORS);
         setChanged();
     }
 
@@ -132,7 +144,8 @@ public class SlaveMbTile extends TileEntity {
 
     private void readTagClient(CompoundNBT tag){
         if (tag.contains("ogBlock")) {
-            originalBlock = NBTUtil.readBlockState(tag.getCompound("ogBlock"));
+            //originalBlock = NBTUtil.readBlockState(tag.getCompound("ogBlock"));
+            setOriginalBlock(NBTUtil.readBlockState(tag.getCompound("ogBlock")));
         }
     }
     // endregion

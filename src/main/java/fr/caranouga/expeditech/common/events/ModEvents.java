@@ -6,6 +6,7 @@ import fr.caranouga.expeditech.common.Expeditech;
 import fr.caranouga.expeditech.common.capability.techlevel.TechLevelProvider;
 import fr.caranouga.expeditech.common.capability.techlevel.TechLevelUtils;
 import fr.caranouga.expeditech.client.ClientState;
+import fr.caranouga.expeditech.common.commands.MultiblockConvertCommand;
 import fr.caranouga.expeditech.common.commands.MultiblockSetupCommand;
 import fr.caranouga.expeditech.common.commands.TechLevelCommand;
 import fr.caranouga.expeditech.common.registry.ModCapabilities;
@@ -61,6 +62,7 @@ public class ModEvents {
         new TechLevelCommand(event.getDispatcher());
         if(Expeditech.IS_IN_IDE){
             new MultiblockSetupCommand(event.getDispatcher());
+            new MultiblockConvertCommand(event.getDispatcher());
         }
         //TestCommand.register(event.getDispatcher());
     }
