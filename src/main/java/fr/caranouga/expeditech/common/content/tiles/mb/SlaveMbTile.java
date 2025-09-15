@@ -42,6 +42,11 @@ public class SlaveMbTile extends TileEntity {
         setChanged();
     }
 
+    @Nullable
+    public AbstractMultiblockTile getMasterTile() {
+        return masterTile;
+    }
+
     public void setOriginalBlock(BlockState state){
         this.originalBlock = state;
 

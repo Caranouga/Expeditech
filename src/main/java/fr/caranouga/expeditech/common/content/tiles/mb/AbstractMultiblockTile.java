@@ -170,7 +170,7 @@ public abstract class AbstractMultiblockTile extends TileEntity implements ITick
         savedBlocks.put(slaveTile.getBlockPos(), slaveTile.getOriginalBlockState());
     }
 
-    private boolean unform() {
+    public boolean unform() {
         if(!isFormed) return false;
 
         // Logic to unform the multiblock structure
@@ -191,6 +191,10 @@ public abstract class AbstractMultiblockTile extends TileEntity implements ITick
                 level.setBlockAndUpdate(pos, block);
             }
         });
+    }
+
+    public boolean isBuilt() {
+        return this.isFormed;
     }
 
     @Override
