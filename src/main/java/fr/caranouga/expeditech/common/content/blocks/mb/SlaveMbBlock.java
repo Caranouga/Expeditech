@@ -1,6 +1,5 @@
 package fr.caranouga.expeditech.common.content.blocks.mb;
 
-import fr.caranouga.expeditech.common.Expeditech;
 import fr.caranouga.expeditech.common.content.tiles.mb.SlaveMbTile;
 import fr.caranouga.expeditech.common.registry.ModBlocks;
 import fr.caranouga.expeditech.common.registry.ModTileEntities;
@@ -9,32 +8,27 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.PushReaction;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.state.IntegerProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.Direction;
-import net.minecraft.util.Mirror;
-import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.IBlockReader;
-import net.minecraft.world.IWorld;
+import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.common.ToolType;
 
 import javax.annotation.Nullable;
 
 public class SlaveMbBlock extends Block {
     public static final IntegerProperty TOOL_TYPE = IntegerProperty.create("tool_type", 0, 4);
-    // TODO: Change that
+    // TODO: Change that so that it can accept up to Integer.MAX_VALUE, right now, the game stop loading if pMax set to that
     public static final IntegerProperty HARVEST_LEVEL = IntegerProperty.create("harvest_level", 0, 10);
 
     public SlaveMbBlock() {
         super(
                 Properties.of(Material.BARRIER)
-                        //.strength(-1.0F, 3600000.0F)
                         .isValidSpawn(ModBlocks::never)
         );
 
@@ -103,22 +97,28 @@ public class SlaveMbBlock extends Block {
         return null;
     }
 
-    // TODO: Find a way to make this work
     @Override
     public float getExplosionResistance(BlockState state, IBlockReader world, BlockPos pos, Explosion explosion) {
-            Expeditech.LOGGER.debug("getexplres");
-        // TODO: idem que en bas
         Block originalBlock = getOriginalBlock(world, pos);
         if (originalBlock != null) return originalBlock.getExplosionResistance(state, world, pos, explosion);
 
         return super.getExplosionResistance(state, world, pos, explosion);
     }
 
+    // TODO: Find a better way of doing this instead of copy and pasting the vanilla code
     @Override
     public float getDestroyProgress(BlockState state, PlayerEntity player, IBlockReader world, BlockPos pos) {
-        // TODO: Check si ça marche + patch sinon
-        BlockState originalState = getOriginalBlockstate(world, pos);
-        if(originalState != null) super.getDestroyProgress(originalState, player, world, pos);
+        BlockState originalBlockState = getOriginalBlockstate(world, pos);
+        if(originalBlockState != null) {
+            float f = originalBlockState.getDestroySpeed(world, pos);
+            if (f == -1.0F) {
+                return 0.0F;
+            } else {
+                int i = ForgeHooks.canHarvestBlock(originalBlockState, player, world, pos) ? 30 : 100;
+                return player.getDigSpeed(originalBlockState, pos) / f / (float) i;
+            }
+        }
+
         return super.getDestroyProgress(state, player, world, pos);
     }
 
