@@ -3,6 +3,7 @@ package fr.caranouga.expeditech.common;
 import fr.caranouga.expeditech.common.configs.ClientConfig;
 import fr.caranouga.expeditech.common.configs.CommonConfig;
 import fr.caranouga.expeditech.common.configs.ServerConfig;
+import fr.caranouga.expeditech.common.entities.renderer.TechLevelExperienceOrbRenderer;
 import fr.caranouga.expeditech.common.registry.*;
 import fr.caranouga.expeditech.common.triggers.AdvancementTriggers;
 import net.minecraftforge.client.event.ParticleFactoryRegisterEvent;
@@ -10,6 +11,7 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.InterModComms;
 import net.minecraftforge.fml.ModLoadingContext;
+import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
@@ -59,6 +61,7 @@ public class Expeditech
         ModRecipes.register(modEBus);
         ModTileEntities.register(modEBus);
         ModContainers.register(modEBus);
+        ModEntityTypes.register(modEBus);
         ModTechLockedItems.register(modEBus);
 
         MinecraftForge.EVENT_BUS.register(this);
@@ -79,6 +82,8 @@ public class Expeditech
             ModScreens.register();
             ModKeybinds.register();
         });
+
+        RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.TECH_LEVEL_XP_ORB.get(), TechLevelExperienceOrbRenderer::new);
     }
 
     private void enqueueIMC(final InterModEnqueueEvent event) {
