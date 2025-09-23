@@ -4,6 +4,7 @@ plugins {
     id 'maven-publish'
     id 'net.minecraftforge.gradle' version '[6.0,6.2)'
     id 'org.parchmentmc.librarian.forgegradle' version '1.+'
+    id 'org.spongepowered.mixin' version '0.7.+'
 }
 
 version = mod_version
@@ -93,6 +94,9 @@ repositories {
 dependencies {
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
 
+    // Mixins
+    annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
+
     // JEI
     compileOnly(fg.deobf("mezz.jei:jei-${minecraft_version}:${jei_version}:api"))
     runtimeOnly(fg.deobf("mezz.jei:jei-${minecraft_version}:${jei_version}"))
@@ -114,6 +118,15 @@ dependencies {
 
     // The One Probe
     implementation fg.deobf("mcjty.theoneprobe:TheOneProbe-${top_version}")
+}
+
+mixin {
+    // MixinGradle Settings
+    add sourceSets.main, "mixins.${mod_id}.refmap.json"
+    config "mixins.${mod_id}.json"
+
+    debug.verbose = true
+    debug.export = true
 }
 
 tasks.named('processResources', ProcessResources).configure {

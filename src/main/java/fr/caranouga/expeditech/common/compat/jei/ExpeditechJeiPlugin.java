@@ -1,15 +1,17 @@
 package fr.caranouga.expeditech.common.compat.jei;
 
+import fr.caranouga.expeditech.common.Expeditech;
+import fr.caranouga.expeditech.common.capability.techlevel.TechLevelImplementation;
+import fr.caranouga.expeditech.common.capability.techlevel.TechLevelUtils;
 import fr.caranouga.expeditech.common.compat.jei.coal_generator.CoalGeneratorFuelRecipe;
 import fr.caranouga.expeditech.common.compat.jei.coal_generator.CoalGeneratorRecipeCategory;
 import fr.caranouga.expeditech.common.compat.jei.sanding.SandingMachineRecipeCategory;
 import fr.caranouga.expeditech.common.compat.jei.sanding.SandingRecipeCategory;
+import fr.caranouga.expeditech.common.configs.ServerConfig;
 import fr.caranouga.expeditech.common.content.containers.CoalGeneratorContainer;
 import fr.caranouga.expeditech.common.content.containers.SandingMachineContainer;
 import fr.caranouga.expeditech.common.recipes.SandingRecipe;
-import fr.caranouga.expeditech.common.registry.ModBlocks;
-import fr.caranouga.expeditech.common.registry.ModItems;
-import fr.caranouga.expeditech.common.registry.ModRecipes;
+import fr.caranouga.expeditech.common.registry.*;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
 import mezz.jei.api.constants.VanillaTypes;
@@ -20,6 +22,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipeType;
 import net.minecraft.item.crafting.RecipeManager;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraftforge.fml.RegistryObject;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -65,6 +70,33 @@ public class ExpeditechJeiPlugin implements IModPlugin {
         }
 
         registration.addRecipes(fuelRecipes, CoalGeneratorRecipeCategory.UID);
+
+        for (RegistryObject<LockedItem> entry : ModTechLockedItems.LOCKED_ITEMS.getEntries()) {
+            LockedItem lockedItem = entry.get();
+            int requiredTechXp = lockedItem.getTechXp();
+            int techLevels = TechLevelImplementation.getLevelForXp(requiredTechXp);
+            int remain = requiredTechXp - TechLevelImplementation.getXpForLevel(techLevels);
+            ITextComponent text;
+
+            if(remain <= 0){
+                text = new TranslationTextComponent("jei." + Expeditech.MODID + ".tooltip.tech_locked.only_level",
+                        techLevels);
+            } else if (techLevels <= 0) {
+                text = new TranslationTextComponent("jei." + Expeditech.MODID + ".tooltip.tech_locked.only_xp",
+                        requiredTechXp);
+            }else{
+                text = new TranslationTextComponent("jei." + Expeditech.MODID + ".tooltip.tech_locked.both",
+                        techLevels, remain);
+            }
+
+            if(ServerConfig.techLevelCraft.get()) {
+                registration.addIngredientInfo(
+                        new ItemStack(lockedItem.getStack()),
+                        VanillaTypes.ITEM,
+                        text
+                );
+            }
+        }
     }
 
     @Override

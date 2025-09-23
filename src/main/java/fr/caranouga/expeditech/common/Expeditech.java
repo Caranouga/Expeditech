@@ -5,8 +5,10 @@ import fr.caranouga.expeditech.common.configs.CommonConfig;
 import fr.caranouga.expeditech.common.configs.ServerConfig;
 import fr.caranouga.expeditech.common.registry.*;
 import fr.caranouga.expeditech.common.triggers.AdvancementTriggers;
+import net.minecraftforge.client.event.ParticleFactoryRegisterEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.fml.InterModComms;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
@@ -25,6 +27,9 @@ import static fr.caranouga.expeditech.common.utils.StringUtils.modLocation;
 @Mod(Expeditech.MODID)
 public class Expeditech
 {
+    // TODO: Patch energy coal gen
+    // TODO: Ajouter un effet de glow sur les mb qui marche pas
+
     public static final Logger LOGGER = LogManager.getLogger();
     public static final String MODID = "et";
 
@@ -54,6 +59,7 @@ public class Expeditech
         ModRecipes.register(modEBus);
         ModTileEntities.register(modEBus);
         ModContainers.register(modEBus);
+        ModTechLockedItems.register(modEBus);
 
         MinecraftForge.EVENT_BUS.register(this);
 
@@ -75,7 +81,9 @@ public class Expeditech
         });
     }
 
-    private void enqueueIMC(final InterModEnqueueEvent event) {}
+    private void enqueueIMC(final InterModEnqueueEvent event) {
+    }
 
-    private void processIMC(final InterModProcessEvent event) {}
+    private void processIMC(final InterModProcessEvent event) {
+    }
 }

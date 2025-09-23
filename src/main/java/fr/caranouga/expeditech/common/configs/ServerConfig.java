@@ -7,9 +7,9 @@ public class ServerConfig {
     public static final ForgeConfigSpec SERVER_CONFIG;
 
     public static final ForgeConfigSpec.ConfigValue<Integer> exampleInteger;
-    public static final ForgeConfigSpec.ConfigValue<Boolean> exampleBoolean;
     public static final ForgeConfigSpec.ConfigValue<Boolean> machineDurability;
     public static final ForgeConfigSpec.ConfigValue<Boolean> broadcastMachineDurability;
+    public static final ForgeConfigSpec.ConfigValue<Boolean> techLevelCraft;
 
     static {
         BUILDER.push("Expeditech Server Config");
@@ -17,9 +17,6 @@ public class ServerConfig {
         exampleInteger = BUILDER
                 .comment("An example integer config value.")
                 .defineInRange("exampleInteger", 42, 0, Integer.MAX_VALUE);
-        exampleBoolean = BUILDER
-                .comment("An example boolean config value.")
-                .define("exampleBoolean", true);
 
         machineDurability = BUILDER
                 .comment("Enable or disable machine durability.")
@@ -28,6 +25,10 @@ public class ServerConfig {
         broadcastMachineDurability = BUILDER
                 .comment("Enable or disable broadcasting machine breakage to players.")
                 .define("broadcastMachineDurability", true);
+
+        techLevelCraft = BUILDER
+                .comment("Enable of disable the need of the required tech level to craft items.")
+                .define("techLevelCraft", true);
 
         BUILDER.pop();
         SERVER_CONFIG = BUILDER.build();

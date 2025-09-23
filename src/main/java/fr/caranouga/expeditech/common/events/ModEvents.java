@@ -88,4 +88,10 @@ public class ModEvents {
         ClientState.getMultiblockErrorRenderer().render();
         RenderSystem.popMatrix();
     }
+
+    @SubscribeEvent
+    public static void onPlayerItemCrafted(PlayerEvent.ItemCraftedEvent event) {
+        Expeditech.LOGGER.debug("crafted");
+    }
+
 }
