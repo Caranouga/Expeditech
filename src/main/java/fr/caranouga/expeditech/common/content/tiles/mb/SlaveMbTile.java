@@ -50,12 +50,15 @@ public class SlaveMbTile extends TileEntity {
     public void setOriginalBlock(BlockState state){
         this.originalBlock = state;
 
-        Block block = state.getBlock();
-        ToolType harvestTool = block.getHarvestTool(state);
-        int harvestLevel = block.getHarvestLevel(state);
-        level.setBlockAndUpdate(this.worldPosition, getBlockState()
-                .setValue(SlaveMbBlock.TOOL_TYPE, convertToolType(harvestTool))
-                .setValue(SlaveMbBlock.HARVEST_LEVEL, harvestLevel));
+        if(this.level != null) {
+            Block block = state.getBlock();
+            ToolType harvestTool = block.getHarvestTool(state);
+            int harvestLevel = block.getHarvestLevel(state);
+
+            level.setBlockAndUpdate(this.worldPosition, getBlockState()
+                    .setValue(SlaveMbBlock.TOOL_TYPE, convertToolType(harvestTool))
+                    .setValue(SlaveMbBlock.HARVEST_LEVEL, harvestLevel));
+        }
 
         //level.sendBlockUpdated(getBlockPos(), getBlockState(), getBlockState(), Constants.BlockFlags.BLOCK_UPDATE | Constants.BlockFlags.NOTIFY_NEIGHBORS);
         setChanged();
