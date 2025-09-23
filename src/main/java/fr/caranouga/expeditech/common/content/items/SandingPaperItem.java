@@ -23,7 +23,7 @@ import java.util.Optional;
 import java.util.Random;
 
 public class SandingPaperItem extends Item {
-    public SandingPaperItem(Properties properties) {
+    public SandingPaperItem(Item.Properties properties) {
         super(properties.durability(16)/*.setISTER(() -> SandingPaperRenderer::new)*/);
     }
 

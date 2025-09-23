@@ -32,6 +32,56 @@ public class WorkbenchContainerMixin {
         return optional.isPresent() && expeditech$hasCorrectTechXp(optional, pPlayer, pContainer, pLevel);
     }
 
+    /*@Redirect(
+            method = "slotChangedCraftingGrid",
+            at = @At(
+                    value = "INVOKE",
+                    target = "Ljava/util/Optional;get()Ljava/lang/Object;"
+            )
+    )
+    private static Object redirectGet(Optional<ICraftingRecipe> optional, int pContainerId, World pLevel,
+                                      PlayerEntity pPlayer, CraftingInventory pContainer,
+                                      CraftResultInventory pResultContainer){
+        if(expeditech$hasCorrectTechXp(optional, pPlayer, pContainer, pLevel)){
+            return new ICraftingRecipe() {
+                @Override
+                public boolean matches(CraftingInventory pInv, World pLevel) {
+                    return true;
+                }
+
+                @Override
+                public ItemStack assemble(CraftingInventory pInv) {
+                    ItemStack blockedItem = new ItemStack(Items.BARRIER);
+                    blockedItem.getOrCreateTag().putBoolean("is" + Expeditech.MODID + "BlockedItem", true);
+
+                    return blockedItem;
+                }
+
+                @Override
+                public boolean canCraftInDimensions(int pWidth, int pHeight) {
+                    return true;
+                }
+
+                @Override
+                public ItemStack getResultItem() {
+                    return new ItemStack(Items.BARRIER);
+                }
+
+                @Override
+                public ResourceLocation getId() {
+                    return modLocation("blocked_recipe");
+                }
+
+                @Override
+                public IRecipeSerializer<?> getSerializer() {
+                    return null;
+                }
+            };
+        }
+
+        return optional.get();
+    }*/
+
     @Unique
     private static boolean expeditech$hasCorrectTechXp(Optional<ICraftingRecipe> optional, PlayerEntity pPlayer, CraftingInventory pContainer, World pLevel){
         if(!ServerConfig.techLevelCraft.get()) return true;
