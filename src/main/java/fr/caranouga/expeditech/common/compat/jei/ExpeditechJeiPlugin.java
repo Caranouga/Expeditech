@@ -2,7 +2,6 @@ package fr.caranouga.expeditech.common.compat.jei;
 
 import fr.caranouga.expeditech.common.Expeditech;
 import fr.caranouga.expeditech.common.capability.techlevel.TechLevelImplementation;
-import fr.caranouga.expeditech.common.capability.techlevel.TechLevelUtils;
 import fr.caranouga.expeditech.common.compat.jei.coal_generator.CoalGeneratorFuelRecipe;
 import fr.caranouga.expeditech.common.compat.jei.coal_generator.CoalGeneratorRecipeCategory;
 import fr.caranouga.expeditech.common.compat.jei.sanding.SandingMachineRecipeCategory;
@@ -10,6 +9,7 @@ import fr.caranouga.expeditech.common.compat.jei.sanding.SandingRecipeCategory;
 import fr.caranouga.expeditech.common.configs.ServerConfig;
 import fr.caranouga.expeditech.common.content.containers.CoalGeneratorContainer;
 import fr.caranouga.expeditech.common.content.containers.SandingMachineContainer;
+import fr.caranouga.expeditech.common.content.items.LockedItemRegistryKey;
 import fr.caranouga.expeditech.common.recipes.SandingRecipe;
 import fr.caranouga.expeditech.common.registry.*;
 import mezz.jei.api.IModPlugin;
@@ -71,9 +71,9 @@ public class ExpeditechJeiPlugin implements IModPlugin {
 
         registration.addRecipes(fuelRecipes, CoalGeneratorRecipeCategory.UID);
 
-        for (RegistryObject<LockedItem> entry : ModTechLockedItems.LOCKED_ITEMS.getEntries()) {
-            LockedItem lockedItem = entry.get();
-            int requiredTechXp = lockedItem.getTechXp();
+        for (RegistryObject<LockedItemRegistryKey> entry : ModTechLockedItems.LOCKED_ITEMS.getEntries()) {
+            LockedItemRegistryKey lockedItemRegistryKey = entry.get();
+            int requiredTechXp = lockedItemRegistryKey.getTechXp();
             int techLevels = TechLevelImplementation.getLevelForXp(requiredTechXp);
             int remain = requiredTechXp - TechLevelImplementation.getXpForLevel(techLevels);
             ITextComponent text;
@@ -91,7 +91,7 @@ public class ExpeditechJeiPlugin implements IModPlugin {
 
             if(ServerConfig.techLevelCraft.get()) {
                 registration.addIngredientInfo(
-                        new ItemStack(lockedItem.getStack()),
+                        new ItemStack(lockedItemRegistryKey.getStack()),
                         VanillaTypes.ITEM,
                         text
                 );
